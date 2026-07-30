@@ -1,4 +1,5 @@
 import { readFile, writeFile } from 'node:fs/promises';
+import { format } from 'prettier';
 
 const fileUrl = new URL('../src/data/statistics.json', import.meta.url);
 const current = JSON.parse(await readFile(fileUrl, 'utf8'));
@@ -34,7 +35,8 @@ try {
   current.retrievedAt = new Date().toISOString();
   current.stale = false;
   current.leaderboards.entries = entries;
-  await writeFile(fileUrl, `${JSON.stringify(current, null, 2)}\n`);
+  const formatted = await format(JSON.stringify(current), { parser: 'json' });
+  await writeFile(fileUrl, formatted);
   console.log(`Refreshed ${stats.length} public Legacy leaderboards.`);
 } finally {
   clearTimeout(timeout);
