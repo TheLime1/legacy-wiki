@@ -1,0 +1,36 @@
+---
+interface Props {
+  status?: 'verified' | 'partially verified' | 'unverified';
+  commit?: string;
+  files: string[];
+}
+
+const {
+  status = 'verified',
+  commit = 'bc406b2f9eb4b3c9bc7e54c1b1892f2837761a85',
+  files,
+} = Astro.props;
+const base = `https://github.com/TheLime1/legacy/blob/${commit}/`;
+const sourceUrl = (file: string) =>
+  `${base}${file
+    .split('/')
+    .map((segment) => encodeURIComponent(segment))
+    .join('/')}`;
+---
+
+<aside class="verification-card" aria-label="Source verification">
+  <span class="status-pill">{status}</span>
+  <p>Verified against source commit <code>{commit.slice(0, 12)}</code>.</p>
+  <details>
+    <summary>Source files</summary>
+    <ul>
+      {
+        files.map((file) => (
+          <li>
+            <a href={sourceUrl(file)}>{file}</a>
+          </li>
+        ))
+      }
+    </ul>
+  </details>
+</aside>

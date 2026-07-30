@@ -1,0 +1,242 @@
+---
+title: Formulas and Calculations
+description: Exact Legacy formulas, stacking order, rounding rules, ranges, and examples.
+category: reference
+lastVerified: 2026-07-30
+sourceCommit: bc406b2f9eb4b3c9bc7e54c1b1892f2837761a85
+sourceFiles:
+  - Code/Legacy/Simulation/LegacyMath.cs
+  - Code/Legacy/Simulation/LegacySimulation.cs
+  - Code/Legacy/Content/LegacyContent.cs
+gameVersion: 1.0.0
+status: verified
+---
+
+import FormulaCard from '../../../components/FormulaCard.astro';
+import VerifiedSource from '../../../components/VerifiedSource.astro';
+import XpCalculator from '../../../components/XpCalculator.astro';
+
+All values below are verified against the pinned C# implementation. A product described as “rounded” uses JavaScript-compatible `Math.round`: half values round toward positive infinity.
+
+## Time constants
+
+| Symbol     | Meaning                |                      Value |
+| ---------- | ---------------------- | -------------------------: |
+| $D_y$      | Days per year          |                        365 |
+| $A_0$      | Fresh-life age         |                   14 years |
+| $L_0$      | Base lifespan          |                   70 years |
+| $S_0$      | Base game speed        | 4 in-game days/real second |
+| $f$        | Fixed update frequency |          20 updates/second |
+| $\Delta t$ | Fixed update interval  |               0.05 seconds |
+
+One call to the real-time accumulator consumes at most 200 fixed steps, or 10 seconds of simulation work. Additional backlog stays queued.
+
+<FormulaCard title="Age display" sourceFile="Code/Legacy/Simulation/LegacyMath.cs" sourceSymbol="AgeYears">
+
+$$
+\operatorname{age}(d)=\left\lfloor \frac{d}{365}\right\rfloor
+$$
+
+where $d$ is accumulated in-game days.
+
+</FormulaCard>
+
+## XP requirement
+
+<FormulaCard title="XP needed for the next level" sourceFile="Code/Legacy/Simulation/LegacySimulation.cs" sourceSymbol="GetMaxXp">
+
+$$
+\operatorname{maxXP}(b,\ell)=
+\operatorname{round}\left(b(\ell+1)(1.01)^\ell\right)
+$$
+
+$b$ is the task's base maximum XP and $\ell$ is its current non-negative integer level. Every ability uses $b=100$; class bases are listed in the [class catalog](../../systems/classes/).
+
+</FormulaCard>
+
+| Ability level |     XP needed |
+| ------------: | ------------: |
+|             0 |           100 |
+|            10 |         1,215 |
+|           100 |        27,319 |
+|         1,000 | 2,098,011,479 |
+
+<XpCalculator />
+
+When a tick crosses a level boundary, excess XP carries forward. The implementation can award multiple levels in one tick and recomputes the threshold after each new level.
+
+## XP gain and stacking order
+
+Each task starts with 10 base XP per simulation unit. Every applicable modifier is multiplied, then the final result is rounded once:
+
+$$
+\operatorname{xpGain}=\operatorname{round}\left(10\prod_i m_i\right)
+$$
+
+The universal factors are:
+
+1. task maximum-level bonus: $1+\text{maximum level}/10$;
+2. global rebirth XP multiplier;
+3. Happiness;
+4. Dark Influence;
+5. Demon Training;
+6. Void Influence;
+7. Parallel Universe.
+
+Classes then multiply Productivity, Dark Knowledge, and Personal Squire. Abilities instead multiply Concentration, Book, Study Desk, Library, Void Blade, Void Symbiosis, Universe Fragment, and Evil Incarnate.
+
+One category-specific branch is applied afterward: Military class XP, Strength XP, Magic ability XP, Void Manipulation XP, Arcane class XP, Void class XP, Galactic class XP, Dark Magic XP, Almightiness XP, or Fundamentals XP. Dark Magic multiplies by current Evil; Almightiness multiplies by current Essence.
+
+## Ability effects
+
+<FormulaCard title="Linear ability" sourceFile="Code/Legacy/Simulation/LegacySimulation.cs" sourceSymbol="GetSkillEffect">
+
+$$
+E_{\text{linear}}(\ell,c)=1+c\ell
+$$
+
+$c$ is the ability coefficient from the [ability catalog](../../systems/abilities/).
+
+</FormulaCard>
+
+<FormulaCard title="Expense-reduction ability" sourceFile="Code/Legacy/Simulation/LegacySimulation.cs" sourceSymbol="GetSkillEffect">
+
+$$
+E_{\text{expense}}(\ell)=
+\max\left(0.1,\ 1-\frac{\log_7(\ell+1)}{10}\right)
+$$
+
+The multiplier is clamped to a minimum of 0.1. Bargaining, Intimidation, Brainwashing, Abyss Manipulation, and Galactic Command each use this formula and multiply together.
+
+</FormulaCard>
+
+| Level | Expense multiplier |
+| ----: | -----------------: |
+|     0 |           1.000000 |
+|    10 |           0.876773 |
+|   100 |           0.762830 |
+| 1,000 |           0.644960 |
+
+<FormulaCard title="Logarithmic boost" sourceFile="Code/Legacy/Simulation/LegacySimulation.cs" sourceSymbol="GetSkillEffect">
+
+$$
+E_{\text{boost}}(\ell,b)=1+\log_b(\ell+1)
+$$
+
+Time Warping uses $b=13$; Life Essence uses $b=33$.
+
+</FormulaCard>
+
+Cosmic Recollection is the special unshifted effect:
+
+$$
+E_{\text{recall}}(\ell)=0.00065\ell
+$$
+
+At level 1 it retains `floor(0.00065 × maximum)` during Transcend; the result can be zero.
+
+## Class income
+
+<FormulaCard title="Class income" sourceFile="Code/Legacy/Simulation/LegacySimulation.cs" sourceSymbol="GetIncomeAtLevel">
+
+$$
+I=\operatorname{round}\left(
+I_0\left(1+\log_{10}(\ell+1)\right)
+M_{\text{wealth}}M_{\text{category}}
+\right)
+$$
+
+More explicitly, the implementation multiplies base income $I_0$, the level term $1+\log_{10}(\ell+1)$, Demon's Wealth, and any applicable category income effect. Military adds Strength; Arcane Association adds All Seeing Eye. The final product is rounded once.
+
+</FormulaCard>
+
+With base income 100 and no additional multipliers:
+
+| Level | Copper/day |
+| ----: | ---------: |
+|     0 |        100 |
+|    10 |        204 |
+|   100 |        300 |
+| 1,000 |        400 |
+
+## Expenses, Happiness, and net display
+
+Each active possession's base daily expense is multiplied by the five expense-reduction ability effects, then rounded. Total expense is the property expense plus every active miscellaneous expense.
+
+$$
+X_i=\operatorname{round}\left(X_{0,i}
+E_B E_I E_{Br} E_A E_G\right)
+$$
+
+Happiness multiplies:
+
+$$
+H=
+\frac{E_{\text{Meditation}}\,
+I_{\text{Butler}}\,
+I_{\text{Multiverse Fragment}}\,
+I_{\text{Property}}}
+{E_{\text{Mind Seize}}}
+$$
+
+The displayed net value is $\left|I-X\right|$. The absolute value means it reports magnitude; determine the direction by comparing income and expenses.
+
+## Lifespan and game speed
+
+$$
+L=70\cdot365\cdot
+E_{\text{Life Essence}}
+E_{\text{Astral Body}}
+E_{\text{Ceaseless Abyss}}
+E_{\text{Cosmic Longevity}}
+E_{\text{Higher Dimensions}}
+$$
+
+Lifespan has no extra rounding or cap in the inspected calculation.
+
+When time warping is enabled, actual warp is:
+
+$$
+W_{\text{actual}} =
+E_{\text{Time Warping}}+
+\left(E_{\text{Temporal Dimension}}E_{\text{Time Loop}}\right)
+$$
+
+The sidebar display instead multiplies all three effects. This is a verified display/calculation mismatch, not a documentation typo.
+
+Effective game speed is $4W_{\text{actual}}$ while alive and unpaused, otherwise zero. Each fixed step scales a simulated value by `game speed / 20`.
+
+## Rebirth rewards
+
+Touch Eye's next-life per-task multiplier is:
+
+$$
+M_{\text{task}}=1+\frac{\max(\ell,\ell_{\max})}{10}
+$$
+
+Global rebirth XP is:
+
+$$
+M_{\text{global}}=
+1+0.005\min(R_1+3R_2+10R_3,100)
+$$
+
+It ranges from ×1 to ×1.5.
+
+Evil gain multiplies Evil Control, Blood Meditation, Absolute Wish, Void Embodiment, and Yin Yang. Essence gain multiplies Yin Yang and Essence Collector. Transcend's Essence award gains an additional ×1.5 only when current Essence is already at least 30,000.
+
+## Empire career score
+
+$$
+C=p\ell_{\text{peak}}^2
+$$
+
+$p$ is the class career-prestige constant, equal to that class's base max XP in the inspected content. $\ell_{\text{peak}}$ is the highest level proven while that class was worked.
+
+<VerifiedSource
+  files={[
+    'Code/Legacy/Simulation/LegacyMath.cs',
+    'Code/Legacy/Simulation/LegacySimulation.cs',
+    'Code/Legacy/Content/LegacyContent.cs',
+  ]}
+/>

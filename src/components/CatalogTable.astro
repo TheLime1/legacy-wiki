@@ -1,0 +1,139 @@
+---
+import catalog from '../data/catalog.json';
+
+interface Props {
+  kind: 'classes' | 'abilities' | 'properties' | 'items';
+}
+
+const { kind } = Astro.props;
+const format = (value: number) => value.toLocaleString('en-US', { maximumFractionDigits: 6 });
+---
+
+<div class="catalog-table">
+  {
+    kind === 'classes' && (
+      <table>
+        <caption>Legacy class catalog</caption>
+        <thead>
+          <tr>
+            <>
+              <th scope="col">Class</th>
+              <th scope="col">Group</th>
+              <th scope="col">Base max XP</th>
+              <th scope="col">Base copper/day</th>
+              <th scope="col">Unlock</th>
+            </>
+          </tr>
+        </thead>
+        <tbody>
+          {catalog.classes.map((entry) => (
+            <tr>
+              <td>
+                <strong>{entry[1]}</strong>
+              </td>
+              <td>{catalog.classCategories.find((category) => category.id === entry[2])?.name}</td>
+              <td>{format(Number(entry[3]))}</td>
+              <td>{format(Number(entry[4]))}</td>
+              <td>{entry[5]}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    )
+  }
+  {
+    kind === 'abilities' && (
+      <table>
+        <caption>Legacy ability catalog</caption>
+        <thead>
+          <tr>
+            <>
+              <th scope="col">Ability</th>
+              <th scope="col">Group</th>
+              <th scope="col">Affects</th>
+              <th scope="col">Formula</th>
+              <th scope="col">Coefficient</th>
+              <th scope="col">Unlock</th>
+            </>
+          </tr>
+        </thead>
+        <tbody>
+          {catalog.abilities.map((entry) => (
+            <tr>
+              <td>
+                <strong>{entry[1]}</strong>
+              </td>
+              <td>
+                {catalog.abilityCategories.find((category) => category.id === entry[2])?.name}
+              </td>
+              <td>{entry[3]}</td>
+              <td>{entry[4]}</td>
+              <td>{format(Number(entry[5]))}</td>
+              <td>{entry[6]}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    )
+  }
+  {
+    kind === 'properties' && (
+      <table>
+        <caption>Legacy property catalog</caption>
+        <thead>
+          <tr>
+            <>
+              <th scope="col">Property</th>
+              <th scope="col">Daily expense</th>
+              <th scope="col">Happiness</th>
+              <th scope="col">Unlock</th>
+            </>
+          </tr>
+        </thead>
+        <tbody>
+          {catalog.properties.map((entry) => (
+            <tr>
+              <td>
+                <strong>{entry[1]}</strong>
+              </td>
+              <td>{format(Number(entry[2]))}</td>
+              <td>×{format(Number(entry[3]))}</td>
+              <td>{entry[4]}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    )
+  }
+  {
+    kind === 'items' && (
+      <table>
+        <caption>Legacy possession catalog</caption>
+        <thead>
+          <tr>
+            <>
+              <th scope="col">Item</th>
+              <th scope="col">Daily expense</th>
+              <th scope="col">Effect</th>
+              <th scope="col">Channel</th>
+              <th scope="col">Unlock</th>
+            </>
+          </tr>
+        </thead>
+        <tbody>
+          {catalog.items.map((entry) => (
+            <tr>
+              <td>
+                <strong>{entry[1]}</strong>
+              </td>
+              <td>{format(Number(entry[2]))}</td>
+              <td>×{format(Number(entry[3]))}</td>
+              <td>{entry[4]}</td>
+              <td>{entry[5]}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    )
+  }
+</div>

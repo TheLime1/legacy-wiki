@@ -1,0 +1,25 @@
+---
+title: Classes
+description: All Legacy classes, base XP values, income, categories, and unlocks.
+category: systems
+lastVerified: 2026-07-30
+sourceCommit: bc406b2f9eb4b3c9bc7e54c1b1892f2837761a85
+sourceFiles:
+  - Code/Legacy/Content/LegacyContent.cs
+  - Code/Legacy/Simulation/LegacySimulation.cs
+gameVersion: 1.0.0
+status: verified
+---
+
+import CatalogTable from '../../../components/CatalogTable.astro';
+import VerifiedSource from '../../../components/VerifiedSource.astro';
+
+Legacy contains 35 income-producing classes across five ordered groups. Only the selected class gains XP and produces copper.
+
+`Base max XP` is the level-zero base used by the shared XP requirement formula. Actual income increases with class level and any applicable class, category, and income multipliers.
+
+<CatalogTable kind="classes" />
+
+<VerifiedSource
+  files={['Code/Legacy/Content/LegacyContent.cs', 'Code/Legacy/Simulation/LegacySimulation.cs']}
+/>

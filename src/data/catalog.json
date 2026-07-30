@@ -1,0 +1,574 @@
+{
+  "sourceCommit": "bc406b2f9eb4b3c9bc7e54c1b1892f2837761a85",
+  "classCategories": [
+    { "id": "common-work", "name": "Common Work", "color": "#55a630" },
+    { "id": "military", "name": "Military", "color": "#e63946" },
+    { "id": "arcane", "name": "The Arcane Association", "color": "#c71585" },
+    { "id": "void", "name": "The Void", "color": "#762b91" },
+    { "id": "galactic", "name": "Galactic Council", "color": "#d5c010" }
+  ],
+  "classes": [
+    ["beggar", "Beggar", "common-work", 50, 5, "Available immediately"],
+    ["farmer", "Farmer", "common-work", 100, 9, "Beggar level 10"],
+    ["fisherman", "Fisherman", "common-work", 200, 15, "Farmer level 10"],
+    ["miner", "Miner", "common-work", 400, 40, "Strength level 10 and Fisherman level 10"],
+    ["blacksmith", "Blacksmith", "common-work", 800, 80, "Strength level 30 and Miner level 10"],
+    [
+      "merchant",
+      "Merchant",
+      "common-work",
+      1600,
+      150,
+      "Bargaining level 50 and Blacksmith level 10"
+    ],
+    ["squire", "Squire", "military", 100, 5, "Strength level 5"],
+    ["footman", "Footman", "military", 1000, 50, "Strength level 20 and Squire level 10"],
+    [
+      "veteran-footman",
+      "Veteran Footman",
+      "military",
+      10000,
+      120,
+      "Battle Tactics level 40 and Footman level 10"
+    ],
+    [
+      "centenary",
+      "Centenary",
+      "military",
+      100000,
+      300,
+      "Strength level 100 and Veteran Footman level 10"
+    ],
+    [
+      "knight",
+      "Knight",
+      "military",
+      1000000,
+      1000,
+      "Battle Tactics level 150 and Centenary level 10"
+    ],
+    [
+      "veteran-knight",
+      "Veteran Knight",
+      "military",
+      7500000,
+      3000,
+      "Strength level 300 and Knight level 10"
+    ],
+    [
+      "holy-knight",
+      "Holy Knight",
+      "military",
+      40000000,
+      5000,
+      "Mana Control level 500 and Veteran Knight level 10"
+    ],
+    [
+      "lieutenant-general",
+      "Lieutenant General",
+      "military",
+      150000000,
+      50000,
+      "Mana Control level 1,000, Battle Tactics level 1,000, and Holy Knight level 10"
+    ],
+    [
+      "student",
+      "Student",
+      "arcane",
+      100000,
+      100,
+      "Concentration level 200 and Meditation level 200"
+    ],
+    [
+      "apprentice-mage",
+      "Apprentice Mage",
+      "arcane",
+      1000000,
+      1000,
+      "Mana Control level 400 and Student level 10"
+    ],
+    [
+      "adept-mage",
+      "Adept Mage",
+      "arcane",
+      10000000,
+      9500,
+      "Mana Control level 700 and Apprentice Mage level 10"
+    ],
+    [
+      "master-wizard",
+      "Master Wizard",
+      "arcane",
+      100000000,
+      70000,
+      "Mana Control level 1,000 and Adept Mage level 10"
+    ],
+    [
+      "archmage",
+      "Archmage",
+      "arcane",
+      10000000000,
+      350000,
+      "Mana Control level 1,200 and Master Wizard level 10"
+    ],
+    [
+      "chronomancer",
+      "Chronomancer",
+      "arcane",
+      2000000000000,
+      1000000,
+      "Mana Control level 1,500, Meditation level 1,500, and Archmage level 25"
+    ],
+    [
+      "chairman",
+      "Chairman",
+      "arcane",
+      20000000000000,
+      10000000,
+      "Mana Control level 2,000, Productivity level 2,000, and Chronomancer level 50"
+    ],
+    [
+      "imperator",
+      "Imperator",
+      "arcane",
+      9000000000000000,
+      60000000,
+      "All Seeing Eye level 3,000, Concentration level 3,000, and Chairman level 666"
+    ],
+    ["corrupted", "Corrupted", "void", 100000000000000, 25000000, "Age 1,000"],
+    ["void-slave", "Void Slave", "void", 650000000000000, 200000000, "Corrupted level 30"],
+    [
+      "void-fiend",
+      "Void Fiend",
+      "void",
+      18000000000000000,
+      600000000,
+      "Brainwashing level 3,000 and Void Slave level 200"
+    ],
+    [
+      "abyss-anomaly",
+      "Abyss Anomaly",
+      "void",
+      18000000000000000,
+      1200000000,
+      "Mind Seize level 3,000 and Void Fiend level 200"
+    ],
+    [
+      "void-wraith",
+      "Void Wraith",
+      "void",
+      180000000000000000,
+      5000000000,
+      "Temporal Dimension level 3,400 and Abyss Anomaly level 300"
+    ],
+    [
+      "void-reaver",
+      "Void Reaver",
+      "void",
+      2600000000000000000,
+      25000000000,
+      "Void Amplification level 3,400 and Void Wraith level 250"
+    ],
+    [
+      "void-lord",
+      "Void Lord",
+      "void",
+      28000000000000000000,
+      100000000000,
+      "Void Symbiosis level 3,800 and Void Reaver level 150"
+    ],
+    [
+      "abyss-god",
+      "Abyss God",
+      "void",
+      400000000000000000000,
+      1000000000000,
+      "Void Embodiment level 4,700 and Void Lord level 750"
+    ],
+    [
+      "eternal-wanderer",
+      "Eternal Wanderer",
+      "galactic",
+      55000000000000000000,
+      1000000000000,
+      "Age 10,000"
+    ],
+    [
+      "nova",
+      "Nova",
+      "galactic",
+      51000000000000000000,
+      3000000000000,
+      "Eternal Wanderer level 15 and Cosmic Longevity level 4,000"
+    ],
+    [
+      "sigma-proioxis",
+      "Sigma Proioxis",
+      "galactic",
+      500000000000000000000,
+      25000000000000,
+      "Nova level 200 and Cosmic Recollection level 4,500"
+    ],
+    [
+      "acallaris",
+      "Acallaris",
+      "galactic",
+      50000000000000000000000,
+      215000000000000,
+      "Galactic Command level 5,000 and Sigma Proioxis level 1,000"
+    ],
+    [
+      "one-above-all",
+      "One Above All",
+      "galactic",
+      5e27,
+      25000000000000000,
+      "Meditation level 6,300 and Acallaris level 1,400"
+    ]
+  ],
+  "abilityCategories": [
+    { "id": "fundamentals", "name": "Fundamentals" },
+    { "id": "combat", "name": "Combat" },
+    { "id": "magic", "name": "Magic" },
+    { "id": "dark-magic", "name": "Dark Magic" },
+    { "id": "void-manipulation", "name": "Void Manipulation" },
+    { "id": "celestial-powers", "name": "Celestial Powers" },
+    { "id": "almightiness", "name": "Almightiness" }
+  ],
+  "abilities": [
+    [
+      "concentration",
+      "Concentration",
+      "fundamentals",
+      "Ability XP",
+      "linear",
+      0.01,
+      "Available immediately"
+    ],
+    [
+      "productivity",
+      "Productivity",
+      "fundamentals",
+      "Class XP",
+      "linear",
+      0.01,
+      "Concentration level 5"
+    ],
+    [
+      "bargaining",
+      "Bargaining",
+      "fundamentals",
+      "Daily expenses",
+      "log base 7 reduction",
+      -0.01,
+      "Concentration level 20"
+    ],
+    [
+      "meditation",
+      "Meditation",
+      "fundamentals",
+      "Happiness",
+      "linear",
+      0.01,
+      "Concentration level 30 and Productivity level 20"
+    ],
+    ["strength", "Strength", "combat", "Military income", "linear", 0.01, "Available immediately"],
+    [
+      "battle-tactics",
+      "Battle Tactics",
+      "combat",
+      "Military XP",
+      "linear",
+      0.01,
+      "Concentration level 20"
+    ],
+    [
+      "muscle-memory",
+      "Muscle Memory",
+      "combat",
+      "Strength XP",
+      "linear",
+      0.01,
+      "Concentration level 30 and Strength level 30"
+    ],
+    [
+      "mana-control",
+      "Mana Control",
+      "magic",
+      "Arcane XP",
+      "linear",
+      0.01,
+      "Concentration level 200 and Meditation level 200"
+    ],
+    [
+      "life-essence",
+      "Life Essence",
+      "magic",
+      "Lifespan",
+      "log base 33 boost",
+      0.01,
+      "Apprentice Mage level 10"
+    ],
+    [
+      "time-warping",
+      "Time Warping",
+      "magic",
+      "Game speed",
+      "log base 13 boost",
+      0.01,
+      "Adept Mage level 10"
+    ],
+    ["astral-body", "Astral Body", "magic", "Lifespan", "linear", 0.0035, "Archmage level 10"],
+    [
+      "temporal-dimension",
+      "Temporal Dimension",
+      "magic",
+      "Game speed",
+      "linear",
+      0.025,
+      "Chronomancer level 25"
+    ],
+    [
+      "all-seeing-eye",
+      "All Seeing Eye",
+      "magic",
+      "Arcane income",
+      "linear",
+      0.0027,
+      "Mana Control level 2,500 and Chairman level 100"
+    ],
+    [
+      "brainwashing",
+      "Brainwashing",
+      "magic",
+      "Daily expenses",
+      "log base 7 reduction",
+      -0.01,
+      "Imperator level 100"
+    ],
+    ["dark-influence", "Dark Influence", "dark-magic", "All XP", "linear", 0.01, "1 Evil"],
+    ["evil-control", "Evil Control", "dark-magic", "Evil gain", "linear", 0.01, "1 Evil"],
+    [
+      "intimidation",
+      "Intimidation",
+      "dark-magic",
+      "Daily expenses",
+      "log base 7 reduction",
+      -0.01,
+      "1 Evil"
+    ],
+    ["demon-training", "Demon Training", "dark-magic", "All XP", "linear", 0.01, "20 Evil"],
+    ["blood-meditation", "Blood Meditation", "dark-magic", "Evil gain", "linear", 0.01, "50 Evil"],
+    ["demons-wealth", "Demon's Wealth", "dark-magic", "Class income", "linear", 0.002, "500 Evil"],
+    ["dark-knowledge", "Dark Knowledge", "dark-magic", "Class XP", "linear", 0.003, "5,000 Evil"],
+    ["void-influence", "Void Influence", "dark-magic", "All XP", "linear", 0.0028, "50,000 Evil"],
+    ["time-loop", "Time Loop", "dark-magic", "Game speed", "linear", 0.001, "2,500,000 Evil"],
+    [
+      "evil-incarnate",
+      "Evil Incarnate",
+      "dark-magic",
+      "Ability XP",
+      "linear",
+      0.0004,
+      "1,000,000,000 Evil"
+    ],
+    [
+      "absolute-wish",
+      "Absolute Wish",
+      "void-manipulation",
+      "Evil gain",
+      "linear",
+      0.005,
+      "Void Slave level 25 and Chairman level 300"
+    ],
+    [
+      "void-amplification",
+      "Void Amplification",
+      "void-manipulation",
+      "Void class XP",
+      "linear",
+      0.01,
+      "Void Slave level 100 and Absolute Wish level 3,000"
+    ],
+    [
+      "mind-seize",
+      "Mind Seize",
+      "void-manipulation",
+      "Happiness divisor",
+      "linear",
+      0.0006,
+      "Void Amplification level 3,000"
+    ],
+    [
+      "ceaseless-abyss",
+      "Ceaseless Abyss",
+      "void-manipulation",
+      "Lifespan",
+      "linear",
+      0.000585,
+      "Void Influence level 4,000 and Abyss Anomaly level 50"
+    ],
+    [
+      "void-symbiosis",
+      "Void Symbiosis",
+      "void-manipulation",
+      "Ability XP",
+      "linear",
+      0.0015,
+      "Ceaseless Abyss level 3,500 and Void Reaver level 50"
+    ],
+    [
+      "void-embodiment",
+      "Void Embodiment",
+      "void-manipulation",
+      "Evil gain",
+      "linear",
+      0.0025,
+      "Dark Influence level 4,600 and Void Lord level 50"
+    ],
+    [
+      "abyss-manipulation",
+      "Abyss Manipulation",
+      "void-manipulation",
+      "Daily expenses",
+      "log base 7 reduction",
+      -0.01,
+      "Abyss God level 350, Dark Influence level 6,000, and Void Influence level 6,000"
+    ],
+    [
+      "cosmic-longevity",
+      "Cosmic Longevity",
+      "celestial-powers",
+      "Lifespan",
+      "linear",
+      0.0015,
+      "Eternal Wanderer level 1"
+    ],
+    [
+      "cosmic-recollection",
+      "Cosmic Recollection",
+      "celestial-powers",
+      "Max-level retention",
+      "special",
+      0.00065,
+      "Nova level 50, Meditation level 4,200, and Mind Seize level 3,000"
+    ],
+    [
+      "essence-collector",
+      "Essence Collector",
+      "celestial-powers",
+      "Essence gain",
+      "linear",
+      0.01,
+      "Sigma Proioxis level 500, Absolute Wish level 4,900, and Dark Knowledge level 6,300"
+    ],
+    [
+      "galactic-command",
+      "Galactic Command",
+      "celestial-powers",
+      "Daily expenses",
+      "log base 7 reduction",
+      -0.01,
+      "Essence Collector level 5,000 and Bargaining level 5,000"
+    ],
+    ["yin-yang", "Yin Yang", "almightiness", "Essence and Evil gain", "linear", 0.02, "1 Essence"],
+    [
+      "parallel-universe",
+      "Parallel Universe",
+      "almightiness",
+      "All XP",
+      "linear",
+      0.02,
+      "1 Essence"
+    ],
+    [
+      "higher-dimensions",
+      "Higher Dimensions",
+      "almightiness",
+      "Lifespan",
+      "linear",
+      0.001,
+      "10,000 Essence"
+    ],
+    ["epiphany", "Epiphany", "almightiness", "Galactic XP", "linear", 0.012, "30,000 Essence"]
+  ],
+  "properties": [
+    ["homeless", "Homeless", 0, 1, "0 Copper"],
+    ["tent", "Tent", 15, 1.4, "0 Copper"],
+    ["wooden-hut", "Wooden Hut", 100, 2, "10,000 Copper"],
+    ["cottage", "Cottage", 750, 3.5, "75,000 Copper"],
+    ["house", "House", 3000, 6, "300,000 Copper"],
+    ["large-house", "Large House", 25000, 12, "2,500,000 Copper"],
+    ["small-palace", "Small Palace", 300000, 25, "30,000,000 Copper"],
+    ["grand-palace", "Grand Palace", 5000000, 60, "500,000,000 Copper"],
+    ["town-ruler", "Town Ruler", 35000000, 120, "3,500,000,000 Copper"],
+    ["city-ruler", "City Ruler", 1100000000, 500, "110,000,000,000 Copper"],
+    ["nation-ruler", "Nation Ruler", 13000000000, 1200, "1,300,000,000,000 Copper"],
+    ["pocket-dimension", "Pocket Dimension", 49000000000, 5000, "4,900,000,000,000 Copper"],
+    ["void-realm", "Void Realm", 121000000000, 15000, "12,100,000,000,000 Copper"],
+    ["void-universe", "Void Universe", 2000000000000, 30000, "200,000,000,000,000 Copper"],
+    ["astral-realm", "Astral Realm", 160000000000000, 150000, "16,000,000,000,000,000 Copper"],
+    [
+      "galactic-throne",
+      "Galactic Throne",
+      5000000000000000,
+      300000,
+      "500,000,000,000,000,000 Copper"
+    ]
+  ],
+  "items": [
+    ["book", "Book", 10, 1.5, "Ability XP", "0 Copper"],
+    ["dumbbells", "Dumbbells", 50, 1.5, "Strength XP", "5,000 Copper"],
+    ["personal-squire", "Personal Squire", 200, 2, "Class XP", "20,000 Copper"],
+    ["steel-longsword", "Steel Longsword", 1000, 2, "Military XP", "100,000 Copper"],
+    ["butler", "Butler", 7500, 1.5, "Happiness", "750,000 Copper"],
+    ["sapphire-charm", "Sapphire Charm", 50000, 3, "Magic XP", "5,000,000 Copper"],
+    ["study-desk", "Study Desk", 1000000, 2, "Ability XP", "100,000,000 Copper"],
+    ["library", "Library", 10000000, 2, "Ability XP", "1,000,000,000 Copper"],
+    ["observatory", "Observatory", 140000000, 5, "Magic XP", "14,000,000,000 Copper"],
+    ["minds-eye", "Mind's Eye", 3250000000, 10, "Fundamentals XP", "325,000,000,000 Copper"],
+    [
+      "void-necklace",
+      "Void Necklace",
+      28050000000,
+      3,
+      "Void Manipulation XP",
+      "2,805,000,000,000 Copper"
+    ],
+    ["void-armor", "Void Armor", 197050000000, 3, "Void class XP", "19,705,000,000,000 Copper"],
+    ["void-blade", "Void Blade", 502050000000, 3, "Ability XP", "50,205,000,000,000 Copper"],
+    [
+      "void-orb",
+      "Void Orb",
+      1202050000000,
+      3,
+      "Void Manipulation XP",
+      "120,205,000,000,000 Copper"
+    ],
+    ["void-dust", "Void Dust", 25002050000000, 3, "Void class XP", "2,500,205,000,000,000 Copper"],
+    [
+      "celestial-robe",
+      "Celestial Robe",
+      300002050000000,
+      5,
+      "Galactic XP",
+      "30,000,205,000,000,000 Copper"
+    ],
+    [
+      "universe-fragment",
+      "Universe Fragment",
+      18500002050000000,
+      3,
+      "Ability XP",
+      "1,850,000,205,000,000,000 Copper"
+    ],
+    [
+      "multiverse-fragment",
+      "Multiverse Fragment",
+      200500002050000000,
+      5,
+      "Happiness",
+      "20,050,000,205,000,000,000 Copper"
+    ]
+  ]
+}

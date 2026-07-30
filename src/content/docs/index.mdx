@@ -1,0 +1,59 @@
+---
+title: Legacy Wiki
+description: Verified guides and reference documentation for Legacy.
+template: splash
+hero:
+  title: Legacy
+  tagline: A lifetime measured in choices. Learn the systems, plan each life, and trace every formula to the game source.
+  image:
+    file: ../../assets/legacy-logo.png
+  actions:
+    - text: Start a Life
+      link: ./getting-started/
+      icon: right-arrow
+    - text: Formula Reference
+      link: ./reference/formulas/
+      variant: minimal
+category: home
+lastVerified: 2026-07-30
+sourceCommit: bc406b2f9eb4b3c9bc7e54c1b1892f2837761a85
+sourceFiles:
+  - legacy.sbproj
+  - Code/Legacy/Content/LegacyContent.cs
+  - Code/Legacy/Simulation/LegacySimulation.cs
+gameVersion: 1.0.0
+status: verified
+---
+
+import { Card, CardGrid } from '@astrojs/starlight/components';
+import VerifiedSource from '../../components/VerifiedSource.astro';
+
+## Choose what you need
+
+<CardGrid>
+  <Card title="New player path" icon="rocket">
+    Follow the first-life guide from Beggar and Concentration through the first permanent systems.
+  </Card>
+  <Card title="System catalog" icon="open-book">
+    Browse all 35 classes, 39 abilities, 34 possessions, and their exact unlock requirements.
+  </Card>
+  <Card title="Verified formulas" icon="seti:math">
+    Check XP, income, expenses, lifespan, game speed, rebirth rewards, and Empire ranking.
+  </Card>
+  <Card title="Help and recovery" icon="lifebuoy">
+    Understand saves, imports, resets, common limitations, and what the game deliberately does not
+    do.
+  </Card>
+</CardGrid>
+
+## What Legacy is
+
+Legacy is a single-player incremental life simulation. You work one **class** and train one **ability** at a time while age advances. Class income pays the recurring expenses of your selected property and optional possessions. Abilities multiply specific parts of the economy or progression. Later lives add permanent maximum-level bonuses, Evil, Essence, automation, shared leaderboards, and the Empire hierarchy.
+
+<VerifiedSource
+  files={[
+    'legacy.sbproj',
+    'Code/Legacy/Content/LegacyContent.cs',
+    'Code/Legacy/Simulation/LegacySimulation.cs',
+  ]}
+/>

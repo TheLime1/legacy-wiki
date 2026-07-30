@@ -1,0 +1,25 @@
+---
+title: Possessions
+description: Properties and miscellaneous possessions, expenses, effects, and unlocks.
+category: systems
+lastVerified: 2026-07-30
+sourceCommit: bc406b2f9eb4b3c9bc7e54c1b1892f2837761a85
+sourceFiles:
+  - Code/Legacy/Content/LegacyContent.cs
+  - Code/Legacy/Simulation/LegacySimulation.cs
+  - Code/Legacy/UI/LegacyShop.razor
+gameVersion: 1.0.0
+status: verified
+---
+
+import CatalogTable from '../../../components/CatalogTable.astro';
+
+Properties are mutually exclusive and multiply Happiness. Selecting a new property replaces the old one; clicking the current paid property returns to Homeless.
+
+<CatalogTable kind="properties" />
+
+Miscellaneous possessions can be activated independently and multiply their named channel.
+
+<CatalogTable kind="items" />
+
+All listed costs are **daily recurring expenses**, not one-time purchase prices. Bargaining, Intimidation, Brainwashing, Abyss Manipulation, and Galactic Command multiply every possession's base expense. If the resulting expenses consume all copper, active paid possessions are cleared.

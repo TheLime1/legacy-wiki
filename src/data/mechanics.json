@@ -1,0 +1,81 @@
+{
+  "sourceCommit": "bc406b2f9eb4b3c9bc7e54c1b1892f2837761a85",
+  "verifiedAt": "2026-07-30",
+  "counts": {
+    "classes": 35,
+    "abilities": 39,
+    "possessions": 34,
+    "properties": 16,
+    "miscellaneousItems": 18,
+    "achievements": 40,
+    "achievementPoints": 1000
+  },
+  "currencies": [
+    {
+      "id": "copper",
+      "name": "Copper",
+      "use": "Pays recurring possession expenses and is the main spendable resource."
+    },
+    {
+      "id": "evil",
+      "name": "Evil",
+      "use": "Unlocks Dark Magic and scales Dark Magic training."
+    },
+    {
+      "id": "essence",
+      "name": "Essence",
+      "use": "Unlocks Almightiness and scales Almightiness training."
+    }
+  ],
+  "rebirths": [
+    {
+      "id": "touch-eye",
+      "name": "Touch Eye",
+      "unlock": "Age 65",
+      "reward": "Records task maximum levels for a permanent per-task XP multiplier.",
+      "resets": ["age", "copper", "current task levels and XP", "active possessions"],
+      "keeps": [
+        "task maximum levels",
+        "achievements",
+        "Essence",
+        "permanent unlocks",
+        "automation settings"
+      ]
+    },
+    {
+      "id": "embrace-evil",
+      "name": "Embrace Evil",
+      "unlock": "Age 200",
+      "reward": "Awards Evil and unlocks cross-career auto-promotion after the first completion.",
+      "resets": [
+        "age",
+        "copper",
+        "current task levels and XP",
+        "all recorded maximum levels",
+        "active possessions"
+      ],
+      "keeps": ["achievements", "Essence", "permanent unlocks", "automation settings"]
+    },
+    {
+      "id": "transcend",
+      "name": "Transcend",
+      "unlock": "Cosmic Recollection level 1",
+      "reward": "Awards Essence and retains floored task maximum levels scaled by Cosmic Recollection.",
+      "resets": ["age", "copper", "current task levels and XP", "Evil", "active possessions"],
+      "keeps": [
+        "achievements",
+        "Essence",
+        "scaled maximum levels",
+        "permanent unlocks",
+        "automation settings"
+      ]
+    }
+  ],
+  "limitations": [
+    "The game is single-player and supports one local player.",
+    "No offline-progress calculation exists in the inspected source.",
+    "Loadouts and ability Skip choices are session-only.",
+    "The light-theme choice is session-only; audio and sticky-sidebar settings are saved.",
+    "A single Advance call consumes at most 200 fixed steps, equal to ten seconds of simulation work; excess backlog remains queued."
+  ]
+}

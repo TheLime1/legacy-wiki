@@ -1,0 +1,27 @@
+---
+title: Abilities
+description: All Legacy abilities, effects, coefficients, formulas, and unlocks.
+category: systems
+lastVerified: 2026-07-30
+sourceCommit: bc406b2f9eb4b3c9bc7e54c1b1892f2837761a85
+sourceFiles:
+  - Code/Legacy/Content/LegacyContent.cs
+  - Code/Legacy/Simulation/LegacySimulation.cs
+gameVersion: 1.0.0
+status: verified
+---
+
+import CatalogTable from '../../../components/CatalogTable.astro';
+import VerifiedSource from '../../../components/VerifiedSource.astro';
+
+Legacy contains 39 trainable abilities across seven groups. Only the selected ability gains XP.
+
+Most effects are linear: `1 + coefficient × level`. Expense reductions use a capped logarithmic formula, Time Warping and Life Essence use logarithmic boosts, and Cosmic Recollection returns `level × 0.00065` for Transcend retention.
+
+Dark Magic XP includes current Evil as a multiplier. Almightiness XP includes current Essence as a multiplier.
+
+<CatalogTable kind="abilities" />
+
+<VerifiedSource
+  files={['Code/Legacy/Content/LegacyContent.cs', 'Code/Legacy/Simulation/LegacySimulation.cs']}
+/>

@@ -1,0 +1,43 @@
+<section class="calculator" aria-labelledby="xp-calculator-title">
+  <h3 id="xp-calculator-title">XP requirement calculator</h3>
+  <div class="calculator-grid">
+    <label>
+      Task type
+      <select data-xp-base>
+        <option value="100">Ability (base 100)</option>
+        <option value="50">Beggar (base 50)</option>
+        <option value="1000">Example class (base 1,000)</option>
+      </select>
+    </label>
+    <label>
+      Current level
+      <input data-xp-level type="number" min="0" max="100000" step="1" value="10" />
+    </label>
+  </div>
+  <p class="calculator-output" aria-live="polite">
+    XP required: <strong data-xp-result>—</strong>
+  </p>
+</section>
+
+<script>
+  function legacyRound(value: number): number {
+    const floor = Math.floor(value);
+    return value - floor < 0.5 ? floor : floor + 1;
+  }
+
+  function updateCalculator(root: HTMLElement): void {
+    const base = root.querySelector<HTMLSelectElement>('[data-xp-base]');
+    const level = root.querySelector<HTMLInputElement>('[data-xp-level]');
+    const result = root.querySelector<HTMLElement>('[data-xp-result]');
+    if (!base || !level || !result) return;
+    const baseValue = Number(base.value);
+    const levelValue = Math.max(0, Math.floor(Number(level.value) || 0));
+    const xp = legacyRound(baseValue * (levelValue + 1) * 1.01 ** levelValue);
+    result.textContent = xp.toLocaleString('en-US');
+  }
+
+  document.querySelectorAll<HTMLElement>('.calculator').forEach((root) => {
+    root.addEventListener('input', () => updateCalculator(root));
+    updateCalculator(root);
+  });
+</script>

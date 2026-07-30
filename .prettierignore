@@ -1,0 +1,7 @@
+dist/
+dist-canonical/
+dist-github/
+pages-artifact/
+node_modules/
+public/pagefind/
+package-lock.json
