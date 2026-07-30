@@ -1,6 +1,10 @@
 name: Configure Custom Domain
 
 on:
+  push:
+    branches: [main]
+    paths:
+      - .github/workflows/configure-domain.yml
   workflow_dispatch:
 
 permissions:
