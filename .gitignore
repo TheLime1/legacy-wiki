@@ -2,6 +2,7 @@ node_modules/
 dist/
 dist-canonical/
 dist-github/
+dist-cloudflare/
 pages-artifact/
 .astro/
 .DS_Store

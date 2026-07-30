@@ -1,6 +1,7 @@
 dist/
 dist-canonical/
 dist-github/
+dist-cloudflare/
 pages-artifact/
 node_modules/
 public/pagefind/

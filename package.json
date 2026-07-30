@@ -9,9 +9,10 @@
   },
   "scripts": {
     "dev": "cross-env ASTRO_TELEMETRY_DISABLED=1 astro dev",
-    "build": "npm run build:canonical && npm run build:github && node scripts/package-pages.mjs",
+    "build": "npm run build:canonical && npm run build:github && npm run build:cloudflare && node scripts/package-pages.mjs",
     "build:canonical": "cross-env ASTRO_TELEMETRY_DISABLED=1 LEGACY_WIKI_TARGET=canonical astro build",
     "build:github": "cross-env ASTRO_TELEMETRY_DISABLED=1 LEGACY_WIKI_TARGET=github astro build",
+    "build:cloudflare": "cross-env ASTRO_TELEMETRY_DISABLED=1 LEGACY_WIKI_TARGET=cloudflare astro build",
     "preview": "cross-env ASTRO_TELEMETRY_DISABLED=1 astro preview",
     "smoke": "node scripts/smoke-site.mjs",
     "typecheck": "cross-env ASTRO_TELEMETRY_DISABLED=1 astro check",

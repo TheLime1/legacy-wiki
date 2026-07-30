@@ -6,10 +6,17 @@ const siteRoots = [
   {
     label: 'canonical',
     root: join(projectRoot, 'pages-artifact', 'games', 'legacy', 'wiki'),
+    canonicalOrigin: 'https://limestudio.dev/games/legacy/wiki/',
   },
   {
     label: 'github',
     root: join(projectRoot, 'pages-artifact', 'legacy-wiki'),
+    canonicalOrigin: 'https://limestudio.dev/games/legacy/wiki/',
+  },
+  {
+    label: 'cloudflare',
+    root: join(projectRoot, 'dist-cloudflare', 'legacy'),
+    canonicalOrigin: 'https://wiki.limestudio.dev/legacy/',
   },
 ];
 
@@ -35,10 +42,14 @@ function textContent(html) {
     .trim();
 }
 
+function escapeRegex(value) {
+  return value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+}
+
 const failures = [];
 let pageCount = 0;
 
-for (const { label, root } of siteRoots) {
+for (const { label, root, canonicalOrigin } of siteRoots) {
   const htmlFiles = (await walk(root)).filter((file) => file.endsWith('.html'));
   pageCount += htmlFiles.length;
 
@@ -57,9 +68,10 @@ for (const { label, root } of siteRoots) {
 
     if (!is404) {
       if (
-        !/<link\b[^>]*\brel=["']canonical["'][^>]*\bhref=["']https:\/\/limestudio\.dev\/games\/legacy\/wiki\//i.test(
-          html,
-        )
+        !new RegExp(
+          `<link\\b[^>]*\\brel=["']canonical["'][^>]*\\bhref=["']${escapeRegex(canonicalOrigin)}`,
+          'i',
+        ).test(html)
       ) {
         failures.push(`${name}: missing preferred canonical URL`);
       }

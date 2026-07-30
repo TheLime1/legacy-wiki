@@ -3,12 +3,18 @@ import { readFile, stat } from 'node:fs/promises';
 import { join, resolve, sep } from 'node:path';
 
 const artifactRoot = resolve(new URL('../pages-artifact/', import.meta.url).pathname);
+const cloudflareRoot = resolve(new URL('../dist-cloudflare/', import.meta.url).pathname);
 
 const server = createServer(async (request, response) => {
   try {
     const pathname = decodeURIComponent(new URL(request.url, 'http://127.0.0.1').pathname);
-    let file = resolve(join(artifactRoot, pathname.slice(1)));
-    if (file !== artifactRoot && !file.startsWith(`${artifactRoot}${sep}`)) {
+    const cloudflareRequest = pathname.startsWith('/__cloudflare/');
+    const root = cloudflareRequest ? cloudflareRoot : artifactRoot;
+    const relativePath = cloudflareRequest
+      ? pathname.slice('/__cloudflare/'.length)
+      : pathname.slice(1);
+    let file = resolve(join(root, relativePath));
+    if (file !== root && !file.startsWith(`${root}${sep}`)) {
       response.writeHead(403).end();
       return;
     }
@@ -33,6 +39,9 @@ try {
     ['/games/legacy/wiki/', 'Legacy Wiki'],
     ['/games/legacy/wiki/reference/formulas/', 'Class income'],
     ['/games/legacy/wiki/pagefind/pagefind-entry.json', '"languages"'],
+    ['/__cloudflare/legacy/', 'Legacy Wiki'],
+    ['/__cloudflare/legacy/reference/formulas/', 'Class income'],
+    ['/__cloudflare/legacy/pagefind/pagefind-entry.json', '"languages"'],
     ['/404.html', 'Page not found'],
   ];
 
@@ -44,7 +53,7 @@ try {
     }
   }
 
-  console.log(`Smoke-tested ${checks.length} GitHub and canonical artifact routes.`);
+  console.log(`Smoke-tested ${checks.length} GitHub, canonical, and Cloudflare routes.`);
 } finally {
   server.close();
 }

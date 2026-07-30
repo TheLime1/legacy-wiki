@@ -4,9 +4,12 @@ import { dirname, extname, join, normalize, relative, resolve } from 'node:path'
 const projectRoot = resolve(new URL('..', import.meta.url).pathname);
 const canonicalDist = join(projectRoot, 'dist-canonical');
 const githubDist = join(projectRoot, 'dist-github');
+const cloudflareRoot = join(projectRoot, 'dist-cloudflare');
+const cloudflareDist = join(cloudflareRoot, 'legacy');
 const artifactRoot = join(projectRoot, 'pages-artifact');
 const canonicalBase = '/games/legacy/wiki';
 const githubBase = '/legacy-wiki';
+const cloudflareBase = '/legacy';
 
 async function walk(directory) {
   const entries = await readdir(directory, { withFileTypes: true });
@@ -69,6 +72,7 @@ async function validate(root, absoluteRoot, base, stripBase) {
 const results = await Promise.all([
   validate(canonicalDist, canonicalDist, canonicalBase, true),
   validate(githubDist, githubDist, githubBase, true),
+  validate(cloudflareDist, cloudflareRoot, cloudflareBase, false),
   validate(join(artifactRoot, canonicalBase), artifactRoot, canonicalBase, false),
   validate(join(artifactRoot, githubBase), artifactRoot, githubBase, false),
 ]);

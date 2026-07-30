@@ -9,14 +9,36 @@ const canonicalSite = 'https://limestudio.dev';
 const canonicalBase = '/games/legacy/wiki';
 const githubSite = 'https://thelime1.github.io';
 const githubBase = '/legacy-wiki';
-const githubTarget = process.env.LEGACY_WIKI_TARGET === 'github';
-const buildSite = githubTarget ? githubSite : canonicalSite;
-const buildBase = githubTarget ? githubBase : canonicalBase;
+const cloudflareSite = 'https://wiki.limestudio.dev';
+const cloudflareBase = '/legacy';
+const buildTarget = process.env.LEGACY_WIKI_TARGET ?? 'canonical';
+const buildTargets = {
+  canonical: {
+    site: canonicalSite,
+    base: canonicalBase,
+    outDir: './dist-canonical',
+  },
+  github: {
+    site: githubSite,
+    base: githubBase,
+    outDir: './dist-github',
+  },
+  cloudflare: {
+    site: cloudflareSite,
+    base: cloudflareBase,
+    outDir: './dist-cloudflare/legacy',
+  },
+};
+const target = buildTargets[buildTarget];
+
+if (!target) {
+  throw new Error(`Unknown LEGACY_WIKI_TARGET: ${buildTarget}`);
+}
 
 export default defineConfig({
-  site: buildSite,
-  base: buildBase,
-  outDir: githubTarget ? './dist-github' : './dist-canonical',
+  site: target.site,
+  base: target.base,
+  outDir: target.outDir,
   trailingSlash: 'always',
   integrations: [
     starlight({
@@ -34,7 +56,7 @@ export default defineConfig({
       head: [
         {
           tag: 'meta',
-          attrs: { property: 'og:image', content: `${canonicalSite}${canonicalBase}/og-image.svg` },
+          attrs: { property: 'og:image', content: `${target.site}${target.base}/og-image.svg` },
         },
         {
           tag: 'meta',
