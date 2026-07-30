@@ -1,17 +1,12 @@
 ---
 interface Props {
   title: string;
-  sourceSymbol: string;
-  sourceFile: string;
 }
 
-const { title, sourceSymbol, sourceFile } = Astro.props;
+const { title } = Astro.props;
 ---
 
 <section class="formula-card">
   <h3>{title}</h3>
   <div class="formula"><slot /></div>
-  <p>
-    <small>Source: <code>{sourceFile}</code> — <code>{sourceSymbol}</code></small>
-  </p>
 </section>

@@ -69,7 +69,23 @@ select:focus-visible {
   width: 100%;
 }
 
-.verification-card,
+.home-card-link {
+  color: inherit;
+  text-decoration: none;
+}
+
+.home-card-link .card {
+  height: 100%;
+  transition:
+    border-color 160ms ease,
+    transform 160ms ease;
+}
+
+.home-card-link:is(:hover, :focus-visible) .card {
+  border-color: var(--sl-color-accent);
+  transform: translateY(-2px);
+}
+
 .formula-card,
 .calculator {
   margin-block: 1.25rem;
@@ -79,18 +95,8 @@ select:focus-visible {
   padding: 1rem 1.15rem;
 }
 
-.verification-card p,
 .formula-card p {
   margin-block: 0.35rem;
-}
-
-.status-pill {
-  display: inline-flex;
-  border-radius: 999px;
-  background: rgb(240 208 0 / 15%);
-  color: var(--sl-color-accent-high);
-  padding: 0.2rem 0.65rem;
-  font-weight: 700;
 }
 
 .catalog-table {

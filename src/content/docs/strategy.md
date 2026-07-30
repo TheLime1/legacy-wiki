@@ -1,18 +1,11 @@
 ---
 title: Strategy
-description: Practical planning principles derived from Legacy's verified formulas.
-category: help
-lastVerified: 2026-07-30
-sourceCommit: bc406b2f9eb4b3c9bc7e54c1b1892f2837761a85
-sourceFiles:
-  - Code/Legacy/Simulation/LegacySimulation.cs
-  - Code/Legacy/Content/LegacyContent.cs
-gameVersion: 1.0.0
-status: partially verified
+description: Practical planning principles for building a stronger Legacy.
+category: start
 ---
 
-:::note[Strategy status]
-These are recommendations derived from the verified mechanics, not guarantees of one optimal route.
+:::note
+These are practical recommendations, not a guarantee of one optimal route.
 :::
 
 ## Prefer multiplier chains over isolated levels

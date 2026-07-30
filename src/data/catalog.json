@@ -1,5 +1,4 @@
 {
-  "sourceCommit": "bc406b2f9eb4b3c9bc7e54c1b1892f2837761a85",
   "classCategories": [
     { "id": "common-work", "name": "Common Work", "color": "#55a630" },
     { "id": "military", "name": "Military", "color": "#e63946" },

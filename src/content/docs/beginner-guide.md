@@ -1,14 +1,7 @@
 ---
 title: Beginner Guide
-description: A source-grounded route through Legacy's first life.
+description: A practical route through Legacy's first life.
 category: start
-lastVerified: 2026-07-30
-sourceCommit: bc406b2f9eb4b3c9bc7e54c1b1892f2837761a85
-sourceFiles:
-  - Code/Legacy/Content/LegacyContent.cs
-  - Code/Legacy/Simulation/LegacySimulation.cs
-gameVersion: 1.0.0
-status: verified
 ---
 
 ## Build the fundamentals
@@ -33,4 +26,4 @@ Touch Eye becomes available at age 65. It records the greater of each current an
 
 Embrace Evil becomes available at age 200 and awards Evil, but clears every recorded maximum level. Transcend is a later trade: it awards Essence, clears Evil, and retains only the floored share of maximum levels granted by Cosmic Recollection.
 
-There is no verified offline-progress calculation. Closing the game pauses progression until it is running again.
+Closing the game pauses progression until it is running again.

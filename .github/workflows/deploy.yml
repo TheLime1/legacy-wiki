@@ -30,10 +30,6 @@ jobs:
       - name: Install locked dependencies
         run: npm ci
 
-      - name: Refresh public leaderboard snapshot
-        continue-on-error: true
-        run: node scripts/fetch-stats.mjs
-
       - name: Validate and build production site
         run: npm run check
 

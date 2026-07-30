@@ -2,13 +2,6 @@
 title: Automation
 description: Auto-promote, auto-learn, auto-pause, skips, and unlock retention.
 category: systems
-lastVerified: 2026-07-30
-sourceCommit: bc406b2f9eb4b3c9bc7e54c1b1892f2837761a85
-sourceFiles:
-  - Code/Legacy/Simulation/LegacySimulation.cs
-  - docs/Game Loop/Systems/Automation.md
-gameVersion: 1.0.0
-status: verified
 ---
 
 Automation appears at age 20 and remains unlocked after any rebirth.

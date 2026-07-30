@@ -2,13 +2,6 @@
 title: Glossary
 description: Concise definitions of Legacy terms.
 category: reference
-lastVerified: 2026-07-30
-sourceCommit: bc406b2f9eb4b3c9bc7e54c1b1892f2837761a85
-sourceFiles:
-  - Code/Legacy/Domain/ContentDefinitions.cs
-  - Code/Legacy/Content/LegacyContent.cs
-gameVersion: 1.0.0
-status: verified
 ---
 
 **Ability** — A trainable task that modifies a progression, economy, lifespan, or speed channel.
@@ -27,7 +20,7 @@ status: verified
 
 **Miscellaneous possession** — Independently toggled Shop entry with a recurring expense and channel multiplier.
 
-**Property** — The one mutually exclusive possession that multiplies Happiness and determines Empire placement after verified occupation.
+**Property** — The one mutually exclusive possession that multiplies Happiness and determines Empire placement after you occupy it.
 
 **Rebirth** — A new life through Touch Eye, Embrace Evil, or Transcend, with path-specific permanent rewards and resets.
 

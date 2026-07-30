@@ -2,14 +2,6 @@
 title: Unlocks and Milestones
 description: Permanent and current-life unlock conditions across Legacy.
 category: systems
-lastVerified: 2026-07-30
-sourceCommit: bc406b2f9eb4b3c9bc7e54c1b1892f2837761a85
-sourceFiles:
-  - Code/Legacy/Content/LegacyContent.cs
-  - Code/Legacy/Simulation/LegacySimulation.cs
-  - Code/Legacy/Simulation/LegacyFeatureIds.cs
-gameVersion: 1.0.0
-status: verified
 ---
 
 ## Interface milestones

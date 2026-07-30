@@ -1,6 +1,4 @@
 {
-  "sourceCommit": "bc406b2f9eb4b3c9bc7e54c1b1892f2837761a85",
-  "verifiedAt": "2026-07-30",
   "counts": {
     "classes": 35,
     "abilities": 39,
@@ -73,9 +71,9 @@
   ],
   "limitations": [
     "The game is single-player and supports one local player.",
-    "No offline-progress calculation exists in the inspected source.",
+    "The game does not progress while closed.",
     "Loadouts and ability Skip choices are session-only.",
     "The light-theme choice is session-only; audio and sticky-sidebar settings are saved.",
-    "A single Advance call consumes at most 200 fixed steps, equal to ten seconds of simulation work; excess backlog remains queued."
+    "Long pauses may take time to catch up after play resumes."
   ]
 }

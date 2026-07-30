@@ -2,13 +2,6 @@
 title: Rebirths
 description: Touch Eye, Embrace Evil, Transcend, rewards, resets, and retained progress.
 category: systems
-lastVerified: 2026-07-30
-sourceCommit: bc406b2f9eb4b3c9bc7e54c1b1892f2837761a85
-sourceFiles:
-  - Code/Legacy/Simulation/LegacySimulation.cs
-  - docs/Game Loop/Systems/Rebirths.md
-gameVersion: 1.0.0
-status: verified
 ---
 
 All three paths begin the next life at age 14 with zero copper, Beggar, Concentration, and Homeless. Current task levels and XP are cleared, as are the selected property and active miscellaneous possessions.

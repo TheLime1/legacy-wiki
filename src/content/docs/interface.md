@@ -2,14 +2,6 @@
 title: Interface
 description: Tabs, sidebar information, settings, and accessibility behavior.
 category: start
-lastVerified: 2026-07-30
-sourceCommit: bc406b2f9eb4b3c9bc7e54c1b1892f2837761a85
-sourceFiles:
-  - Code/Legacy/UI/LegacyApp.razor
-  - Code/Legacy/UI/LegacySidebar.razor
-  - Code/Legacy/UI/LegacyTaskTable.razor
-gameVersion: 1.0.0
-status: verified
 ---
 
 The permanent top-level tabs are Classes, Abilities, Empire, Leaderboard, Achievements, and Settings. Shop appears after its unlock and Amulet appears from age 25.

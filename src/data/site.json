@@ -3,10 +3,5 @@
   "game": "Legacy",
   "gamePackage": "limestudio.legacy",
   "gameUrl": "https://sbox.game/limestudio/legacy",
-  "sourceRepository": "https://github.com/TheLime1/legacy",
-  "wikiRepository": "https://github.com/TheLime1/legacy-wiki",
-  "sourceCommit": "bc406b2f9eb4b3c9bc7e54c1b1892f2837761a85",
-  "gameVersion": "1.0.0",
-  "lastVerified": "2026-07-30",
   "canonicalUrl": "https://limestudio.dev/games/legacy/wiki/"
 }

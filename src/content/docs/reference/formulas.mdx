@@ -2,36 +2,23 @@
 title: Formulas and Calculations
 description: Exact Legacy formulas, stacking order, rounding rules, ranges, and examples.
 category: reference
-lastVerified: 2026-07-30
-sourceCommit: bc406b2f9eb4b3c9bc7e54c1b1892f2837761a85
-sourceFiles:
-  - Code/Legacy/Simulation/LegacyMath.cs
-  - Code/Legacy/Simulation/LegacySimulation.cs
-  - Code/Legacy/Content/LegacyContent.cs
-gameVersion: 1.0.0
-status: verified
 ---
 
 import FormulaCard from '../../../components/FormulaCard.astro';
-import VerifiedSource from '../../../components/VerifiedSource.astro';
 import XpCalculator from '../../../components/XpCalculator.astro';
 
-All values below are verified against the pinned C# implementation. A product described as “rounded” uses JavaScript-compatible `Math.round`: half values round toward positive infinity.
+A product described as “rounded” rounds half values toward positive infinity.
 
 ## Time constants
 
-| Symbol     | Meaning                |                      Value |
-| ---------- | ---------------------- | -------------------------: |
-| $D_y$      | Days per year          |                        365 |
-| $A_0$      | Fresh-life age         |                   14 years |
-| $L_0$      | Base lifespan          |                   70 years |
-| $S_0$      | Base game speed        | 4 in-game days/real second |
-| $f$        | Fixed update frequency |          20 updates/second |
-| $\Delta t$ | Fixed update interval  |               0.05 seconds |
+| Symbol | Meaning         |                      Value |
+| ------ | --------------- | -------------------------: |
+| $D_y$  | Days per year   |                        365 |
+| $A_0$  | Fresh-life age  |                   14 years |
+| $L_0$  | Base lifespan   |                   70 years |
+| $S_0$  | Base game speed | 4 in-game days/real second |
 
-One call to the real-time accumulator consumes at most 200 fixed steps, or 10 seconds of simulation work. Additional backlog stays queued.
-
-<FormulaCard title="Age display" sourceFile="Code/Legacy/Simulation/LegacyMath.cs" sourceSymbol="AgeYears">
+<FormulaCard title="Age display">
 
 $$
 \operatorname{age}(d)=\left\lfloor \frac{d}{365}\right\rfloor
@@ -43,7 +30,7 @@ where $d$ is accumulated in-game days.
 
 ## XP requirement
 
-<FormulaCard title="XP needed for the next level" sourceFile="Code/Legacy/Simulation/LegacySimulation.cs" sourceSymbol="GetMaxXp">
+<FormulaCard title="XP needed for the next level">
 
 $$
 \operatorname{maxXP}(b,\ell)=
@@ -63,7 +50,7 @@ $b$ is the task's base maximum XP and $\ell$ is its current non-negative integer
 
 <XpCalculator />
 
-When a tick crosses a level boundary, excess XP carries forward. The implementation can award multiple levels in one tick and recomputes the threshold after each new level.
+When progress crosses a level boundary, excess XP carries forward. Several levels can be awarded at once, with the requirement recalculated after every new level.
 
 ## XP gain and stacking order
 
@@ -89,7 +76,7 @@ One category-specific branch is applied afterward: Military class XP, Strength X
 
 ## Ability effects
 
-<FormulaCard title="Linear ability" sourceFile="Code/Legacy/Simulation/LegacySimulation.cs" sourceSymbol="GetSkillEffect">
+<FormulaCard title="Linear ability">
 
 $$
 E_{\text{linear}}(\ell,c)=1+c\ell
@@ -99,7 +86,7 @@ $c$ is the ability coefficient from the [ability catalog](../../systems/abilitie
 
 </FormulaCard>
 
-<FormulaCard title="Expense-reduction ability" sourceFile="Code/Legacy/Simulation/LegacySimulation.cs" sourceSymbol="GetSkillEffect">
+<FormulaCard title="Expense-reduction ability">
 
 $$
 E_{\text{expense}}(\ell)=
@@ -117,7 +104,7 @@ The multiplier is clamped to a minimum of 0.1. Bargaining, Intimidation, Brainwa
 |   100 |           0.762830 |
 | 1,000 |           0.644960 |
 
-<FormulaCard title="Logarithmic boost" sourceFile="Code/Legacy/Simulation/LegacySimulation.cs" sourceSymbol="GetSkillEffect">
+<FormulaCard title="Logarithmic boost">
 
 $$
 E_{\text{boost}}(\ell,b)=1+\log_b(\ell+1)
@@ -137,7 +124,7 @@ At level 1 it retains `floor(0.00065 × maximum)` during Transcend; the result c
 
 ## Class income
 
-<FormulaCard title="Class income" sourceFile="Code/Legacy/Simulation/LegacySimulation.cs" sourceSymbol="GetIncomeAtLevel">
+<FormulaCard title="Class income">
 
 $$
 I=\operatorname{round}\left(
@@ -146,7 +133,7 @@ M_{\text{wealth}}M_{\text{category}}
 \right)
 $$
 
-More explicitly, the implementation multiplies base income $I_0$, the level term $1+\log_{10}(\ell+1)$, Demon's Wealth, and any applicable category income effect. Military adds Strength; Arcane Association adds All Seeing Eye. The final product is rounded once.
+This multiplies base income $I_0$, the level term $1+\log_{10}(\ell+1)$, Demon's Wealth, and any applicable category income effect. Military adds Strength; Arcane Association adds All Seeing Eye. The final product is rounded once.
 
 </FormulaCard>
 
@@ -192,7 +179,7 @@ E_{\text{Cosmic Longevity}}
 E_{\text{Higher Dimensions}}
 $$
 
-Lifespan has no extra rounding or cap in the inspected calculation.
+Lifespan has no extra rounding or cap.
 
 When time warping is enabled, actual warp is:
 
@@ -202,9 +189,9 @@ E_{\text{Time Warping}}+
 \left(E_{\text{Temporal Dimension}}E_{\text{Time Loop}}\right)
 $$
 
-The sidebar display instead multiplies all three effects. This is a verified display/calculation mismatch, not a documentation typo.
+The sidebar display instead multiplies all three effects, so it can differ from the speed that actually advances the game.
 
-Effective game speed is $4W_{\text{actual}}$ while alive and unpaused, otherwise zero. Each fixed step scales a simulated value by `game speed / 20`.
+Effective game speed is $4W_{\text{actual}}$ while alive and unpaused, otherwise zero.
 
 ## Rebirth rewards
 
@@ -231,12 +218,4 @@ $$
 C=p\ell_{\text{peak}}^2
 $$
 
-$p$ is the class career-prestige constant, equal to that class's base max XP in the inspected content. $\ell_{\text{peak}}$ is the highest level proven while that class was worked.
-
-<VerifiedSource
-  files={[
-    'Code/Legacy/Simulation/LegacyMath.cs',
-    'Code/Legacy/Simulation/LegacySimulation.cs',
-    'Code/Legacy/Content/LegacyContent.cs',
-  ]}
-/>
+$p$ is the class career-prestige value, equal to that class's base max XP. $\ell_{\text{peak}}$ is the highest level reached while that class was worked.

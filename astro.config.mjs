@@ -22,7 +22,7 @@ export default defineConfig({
     starlight({
       disable404Route: true,
       title: 'Legacy Wiki',
-      description: 'Verified guides, systems, formulas, and reference data for Legacy.',
+      description: 'Guides, systems, formulas, and strategy for Legacy players.',
       favicon: '/favicon.svg',
       logo: {
         src: './src/assets/legacy-logo.png',
@@ -30,13 +30,7 @@ export default defineConfig({
         replacesTitle: false,
       },
       customCss: ['./src/styles/custom.css', 'katex/dist/katex.min.css'],
-      lastUpdated: true,
-      social: [
-        { icon: 'github', label: 'Wiki source', href: 'https://github.com/TheLime1/legacy-wiki' },
-      ],
-      editLink: {
-        baseUrl: 'https://github.com/TheLime1/legacy-wiki/edit/main/',
-      },
+      lastUpdated: false,
       head: [
         {
           tag: 'meta',
@@ -54,6 +48,7 @@ export default defineConfig({
           items: [
             { label: 'Getting Started', link: '/getting-started/' },
             { label: 'Beginner Guide', link: '/beginner-guide/' },
+            { label: 'Strategy', link: '/strategy/' },
             { label: 'Controls', link: '/controls/' },
             { label: 'Interface', link: '/interface/' },
           ],
@@ -76,21 +71,8 @@ export default defineConfig({
           label: 'Reference',
           items: [
             { label: 'Formulas', link: '/reference/formulas/' },
-            { label: 'Game Statistics', link: '/reference/statistics/' },
-            { label: 'Saving & Persistence', link: '/reference/saving/' },
-            { label: 'Technical Reference', link: '/reference/technical/' },
+            { label: 'Saving & Progress', link: '/reference/saving/' },
             { label: 'Glossary', link: '/reference/glossary/' },
-          ],
-        },
-        {
-          label: 'Help',
-          items: [
-            { label: 'Strategy', link: '/strategy/' },
-            { label: 'FAQ', link: '/faq/' },
-            { label: 'Troubleshooting', link: '/troubleshooting/' },
-            { label: 'Update History', link: '/updates/' },
-            { label: 'Credits & Sources', link: '/credits/' },
-            { label: 'Contribute', link: '/contributing/' },
           ],
         },
       ],
