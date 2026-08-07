@@ -3,10 +3,11 @@ import test from 'node:test';
 import {
   careerScore,
   expenseReduction,
-  globalRebirthXp,
   income,
   jsRound,
   logarithmicBoost,
+  masteryMultiplier,
+  masteryTierLevels,
   maxXp,
 } from '../src/data/formulas.mjs';
 
@@ -35,11 +36,19 @@ test('matches logarithmic boosts and income rounding', () => {
   assert.equal(income(100, 1000), 400);
 });
 
-test('weights and caps global rebirth XP', () => {
-  assert.equal(globalRebirthXp(10, 0, 0), 1.05);
-  assert.equal(globalRebirthXp(0, 10, 0), 1.15);
-  assert.equal(globalRebirthXp(0, 0, 10), 1.5);
-  assert.equal(globalRebirthXp(100, 100, 100), 1.5);
+test('matches mastery tier boundaries for representative route levels', () => {
+  assert.deepEqual(masteryTierLevels(10), [15, 21, 30, 40]);
+  assert.deepEqual(masteryTierLevels(25), [35, 47, 63, 83]);
+  assert.deepEqual(masteryTierLevels(100), [128, 161, 198, 240]);
+  assert.deepEqual(masteryTierLevels(200), [242, 287, 335, 386]);
+  assert.deepEqual(masteryTierLevels(666), [726, 787, 848, 909]);
+  assert.deepEqual(masteryTierLevels(1000), [1063, 1127, 1190, 1254]);
+  assert.deepEqual(masteryTierLevels(1400), [1465, 1530, 1595, 1661]);
+});
+
+test('adds mastery percentages before forming one multiplier', () => {
+  assert.equal(masteryMultiplier([2, 0.5, 0.1]), 1.026);
+  assert.equal(masteryMultiplier([8, 2, 0.5]), 1.105);
 });
 
 test('squares peak level for Empire career score', () => {

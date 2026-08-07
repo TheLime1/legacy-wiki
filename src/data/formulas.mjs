@@ -31,12 +31,32 @@ export function logarithmicBoost(level, base) {
   return 1 + Math.log(level + 1) / Math.log(base);
 }
 
-export function globalRebirthXp(touchEye, embraceEvil, transcend) {
-  const weighted = Math.min(
-    100,
-    Math.max(0, touchEye) + 3 * Math.max(0, embraceEvil) + 10 * Math.max(0, transcend),
-  );
-  return 1 + 0.005 * weighted;
+export function masteryNormalizedWork(level) {
+  let total = 0;
+  for (let k = 0; k < Math.max(0, Math.floor(level)); k += 1) {
+    total += (k + 1) * 1.01 ** k;
+  }
+  return total;
+}
+
+export function masteryTierLevels(routeLevel) {
+  const target = Math.max(masteryNormalizedWork(15), 2 * masteryNormalizedWork(routeLevel));
+  const levels = [];
+  let level = 0;
+  let normalizedWork = 0;
+  for (const scale of [1, 2, 4, 8]) {
+    const scaledTarget = scale * target;
+    while (normalizedWork < scaledTarget) {
+      normalizedWork += (level + 1) * 1.01 ** level;
+      level += 1;
+    }
+    levels.push(level);
+  }
+  return levels;
+}
+
+export function masteryMultiplier(percentages = []) {
+  return 1 + percentages.reduce((sum, percentage) => sum + Math.max(0, percentage), 0) / 100;
 }
 
 export function income(baseIncome, level, multipliers = []) {

@@ -8,6 +8,8 @@ import CatalogTable from '../../../components/CatalogTable.astro';
 
 Legacy contains 35 income-producing classes across five ordered groups. Only the selected class gains XP and produces copper.
 
-`Base max XP` is the level-zero base used by the shared XP requirement formula. Actual income increases with class level and any applicable class, category, and income multipliers.
+Each class also has one passive [mastery item](../mastery-items/). Its card appears only after the class completes a work tick, and its tier is derived from that class's worked peak rather than its current or inherited maximum level.
+
+`Base max XP` is the level-zero base used by the shared XP requirement formula. Actual income increases with class level and any applicable class, category, mastery, and income multipliers.
 
 <CatalogTable kind="classes" />

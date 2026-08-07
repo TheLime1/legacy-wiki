@@ -1,7 +1,8 @@
 import { readFile, readdir } from 'node:fs/promises';
-import { join, relative, resolve } from 'node:path';
+import { join, relative, resolve, sep } from 'node:path';
+import { fileURLToPath } from 'node:url';
 
-const projectRoot = resolve(new URL('..', import.meta.url).pathname);
+const projectRoot = resolve(fileURLToPath(new URL('..', import.meta.url)));
 const siteRoots = [
   {
     label: 'canonical',
@@ -56,7 +57,7 @@ for (const { label, root, canonicalOrigin } of siteRoots) {
   for (const file of htmlFiles) {
     const name = `${label}/${relative(root, file)}`;
     const html = await readFile(file, 'utf8');
-    const is404 = file.endsWith('/404.html');
+    const is404 = file.endsWith(`${sep}404.html`);
 
     if (!/<html\b[^>]*\blang=["']en["']/i.test(html)) failures.push(`${name}: missing lang=en`);
     if (!/<meta\b[^>]*\bname=["']viewport["']/i.test(html)) {

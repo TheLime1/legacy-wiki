@@ -6,6 +6,8 @@ category: start
 
 Most actions use the mouse. Click a class or ability row to select it, click a property to replace the active property, and click a miscellaneous possession to toggle it.
 
+Mastery items are passive and cannot be clicked to equip or disable them. Hover or keyboard-focus an Items card to inspect its tooltip.
+
 | Input              | Action                                                                                      |
 | ------------------ | ------------------------------------------------------------------------------------------- |
 | Left / Right arrow | Select the previous or next visible tab                                                     |

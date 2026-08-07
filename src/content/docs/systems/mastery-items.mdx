@@ -1,0 +1,68 @@
+---
+title: Mastery Items
+description: Discovery, tiers, bonuses, persistence, formulas, and the complete class-grouped item catalog.
+category: systems
+---
+
+import MasteryCatalog from '../../../components/MasteryCatalog.astro';
+
+Legacy has one passive mastery item for each of its 35 classes. Items are permanent account collectibles: they are never equipped, disabled, purchased, or consumed, and every earned effect is active at the same time.
+
+## Discovery and visibility
+
+- A class's item first appears after that class completes **one actual work tick**. Merely unlocking or selecting the class is not enough.
+- Discovery is permanent across rebirths, full resets, save export/import, and account reconciliation.
+- A discovered item remains gray until its worked peak reaches Copper. Its tooltip still reveals the Copper requirements and both Copper effects.
+- Never-worked classes do not appear in the Items inventory. Empty class groups are hidden.
+
+The Items tab is always available between Shop and Amulet, including while jailed. It is a read-only inventory; there are no equipment slots.
+
+## Tiers and bonuses
+
+Each item always has two effects: an **own-class XP** bonus and the listed secondary effect. The current tier replaces the previous tier's values; Copper, Silver, Gold, and Platinum values do not add to one another.
+
+| Effect type                       | Copper | Silver |   Gold | Platinum |
+| --------------------------------- | -----: | -----: | -----: | -------: |
+| Own-class XP                      |    +2% |    +4% |    +6% |      +8% |
+| Related ability or class-group XP |  +0.5% |    +1% |  +1.5% |      +2% |
+| Global effect                     | +0.10% | +0.20% | +0.35% |   +0.50% |
+
+Global effects are all class XP, all ability XP, all income, Evil gain, and Essence gain. Every other secondary effect uses the related-effect row.
+
+All applicable mastery percentages add together first to form one mastery multiplier. That multiplier then combines normally with non-mastery systems. For example, several items that affect the same ability contribute one summed mastery bonus rather than multiplying each other.
+
+## Tier formula
+
+Define normalized class work at level $L$ as:
+
+$$
+N(L)=\sum_{k=0}^{L-1}(k+1)(1.01)^k
+$$
+
+Each item has a fixed route level $P$, shown in its card below. Its Copper target is:
+
+$$
+T=\max\left(N(15),\ 2N(P)\right)
+$$
+
+Silver, Gold, and Platinum target $2T$, $4T$, and $8T$. The required peak is the first integer level whose $N(L)$ reaches that target. The common $P=10$ route therefore unlocks at worked peaks **15 / 21 / 30 / 40**.
+
+Only the highest level reached while the class was actually worked counts. Current level, selecting a class, unlocking a class, and inherited maximum levels cannot award a tier.
+
+## Rebirths and resets
+
+- **Touch Eye, Embrace Evil, and Transcend:** all mastery tiers and all active effects survive. A Copper-or-higher item keeps granting its effect in the fresh life as soon as its target class, ability, income, Evil, or Essence calculation is relevant again.
+- **Full reset or anti-cheat release reset:** discovered cards remain visible, but cleared worked-peak evidence removes their tier and bonuses until the class is mastered again.
+- Existing saves infer discovered items and tiers from their recorded worked-class peaks.
+
+The old capped global rebirth XP multiplier no longer exists. Rebirth counts still serve their other systems, and Touch Eye's task-specific `1 + maximum level / 10` acceleration remains.
+
+## Complete item catalog
+
+Within every card, tier requirements and effect values are ordered **Copper / Silver / Gold / Platinum**.
+
+<MasteryCatalog />
+
+## Icon license
+
+Mastery silhouettes come from [Game-Icons.net](https://game-icons.net/) by Lorc and Delapouite under [CC BY 3.0](https://creativecommons.org/licenses/by/3.0/). Legacy recolors the black SVG masters and rasterizes them to transparent 128×128 PNGs. Each catalog card links to its exact source page.

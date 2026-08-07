@@ -10,7 +10,7 @@ The Settings tab lets you export a backup or import an earlier one. Keep exporte
 
 ## Persisted
 
-- currencies, age, lifetime records, tasks, recorded maximums, unlocks, achievements, and rebirth counts;
+- currencies, age, lifetime records, tasks, recorded maximums, class worked peaks, mastery discoveries, unlocks, achievements, and rebirth counts;
 - current class, ability, property, and active miscellaneous possessions;
 - automation toggles;
 - sticky sidebar and audio settings;
@@ -24,3 +24,5 @@ The Settings tab lets you export a backup or import an earlier one. Keep exporte
 - short timing progress between automatic choices.
 
 Time spent with the game closed does not generate progress.
+
+Mastery tiers are not stored as a second value. The game derives them from the saved class worked peaks, so existing signed v10 saves receive the matching items retroactively without a save-version change. Normal rebirths preserve mastery discoveries, worked peaks, tiers, and bonuses. A full reset or anti-cheat release reset preserves card discovery but clears the worked-peak evidence, returning those cards to gray and disabling their bonuses until re-earned.

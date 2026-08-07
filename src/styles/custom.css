@@ -12,6 +12,10 @@
   --sl-color-black: #11110f;
   --legacy-gold: #f0d000;
   --legacy-panel: #1b1b19;
+  --mastery-copper: #a15c2f;
+  --mastery-silver: #a8a8a8;
+  --mastery-gold: #e5c100;
+  --mastery-platinum: #79b9c7;
   color-scheme: dark;
 }
 
@@ -144,6 +148,140 @@ select:focus-visible {
 .formula {
   overflow-x: auto;
   font-size: 1.08rem;
+}
+
+.mastery-wiki-category {
+  margin-block: 2.5rem;
+}
+
+.mastery-wiki-category > h2 {
+  border-inline-start: 0.3rem solid var(--mastery-category);
+  padding-inline-start: 0.75rem;
+}
+
+.mastery-wiki-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 15.5rem), 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.mastery-wiki-card {
+  min-width: 0;
+  border: 1px solid color-mix(in srgb, var(--mastery-category) 42%, var(--sl-color-gray-4));
+  border-top-width: 0.25rem;
+  border-radius: 0.75rem;
+  background: color-mix(in srgb, var(--legacy-panel) 94%, var(--mastery-category));
+  padding: 1rem;
+}
+
+.mastery-wiki-card header {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  min-height: 4rem;
+}
+
+.mastery-wiki-card h3,
+.mastery-wiki-card p {
+  margin: 0;
+}
+
+.mastery-wiki-card h3 {
+  font-size: 1rem;
+}
+
+.mastery-wiki-job {
+  color: var(--mastery-category);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+}
+
+.mastery-wiki-icon {
+  display: block;
+  flex: 0 0 3.5rem;
+  width: 3.5rem;
+  height: 3.5rem;
+  background: var(--mastery-copper);
+  mask: var(--mastery-icon) center / contain no-repeat;
+  -webkit-mask: var(--mastery-icon) center / contain no-repeat;
+}
+
+.mastery-wiki-card dl {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.5rem;
+  margin-block: 0.9rem;
+}
+
+.mastery-wiki-card dl > div {
+  border: 1px solid var(--sl-color-gray-5);
+  border-radius: 0.4rem;
+  padding: 0.45rem 0.55rem;
+}
+
+.mastery-wiki-card dt {
+  color: var(--sl-color-gray-3);
+  font-size: 0.72rem;
+  text-transform: uppercase;
+}
+
+.mastery-wiki-card dd {
+  margin: 0;
+  font-size: 0.88rem;
+}
+
+.mastery-thresholds {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.4rem;
+}
+
+.mastery-thresholds span {
+  border: 1px solid currentColor;
+  border-radius: 0.35rem;
+  padding: 0.3rem 0.4rem;
+  font-size: 0.78rem;
+  text-align: center;
+}
+
+.mastery-copper {
+  color: var(--mastery-copper);
+}
+
+.mastery-silver {
+  color: var(--mastery-silver);
+}
+
+.mastery-gold {
+  color: var(--mastery-gold);
+}
+
+.mastery-platinum {
+  color: var(--mastery-platinum);
+}
+
+.mastery-effects {
+  display: grid;
+  gap: 0.35rem;
+  margin-top: 0.8rem;
+  color: var(--sl-color-gray-2);
+  font-size: 0.82rem;
+}
+
+.mastery-attribution {
+  display: inline-block;
+  margin-top: 0.8rem;
+  font-size: 0.72rem;
+}
+
+@media (max-width: 30rem) {
+  .mastery-wiki-card dl,
+  .mastery-thresholds {
+    grid-template-columns: 1fr;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

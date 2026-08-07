@@ -1,7 +1,8 @@
 import { access, readFile, readdir } from 'node:fs/promises';
-import { dirname, extname, join, normalize, relative, resolve } from 'node:path';
+import { dirname, extname, join, normalize, relative, resolve, sep } from 'node:path';
+import { fileURLToPath } from 'node:url';
 
-const projectRoot = resolve(new URL('..', import.meta.url).pathname);
+const projectRoot = resolve(fileURLToPath(new URL('..', import.meta.url)));
 const canonicalDist = join(projectRoot, 'dist-canonical');
 const githubDist = join(projectRoot, 'dist-github');
 const cloudflareRoot = join(projectRoot, 'dist-cloudflare');
@@ -62,7 +63,7 @@ async function validate(root, absoluteRoot, base, stripBase) {
     }
   }
 
-  const pagefindFiles = (await walk(root)).filter((file) => file.includes('/pagefind/'));
+  const pagefindFiles = (await walk(root)).filter((file) => file.includes(`${sep}pagefind${sep}`));
   if (pagefindFiles.length === 0) failures.push(`${base}: Pagefind index was not generated`);
   if (failures.length) throw new Error(`Link validation failed:\n${failures.join('\n')}`);
 

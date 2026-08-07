@@ -3,6 +3,7 @@
     "classes": 35,
     "abilities": 39,
     "possessions": 34,
+    "masteryItems": 35,
     "properties": 16,
     "miscellaneousItems": 18,
     "achievements": 40,
@@ -34,6 +35,7 @@
       "resets": ["age", "copper", "current task levels and XP", "active possessions"],
       "keeps": [
         "task maximum levels",
+        "mastery discoveries, tiers, and passive effects",
         "achievements",
         "Essence",
         "permanent unlocks",
@@ -52,7 +54,13 @@
         "all recorded maximum levels",
         "active possessions"
       ],
-      "keeps": ["achievements", "Essence", "permanent unlocks", "automation settings"]
+      "keeps": [
+        "achievements",
+        "Essence",
+        "mastery discoveries, tiers, and passive effects",
+        "permanent unlocks",
+        "automation settings"
+      ]
     },
     {
       "id": "transcend",
@@ -64,6 +72,7 @@
         "achievements",
         "Essence",
         "scaled maximum levels",
+        "mastery discoveries, tiers, and passive effects",
         "permanent unlocks",
         "automation settings"
       ]

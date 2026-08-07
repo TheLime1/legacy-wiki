@@ -12,6 +12,8 @@ Concentration improves ability XP. Productivity unlocks at Concentration level 5
 
 The direct class chain is Beggar 10 → Farmer 10 → Fisherman 10. Miner additionally needs Strength 10; Blacksmith needs Strength 30; Merchant needs Bargaining 50. Do not keep an expensive possession active merely because it is unlocked: it is useful only when your current income can cover the resulting daily expense.
 
+Working any class for one tick reveals its passive [mastery item](../systems/mastery-items/). For the common route-level-10 classes, Copper begins at worked peak 15, then Silver, Gold, and Platinum at 21, 30, and 40. These small bonuses are useful reasons to push a favorite class beyond the level needed for its promotion without requiring level 100 on every early class.
+
 ## Open the larger branches
 
 - The Arcane Association and Mana Control require Concentration 200 and Meditation 200.
@@ -25,5 +27,7 @@ The direct class chain is Beggar 10 → Farmer 10 → Fisherman 10. Miner additi
 Touch Eye becomes available at age 65. It records the greater of each current and previous maximum level, then makes that task gain XP `1 + maximum level / 10` times as fast in later lives. Waiting longer can create larger permanent task bonuses, but it also delays the faster next life.
 
 Embrace Evil becomes available at age 200 and awards Evil, but clears every recorded maximum level. Transcend is a later trade: it awards Essence, clears Evil, and retains only the floored share of maximum levels granted by Cosmic Recollection.
+
+Mastery worked peaks and earned effects are separate from task maximum levels: all three normal rebirths preserve them. This makes already-mastered routes a little faster in a fresh life.
 
 Closing the game pauses progression until it is running again.

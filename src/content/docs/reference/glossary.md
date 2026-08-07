@@ -18,6 +18,12 @@ category: reference
 
 **Maximum level** — A recorded task peak used for Touch Eye's task-specific XP multiplier and potentially retained through Transcend.
 
+**Mastery item** — A passive class collectible revealed by completing one work tick. Its two always-active effects improve through Copper, Silver, Gold, and Platinum tiers.
+
+**Mastery tier** — The highest of Copper, Silver, Gold, or Platinum earned from a mastery item's class worked peak. A tier replaces the previous tier's values rather than adding to them.
+
+**Worked peak** — The highest level reached while a class was actually being worked. It determines mastery tiers and Empire career score independently of inherited maximum levels.
+
 **Miscellaneous possession** — Independently toggled Shop entry with a recurring expense and channel multiplier.
 
 **Property** — The one mutually exclusive possession that multiplies Happiness and determines Empire placement after you occupy it.

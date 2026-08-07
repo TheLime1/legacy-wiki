@@ -1,6 +1,7 @@
-import { readFile, readdir } from 'node:fs/promises';
+import { access, readFile, readdir } from 'node:fs/promises';
 import { extname, join, relative } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { masteryTierLevels } from '../src/data/formulas.mjs';
 
 const root = fileURLToPath(new URL('..', import.meta.url));
 const docsRoot = fileURLToPath(new URL('../src/content/docs/', import.meta.url));
@@ -60,6 +61,7 @@ for (const file of docFiles) {
 }
 
 const catalog = JSON.parse(await readFile(new URL('catalog.json', dataRoot), 'utf8'));
+const mastery = JSON.parse(await readFile(new URL('mastery-items.json', dataRoot), 'utf8'));
 const mechanics = JSON.parse(await readFile(new URL('mechanics.json', dataRoot), 'utf8'));
 
 const countChecks = [
@@ -80,4 +82,49 @@ const ids = [
 ];
 if (new Set(ids).size !== ids.length) throw new Error('Catalog contains duplicate IDs');
 if (mechanics.counts.achievements !== 40) throw new Error('Achievement count must be 40');
-console.log(`Validated ${docFiles.length} pages and ${ids.length} catalog entries.`);
+
+if (mastery.categories.length !== 5)
+  throw new Error('Mastery catalog must contain five categories');
+if (mastery.tiers.length !== 4) throw new Error('Mastery catalog must contain four tiers');
+if (mastery.items.length !== 35) throw new Error('Mastery catalog must contain 35 items');
+
+const masteryIds = mastery.items.map((item) => item.id);
+const masteryIcons = mastery.items.map((item) => item.icon);
+const masteryJobs = mastery.items.map((item) => item.job);
+if (new Set(masteryIds).size !== masteryIds.length)
+  throw new Error('Mastery item IDs must be unique');
+if (new Set(masteryIcons).size !== masteryIcons.length)
+  throw new Error('Mastery source icons must be unique');
+if (new Set(masteryJobs).size !== masteryJobs.length)
+  throw new Error('Mastery items must target unique classes');
+
+const classIds = catalog.classes.map((entry) => entry[0]).sort();
+if (JSON.stringify([...masteryIds].sort()) !== JSON.stringify(classIds))
+  throw new Error('Mastery catalog must contain exactly one item for every class ID');
+
+const categoryIds = new Set(mastery.categories.map((category) => category.id));
+for (const item of mastery.items) {
+  if (!categoryIds.has(item.category)) throw new Error(`${item.id}: invalid mastery category`);
+  if (!['related', 'global'].includes(item.secondaryScale))
+    throw new Error(`${item.id}: invalid secondary scale`);
+  if (!Number.isInteger(item.routeLevel) || item.routeLevel < 1)
+    throw new Error(`${item.id}: route level must be a positive integer`);
+  if (
+    item.thresholds.length !== 4 ||
+    item.thresholds.some((value, index) =>
+      index === 0 ? value < 1 : value <= item.thresholds[index - 1],
+    )
+  ) {
+    throw new Error(`${item.id}: mastery thresholds must contain four increasing levels`);
+  }
+  if (JSON.stringify(item.thresholds) !== JSON.stringify(masteryTierLevels(item.routeLevel)))
+    throw new Error(`${item.id}: mastery thresholds do not match its route-level formula`);
+  await access(new URL(`../public/mastery/${item.id}.png`, import.meta.url));
+}
+
+if (mechanics.counts.masteryItems !== mastery.items.length)
+  throw new Error('Mechanics mastery item count does not match the catalog');
+
+console.log(
+  `Validated ${docFiles.length} pages, ${ids.length} base catalog entries, and ${mastery.items.length} mastery items.`,
+);

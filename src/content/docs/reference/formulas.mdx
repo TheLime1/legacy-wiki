@@ -63,7 +63,7 @@ $$
 The universal factors are:
 
 1. task maximum-level bonus: $1+\text{maximum level}/10$;
-2. global rebirth XP multiplier;
+2. one additive mastery multiplier containing every applicable mastery-item percentage;
 3. Happiness;
 4. Dark Influence;
 5. Demon Training;
@@ -73,6 +73,24 @@ The universal factors are:
 Classes then multiply Productivity, Dark Knowledge, and Personal Squire. Abilities instead multiply Concentration, Book, Study Desk, Library, Void Blade, Void Symbiosis, Universe Fragment, and Evil Incarnate.
 
 One category-specific branch is applied afterward: Military class XP, Strength XP, Magic ability XP, Void Manipulation XP, Arcane class XP, Void class XP, Galactic class XP, Dark Magic XP, Almightiness XP, or Fundamentals XP. Dark Magic multiplies by current Evil; Almightiness multiplies by current Essence.
+
+Mastery bonuses do not multiply one another. If the applicable item percentages are $p_1,\ldots,p_n$, their single multiplier is:
+
+$$
+M_{\text{mastery}}=1+\sum_{i=1}^{n}\frac{p_i}{100}
+$$
+
+The current Copper, Silver, Gold, or Platinum value replaces the item's previous tier value. See [Mastery Items](../../systems/mastery-items/) for the complete effect routing.
+
+## Mastery tier thresholds
+
+Normalized work through class level $L$ is:
+
+$$
+N(L)=\sum_{k=0}^{L-1}(k+1)(1.01)^k
+$$
+
+For an item's route level $P$, define $T=\max(N(15),2N(P))$. Copper, Silver, Gold, and Platinum target $T$, $2T$, $4T$, and $8T$. Each displayed requirement is the first integer $L$ whose $N(L)$ reaches its target. Only the separately recorded worked-class peak participates; current and inherited maximum levels do not.
 
 ## Ability effects
 
@@ -129,11 +147,11 @@ At level 1 it retains `floor(0.00065 × maximum)` during Transcend; the result c
 $$
 I=\operatorname{round}\left(
 I_0\left(1+\log_{10}(\ell+1)\right)
-M_{\text{wealth}}M_{\text{category}}
+M_{\text{wealth}}M_{\text{category}}M_{\text{mastery-income}}
 \right)
 $$
 
-This multiplies base income $I_0$, the level term $1+\log_{10}(\ell+1)$, Demon's Wealth, and any applicable category income effect. Military adds Strength; Arcane Association adds All Seeing Eye. The final product is rounded once.
+This multiplies base income $I_0$, the level term $1+\log_{10}(\ell+1)$, Demon's Wealth, any applicable category income effect, and the additive mastery-income multiplier. Military adds Strength; Arcane Association adds All Seeing Eye. The final product is rounded once.
 
 </FormulaCard>
 
@@ -201,16 +219,7 @@ $$
 M_{\text{task}}=1+\frac{\max(\ell,\ell_{\max})}{10}
 $$
 
-Global rebirth XP is:
-
-$$
-M_{\text{global}}=
-1+0.005\min(R_1+3R_2+10R_3,100)
-$$
-
-It ranges from ×1 to ×1.5.
-
-Evil gain multiplies Evil Control, Blood Meditation, Absolute Wish, Void Embodiment, and Yin Yang. Essence gain multiplies Yin Yang and Essence Collector. Transcend's Essence award gains an additional ×1.5 only when current Essence is already at least 30,000.
+There is no rebirth-count-based global XP multiplier. Evil gain multiplies Evil Control, Blood Meditation, Absolute Wish, Void Embodiment, Yin Yang, and the additive mastery Evil-gain multiplier. Essence gain multiplies Yin Yang, Essence Collector, and the additive mastery Essence-gain multiplier. Transcend's Essence award gains an additional ×1.5 only when current Essence is already at least 30,000.
 
 ## Empire career score
 

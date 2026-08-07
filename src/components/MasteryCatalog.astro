@@ -1,0 +1,85 @@
+---
+import mastery from '../data/mastery-items.json';
+
+const base = import.meta.env.BASE_URL;
+const formatPercent = (value: number) =>
+  `${value.toLocaleString('en-US', { maximumFractionDigits: 2 })}%`;
+const tierClass = (tier: string) => `mastery-${tier}`;
+---
+
+<div class="mastery-catalog">
+  {
+    mastery.categories.map((category) => {
+      const items = mastery.items.filter((item) => item.category === category.id);
+      return (
+        <section
+          class="mastery-wiki-category"
+          style={`--mastery-category: ${category.color}`}
+          aria-labelledby={`mastery-${category.id}`}
+        >
+          <h2 id={`mastery-${category.id}`}>{category.name}</h2>
+          <div class="mastery-wiki-grid">
+            {items.map((item) => {
+              const [author, slug] = item.icon.split('/');
+              const secondaryScale = item.secondaryScale as 'related' | 'global';
+              const secondaryValues = mastery.tiers.map((tier) => tier[secondaryScale]);
+              return (
+                <article class="mastery-wiki-card">
+                  <header>
+                    <span
+                      class="mastery-wiki-icon"
+                      style={`--mastery-icon: url("${base}mastery/${item.id}.png")`}
+                      aria-hidden="true"
+                    />
+                    <div>
+                      <p class="mastery-wiki-job">{item.job}</p>
+                      <h3>{item.name}</h3>
+                    </div>
+                  </header>
+
+                  <dl>
+                    <div>
+                      <dt>Route level</dt>
+                      <dd>P = {item.routeLevel.toLocaleString('en-US')}</dd>
+                    </div>
+                    <div>
+                      <dt>Secondary</dt>
+                      <dd>{item.secondary}</dd>
+                    </div>
+                  </dl>
+
+                  <div class="mastery-thresholds" aria-label="Required worked peak levels">
+                    {mastery.tiers.map((tier, index) => (
+                      <span class={tierClass(tier.id)}>
+                        <strong>{tier.name}</strong>{' '}
+                        {item.thresholds[index].toLocaleString('en-US')}
+                      </span>
+                    ))}
+                  </div>
+
+                  <div class="mastery-effects">
+                    <p>
+                      <strong>Own class XP:</strong>{' '}
+                      {mastery.tiers.map((tier) => formatPercent(tier.ownJobXp)).join(' / ')}
+                    </p>
+                    <p>
+                      <strong>{item.secondary}:</strong>{' '}
+                      {secondaryValues.map((value) => formatPercent(value)).join(' / ')}
+                    </p>
+                  </div>
+
+                  <a
+                    class="mastery-attribution"
+                    href={`https://game-icons.net/1x1/${author}/${slug}.html`}
+                  >
+                    Icon by {author === 'lorc' ? 'Lorc' : 'Delapouite'} · CC BY 3.0
+                  </a>
+                </article>
+              );
+            })}
+          </div>
+        </section>
+      );
+    })
+  }
+</div>

@@ -80,6 +80,7 @@ export default defineConfig({
           items: [
             { label: 'Core Gameplay Loop', link: '/systems/core-loop/' },
             { label: 'Classes', link: '/systems/classes/' },
+            { label: 'Mastery Items', link: '/systems/mastery-items/' },
             { label: 'Abilities', link: '/systems/abilities/' },
             { label: 'Possessions', link: '/systems/possessions/' },
             { label: 'Unlocks & Milestones', link: '/systems/unlocks/' },

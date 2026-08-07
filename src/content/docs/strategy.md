@@ -20,6 +20,8 @@ Possession numbers are daily expenses. Activate an item when its multiplier acce
 
 Touch Eye rewards high recorded task peaks. Embrace Evil erases those peaks in exchange for Evil, so use it when the Dark Magic unlock and Evil scaling are worth rebuilding. Transcend's retention depends directly on Cosmic Recollection and floors every result; very small retained values can become zero.
 
+Class mastery uses a separate worked peak that survives every normal rebirth. Pushing a route-level-10 class from its usual promotion level 10 to Copper at 15 is a modest detour; higher tiers at 21, 30, and 40 are better treated as optional long-run goals. The small stacked effects speed familiar routes without making one item mandatory.
+
 ## Use automation as supervision
 
 Auto-promote changes only when the immediate next class is unlocked. Auto-learn refreshes its candidate once per second and respects Skip choices. Review skips before a long run, and remember that loading a loadout disables both auto-learn and auto-promote.
