@@ -37,7 +37,7 @@ $$
 \operatorname{round}\left(b(\ell+1)(1.01)^\ell\right)
 $$
 
-$b$ is the task's base maximum XP and $\ell$ is its current non-negative integer level. Every ability uses $b=100$; class bases are listed in the [class catalog](../../systems/classes/).
+$b$ is the task's base maximum XP and $\ell$ is its current non-negative integer level. Ordinary abilities use $b=100$. Resonance I–IV use the calibrated values $0.00030536056011010876$, $0.00003972362997298969$, $0.000004881366014841863$, and $0.00000045896650664729693$. Class bases are listed in the [class catalog](../../systems/classes/).
 
 </FormulaCard>
 
@@ -50,7 +50,7 @@ $b$ is the task's base maximum XP and $\ell$ is its current non-negative integer
 
 <XpCalculator />
 
-When progress crosses a level boundary, excess XP carries forward. Several levels can be awarded at once, with the requirement recalculated after every new level.
+When progress crosses a level boundary, excess XP carries forward. Up to 1,024 levels can be awarded in one fixed update, with the requirement recalculated after every new level; remaining excess continues on later updates. Extreme finite values saturate instead of overflowing.
 
 ## XP gain and stacking order
 
@@ -74,13 +74,23 @@ Classes then multiply Productivity, Dark Knowledge, and Personal Squire. Abiliti
 
 One category-specific branch is applied afterward: Military class XP, Strength XP, Magic ability XP, Void Manipulation XP, Arcane class XP, Void class XP, Galactic class XP, Dark Magic XP, Almightiness XP, or Fundamentals XP. Dark Magic multiplies by current Evil; Almightiness multiplies by current Essence.
 
+The expansion multiplier block is applied after the category-specific branch, in this order:
+
+1. Essence VII multiplies all XP by 1.10. Essence I then multiplies ability XP by 1.05, or Essence II multiplies class XP by 1.05.
+2. Doctrine II applies its selected class- or ability-XP branch. Crown of Null affects classes; Shadow Discipline and Blackstar Grimoire affect abilities. Root Key additionally affects Metaverse classes.
+3. Doctrine IV's all-XP benefit or drawback is applied, followed by Final Revision, Deathless Momentum, and Blinded By Darkness.
+4. Magic abilities then receive Arcana Unbound and Enchanted Orb ranks. Darkness abilities receive the Darkness IX multiplier.
+5. Great tasks finally receive $2^n$, where $n$ is the number of completed Great-XP Heroic milestones, up to 12.
+
+Every applicable term multiplies; none of these percentage labels are combined additively unless its own formula says so.
+
 Mastery bonuses do not multiply one another. If the applicable item percentages are $p_1,\ldots,p_n$, their single multiplier is:
 
 $$
 M_{\text{mastery}}=1+\sum_{i=1}^{n}\frac{p_i}{100}
 $$
 
-The current Copper, Silver, Gold, or Platinum value replaces the item's previous tier value. See [Mastery Items](../../systems/mastery-items/) for the complete effect routing.
+The current Copper, Silver, Gold, Platinum, Emerald, or Ruby value replaces the item's previous tier value. See [Mastery Items](../../systems/mastery-items/) for the complete effect routing.
 
 ## Mastery tier thresholds
 
@@ -90,7 +100,7 @@ $$
 N(L)=\sum_{k=0}^{L-1}(k+1)(1.01)^k
 $$
 
-For an item's route level $P$, define $T=\max(N(15),2N(P))$. Copper, Silver, Gold, and Platinum target $T$, $2T$, $4T$, and $8T$. Each displayed requirement is the first integer $L$ whose $N(L)$ reaches its target. Only the separately recorded worked-class peak participates; current and inherited maximum levels do not.
+For an item's route level $P$, define $T=\max(N(15),2N(P))$. Copper, Silver, Gold, Platinum, Emerald, and Ruby target $T$, $2T$, $4T$, $8T$, $16T$, and $32T$. Each displayed requirement is the first integer $L$ whose $N(L)$ reaches its target. Only the separately recorded worked-class peak participates; current and inherited maximum levels do not.
 
 ## Ability effects
 
@@ -140,6 +150,41 @@ $$
 
 At level 1 it retains `floor(0.00065 × maximum)` during Transcend; the result can be zero.
 
+<FormulaCard title="Darkness ability">
+
+$$
+E_{\mathrm{dark}}(\ell,c)=1+c\log_{10}(\ell+1)
+$$
+
+The six Darkness coefficients and channels are listed in [Darkness and Collapse](../../systems/darkness/#darkness-abilities).
+
+</FormulaCard>
+
+## Great tasks and possessions
+
+For Great rank $r$ and Great level $\ell$:
+
+$$
+b_{\mathrm{Great}}=10^{10}(1.7)^r,
+\qquad
+\operatorname{maxXP}_{\mathrm{Great}}=
+\operatorname{round}\left(b_{\mathrm{Great}}(\ell+1)(1.01)^\ell\right).
+$$
+
+A Great ability evaluates its effect at:
+
+$$
+\ell_{\mathrm{effective}}=\max(P_{\mathrm{normal}},2000)+100\ell_{\mathrm{Great}}.
+$$
+
+Great Cosmic Recollection alone caps its resulting effect at 2. For an original paid possession with ordinary expense $X_0$, ordinary effect $M_0$, and source-order rank $r$:
+
+$$
+X_{\mathrm{Great}}=\max\left(10^6X_0,10^{20}10^{r/3}\right),
+\qquad
+M_{\mathrm{Great}}=1+4(M_0-1).
+$$
+
 ## Class income
 
 <FormulaCard title="Class income">
@@ -166,7 +211,7 @@ With base income 100 and no additional multipliers:
 
 ## Expenses, Happiness, and net display
 
-Each active possession's base daily expense is multiplied by the five expense-reduction ability effects, then rounded. Total expense is the property expense plus every active miscellaneous expense.
+Each active possession's base daily expense is multiplied by the five expense-reduction ability effects, then rounded. Total expense is the property expense plus every active miscellaneous expense and, while enabled, the Shop Steward fee.
 
 $$
 X_i=\operatorname{round}\left(X_{0,i}
@@ -184,7 +229,7 @@ I_{\text{Property}}}
 {E_{\text{Mind Seize}}}
 $$
 
-The displayed net value is $\left|I-X\right|$. The absolute value means it reports magnitude; determine the direction by comparing income and expenses.
+The Shop Steward fee is $0.10I$, and its recommended loadout budget is $0.90I$. Net magnitude is $\left|I-X\right|$; the sidebar prefixes it with **+** when income covers expenses and **−** when expenses are larger, with matching positive or negative styling.
 
 ## Lifespan and game speed
 
@@ -209,7 +254,7 @@ $$
 
 The sidebar display instead multiplies all three effects, so it can differ from the speed that actually advances the game.
 
-Effective game speed is $4W_{\text{actual}}$ while alive and unpaused, otherwise zero.
+Effective game speed is $4W_{\text{actual}}$ while alive and unpaused, otherwise zero. Essence V multiplies effective game speed by 1.10; this milestone bonus is not part of the sidebar's displayed-warp number.
 
 ## Rebirth rewards
 
@@ -219,7 +264,78 @@ $$
 M_{\text{task}}=1+\frac{\max(\ell,\ell_{\max})}{10}
 $$
 
-There is no rebirth-count-based global XP multiplier. Evil gain multiplies Evil Control, Blood Meditation, Absolute Wish, Void Embodiment, Yin Yang, and the additive mastery Evil-gain multiplier. Essence gain multiplies Yin Yang, Essence Collector, and the additive mastery Essence-gain multiplier. Transcend's Essence award gains an additional ×1.5 only when current Essence is already at least 30,000.
+There is no rebirth-count-based global XP multiplier. Evil gain multiplies Evil Control, Blood Meditation, Absolute Wish, Void Embodiment, Yin Yang, the additive mastery Evil-gain multiplier, and Essence VI's 1.15 multiplier.
+
+Essence gain multiplies Yin Yang, Essence Collector, the additive mastery Essence-gain multiplier, Essence IV's 1.10, Essence IX's 1.15, and `1 + 0.1 × Essence Bargain rank`. Transcend gains another ×1.5 after current Essence reaches 30,000 and completes Essence III.
+
+## Echoes and Evil perks
+
+With remembered Resonance peak $p_i$ and target $T_i\in\{1000,1250,1500,1750\}$, matching Echo efficiency is:
+
+$$
+E_i(p_i)=
+\begin{cases}
+0.25+0.75p_i/T_i,&p_i\le T_i,\\
+1+0.05\log_2(p_i/T_i),&p_i>T_i.
+\end{cases}
+$$
+
+Echo XP uses the target ability's complete current XP gain multiplied by $E_i(p_i)$, including Great XP when the target is promoted. See [Echoes and Resonance](../../systems/echoes/) for routing rules.
+
+With Evil $V$, Essence $S$, and Essence VIII multiplier $M_8\in\{1,1.25\}$:
+
+$$
+\operatorname{EPP/day}=
+\frac{\log_{10}(1+V)\left(1+0.25\log_{10}(1+S)\right)}{365}M_8.
+$$
+
+For a base age $A$, perk rank $r$, and reduction $d$ years per rank, the effective requirement is $\max(0,A-rd)$. Current maximum ranks produce Touch Eye 15, Embrace Evil 100, Void 100, and Galactic Council 1,000.
+
+## Collapse and Dark Orbs
+
+For current Essence $S$, $x=S/(5\times10^{10})$, and the product of all Dark Matter multipliers $M_{\mathrm{DM}}$:
+
+$$
+\operatorname{Collapse}(S)=
+\begin{cases}
+0,&x<1,\\
+\left\lfloor x^{1.12}(1+0.15\log_{10}x)M_{\mathrm{DM}}\right\rfloor,&x\ge1.
+\end{cases}
+$$
+
+Extreme positive results saturate at the largest finite value. The Dark Orb generator's next-rank cost and rate are:
+
+$$
+C_{\mathrm{generator}}(r)=\left\lceil3^r\right\rceil,
+$$
+
+$$
+\operatorname{Orbs/day}=0.01(2^r-1)(1+0.25\sqrt{D})M_{11},
+$$
+
+where $D$ is lifetime Dark Matter and $M_{11}$ is 1.5 after Darkness XI, otherwise 1. For an Orb upgrade with base cost $B$, the next rank costs $B4^r$.
+
+## Metaverse and Hypercubes
+
+For gross Dark Matter earned this run $R$, $y=R/1000$, and Metaverse gain multiplier $M_{\mathrm{MP}}$:
+
+$$
+\operatorname{Metaverse}(R)=
+\begin{cases}
+0,&y<1,\\
+\left\lfloor y^{1.1}(1+0.1\log_{10}y)M_{\mathrm{MP}}\right\rfloor,&y\ge1.
+\end{cases}
+$$
+
+With Hypercube Altar rank $a$, active item multiplier $M_i$, and perk multiplier $M_p$:
+
+$$
+\operatorname{Hypercubes/day}=0.03M_iM_p(1.25)^a,
+\qquad
+\operatorname{cap}=10{,}000(1+\mathrm{lifetime\ MP})^2.
+$$
+
+An altar with base cost $B$ costs $B3^r$ for rank $r+1$. Reality Boost duration is $60+10d$ active seconds, and its cooldown is $\max(120,600(0.95)^c)$ active seconds.
 
 ## Empire career score
 

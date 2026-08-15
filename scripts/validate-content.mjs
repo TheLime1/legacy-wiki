@@ -65,10 +65,10 @@ const mastery = JSON.parse(await readFile(new URL('mastery-items.json', dataRoot
 const mechanics = JSON.parse(await readFile(new URL('mechanics.json', dataRoot), 'utf8'));
 
 const countChecks = [
-  ['classes', catalog.classes.length, 35],
-  ['abilities', catalog.abilities.length, 39],
-  ['properties', catalog.properties.length, 16],
-  ['items', catalog.items.length, 18],
+  ['classes', catalog.classes.length, 44],
+  ['abilities', catalog.abilities.length, 49],
+  ['properties', catalog.properties.length, 30],
+  ['items', catalog.items.length, 24],
 ];
 for (const [label, actual, expected] of countChecks) {
   if (actual !== expected) throw new Error(`${label}: expected ${expected}, found ${actual}`);
@@ -83,10 +83,10 @@ const ids = [
 if (new Set(ids).size !== ids.length) throw new Error('Catalog contains duplicate IDs');
 if (mechanics.counts.achievements !== 40) throw new Error('Achievement count must be 40');
 
-if (mastery.categories.length !== 5)
-  throw new Error('Mastery catalog must contain five categories');
-if (mastery.tiers.length !== 4) throw new Error('Mastery catalog must contain four tiers');
-if (mastery.items.length !== 35) throw new Error('Mastery catalog must contain 35 items');
+if (mastery.categories.length !== 7)
+  throw new Error('Mastery catalog must contain seven categories');
+if (mastery.tiers.length !== 6) throw new Error('Mastery catalog must contain six tiers');
+if (mastery.items.length !== 44) throw new Error('Mastery catalog must contain 44 items');
 
 const masteryIds = mastery.items.map((item) => item.id);
 const masteryIcons = mastery.items.map((item) => item.icon);
@@ -110,12 +110,12 @@ for (const item of mastery.items) {
   if (!Number.isInteger(item.routeLevel) || item.routeLevel < 1)
     throw new Error(`${item.id}: route level must be a positive integer`);
   if (
-    item.thresholds.length !== 4 ||
+    item.thresholds.length !== 6 ||
     item.thresholds.some((value, index) =>
       index === 0 ? value < 1 : value <= item.thresholds[index - 1],
     )
   ) {
-    throw new Error(`${item.id}: mastery thresholds must contain four increasing levels`);
+    throw new Error(`${item.id}: mastery thresholds must contain six increasing levels`);
   }
   if (JSON.stringify(item.thresholds) !== JSON.stringify(masteryTierLevels(item.routeLevel)))
     throw new Error(`${item.id}: mastery thresholds do not match its route-level formula`);

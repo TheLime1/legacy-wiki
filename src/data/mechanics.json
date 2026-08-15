@@ -1,11 +1,11 @@
 {
   "counts": {
-    "classes": 35,
-    "abilities": 39,
-    "possessions": 34,
-    "masteryItems": 35,
-    "properties": 16,
-    "miscellaneousItems": 18,
+    "classes": 44,
+    "abilities": 49,
+    "possessions": 54,
+    "masteryItems": 44,
+    "properties": 30,
+    "miscellaneousItems": 24,
     "achievements": 40,
     "achievementPoints": 1000
   },
@@ -24,6 +24,31 @@
       "id": "essence",
       "name": "Essence",
       "use": "Unlocks Almightiness and scales Almightiness training."
+    },
+    {
+      "id": "evil-perk-points",
+      "name": "Evil Perk Points",
+      "use": "Buys permanent age reductions and, later, an Essence multiplier."
+    },
+    {
+      "id": "dark-matter",
+      "name": "Dark Matter",
+      "use": "Funds doctrines and the Dark Orb generator after Collapse."
+    },
+    {
+      "id": "dark-orbs",
+      "name": "Dark Orbs",
+      "use": "Buys permanent-per-run Magic XP, Essence, income, and warp upgrades."
+    },
+    {
+      "id": "metaverse-points",
+      "name": "Metaverse Points",
+      "use": "Funds a refundable perk loadout between Metaverse runs."
+    },
+    {
+      "id": "hypercubes",
+      "name": "Hypercubes",
+      "use": "Buys altar ranks that improve generation, boosts, Essence, and Dark Matter."
     }
   ],
   "rebirths": [
@@ -38,15 +63,17 @@
         "mastery discoveries, tiers, and passive effects",
         "achievements",
         "Essence",
+        "Resonance memories and Evil perks",
+        "Chronicle and milestones",
         "permanent unlocks",
-        "automation settings"
+        "enabled automation choices until the application closes"
       ]
     },
     {
       "id": "embrace-evil",
       "name": "Embrace Evil",
       "unlock": "Age 200",
-      "reward": "Awards Evil and unlocks cross-career auto-promotion after the first completion.",
+      "reward": "Awards Evil and unlocks cross-career auto-promotion, Echo I, Resonance I, and Evil Perk Points after the first completion.",
       "resets": [
         "age",
         "copper",
@@ -58,31 +85,74 @@
         "achievements",
         "Essence",
         "mastery discoveries, tiers, and passive effects",
+        "Resonance memories and Evil perks",
+        "Chronicle and milestones",
         "permanent unlocks",
-        "automation settings"
+        "enabled automation choices until the application closes"
       ]
     },
     {
       "id": "transcend",
       "name": "Transcend",
       "unlock": "Cosmic Recollection level 1",
-      "reward": "Awards Essence and retains floored task maximum levels scaled by Cosmic Recollection.",
+      "reward": "Awards Essence, unlocks the Shop Steward after the first completion, and retains floored task maximum levels scaled by Cosmic Recollection.",
       "resets": ["age", "copper", "current task levels and XP", "Evil", "active possessions"],
       "keeps": [
         "achievements",
         "Essence",
         "scaled maximum levels",
         "mastery discoveries, tiers, and passive effects",
+        "Resonance memories and Evil perks",
+        "Chronicle and milestones",
         "permanent unlocks",
-        "automation settings"
+        "enabled automation choices until the application closes"
+      ]
+    },
+    {
+      "id": "collapse",
+      "name": "Collapse",
+      "unlock": "Heroic XIV and at least 50,000,000,000 Essence",
+      "reward": "Awards Dark Matter from current Essence and unlocks Darkness progression.",
+      "resets": [
+        "age and copper",
+        "Evil and Essence",
+        "all normal and Great task levels, XP, and maximum levels",
+        "active possessions",
+        "Echo focuses"
+      ],
+      "keeps": [
+        "current, lifetime, and run Dark Matter plus Collapse count",
+        "Dark Orbs, generator and upgrade ranks, and doctrines",
+        "Great promotion status and Great item conversions",
+        "mastery progress and Resonance memories",
+        "Evil perks, milestones, Chronicle, and permanent unlocks"
+      ]
+    },
+    {
+      "id": "metaverse",
+      "name": "Metaverse",
+      "unlock": "Darkness XIII and a positive award from run Dark Matter",
+      "reward": "Awards Metaverse Points and opens a refundable perk loadout before the next run.",
+      "resets": [
+        "everything cleared by Collapse",
+        "spendable and run Dark Matter",
+        "Dark Orbs and unpreserved Dark upgrades",
+        "doctrines unless preserved",
+        "Hypercubes, altars, and the Reality Boost"
+      ],
+      "keeps": [
+        "lifetime Dark Matter and Metaverse Points",
+        "Metaverse perk choices",
+        "Great promotion status and Great item conversions",
+        "mastery progress, Resonance memories, milestones, and Chronicle"
       ]
     }
   ],
   "limitations": [
     "The game is single-player and supports one local player.",
     "The game does not progress while closed.",
-    "Loadouts and ability Skip choices are session-only.",
-    "The light-theme choice is session-only; audio and sticky-sidebar settings are saved.",
+    "Automation toggles, loadouts, and ability Skip choices are session-only.",
+    "The light-theme choice is session-only; audio and sticky-header settings are saved.",
     "Long pauses may take time to catch up after play resumes."
   ]
 }

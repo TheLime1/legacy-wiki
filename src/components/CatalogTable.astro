@@ -68,7 +68,7 @@ const format = (value: number) => value.toLocaleString('en-US', { maximumFractio
               </td>
               <td>{entry[3]}</td>
               <td>{entry[4]}</td>
-              <td>{format(Number(entry[5]))}</td>
+              <td>{entry[5] === null ? '—' : format(Number(entry[5]))}</td>
               <td>{entry[6]}</td>
             </tr>
           ))}

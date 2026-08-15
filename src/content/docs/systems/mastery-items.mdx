@@ -6,7 +6,7 @@ category: systems
 
 import MasteryCatalog from '../../../components/MasteryCatalog.astro';
 
-Legacy has one passive mastery item for each of its 35 classes. Items are permanent account collectibles: they are never equipped, disabled, purchased, or consumed, and every earned effect is active at the same time.
+Legacy has one passive mastery item for each of its 44 classes. Items are permanent account collectibles: they are never equipped, disabled, purchased, or consumed, and every earned effect is active at the same time.
 
 ## Discovery and visibility
 
@@ -15,17 +15,17 @@ Legacy has one passive mastery item for each of its 35 classes. Items are perman
 - A discovered item remains gray until its worked peak reaches Copper. Its tooltip still reveals the Copper requirements and both Copper effects.
 - Never-worked classes do not appear in the Items inventory. Empty class groups are hidden.
 
-The Items tab is always available between Shop and Amulet, including while jailed. It is a read-only inventory; there are no equipment slots.
+The Items tab is always available, including while jailed. It is a read-only inventory; there are no equipment slots.
 
 ## Tiers and bonuses
 
-Each item always has two effects: an **own-class XP** bonus and the listed secondary effect. The current tier replaces the previous tier's values; Copper, Silver, Gold, and Platinum values do not add to one another.
+Each item always has two effects: an **own-class XP** bonus and the listed secondary effect. The current tier replaces the previous tier's values; Copper, Silver, Gold, Platinum, Emerald, and Ruby values do not add to one another.
 
-| Effect type                       | Copper | Silver |   Gold | Platinum |
-| --------------------------------- | -----: | -----: | -----: | -------: |
-| Own-class XP                      |    +2% |    +4% |    +6% |      +8% |
-| Related ability or class-group XP |  +0.5% |    +1% |  +1.5% |      +2% |
-| Global effect                     | +0.10% | +0.20% | +0.35% |   +0.50% |
+| Effect type                       | Copper | Silver |   Gold | Platinum | Emerald |  Ruby |
+| --------------------------------- | -----: | -----: | -----: | -------: | ------: | ----: |
+| Own-class XP                      |    +2% |    +4% |    +6% |      +8% |    +10% |  +12% |
+| Related ability or class-group XP |  +0.5% |    +1% |  +1.5% |      +2% |   +2.5% |   +3% |
+| Global effect                     | +0.10% | +0.20% | +0.35% |   +0.50% |  +0.75% | +1.0% |
 
 Global effects are all class XP, all ability XP, all income, Evil gain, and Essence gain. Every other secondary effect uses the related-effect row.
 
@@ -45,7 +45,7 @@ $$
 T=\max\left(N(15),\ 2N(P)\right)
 $$
 
-Silver, Gold, and Platinum target $2T$, $4T$, and $8T$. The required peak is the first integer level whose $N(L)$ reaches that target. The common $P=10$ route therefore unlocks at worked peaks **15 / 21 / 30 / 40**.
+Silver, Gold, Platinum, Emerald, and Ruby target $2T$, $4T$, $8T$, $16T$, and $32T$. The required peak is the first integer level whose $N(L)$ reaches that target. The common $P=10$ route therefore unlocks at worked peaks **15 / 21 / 30 / 40 / 54 / 72**.
 
 Only the highest level reached while the class was actually worked counts. Current level, selecting a class, unlocking a class, and inherited maximum levels cannot award a tier.
 
@@ -59,7 +59,7 @@ The old capped global rebirth XP multiplier no longer exists. Rebirth counts sti
 
 ## Complete item catalog
 
-Within every card, tier requirements and effect values are ordered **Copper / Silver / Gold / Platinum**.
+Within every card, tier requirements and effect values are ordered **Copper / Silver / Gold / Platinum / Emerald / Ruby**.
 
 <MasteryCatalog />
 

@@ -16,6 +16,8 @@
   --mastery-silver: #a8a8a8;
   --mastery-gold: #e5c100;
   --mastery-platinum: #79b9c7;
+  --mastery-emerald: #50c878;
+  --mastery-ruby: #ff5c7a;
   color-scheme: dark;
 }
 
@@ -261,6 +263,14 @@ select:focus-visible {
 
 .mastery-platinum {
   color: var(--mastery-platinum);
+}
+
+.mastery-emerald {
+  color: var(--mastery-emerald);
+}
+
+.mastery-ruby {
+  color: var(--mastery-ruby);
 }
 
 .mastery-effects {

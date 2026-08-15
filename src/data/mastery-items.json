@@ -3,14 +3,18 @@
     { "id": "copper", "name": "Copper", "ownJobXp": 2, "related": 0.5, "global": 0.1 },
     { "id": "silver", "name": "Silver", "ownJobXp": 4, "related": 1, "global": 0.2 },
     { "id": "gold", "name": "Gold", "ownJobXp": 6, "related": 1.5, "global": 0.35 },
-    { "id": "platinum", "name": "Platinum", "ownJobXp": 8, "related": 2, "global": 0.5 }
+    { "id": "platinum", "name": "Platinum", "ownJobXp": 8, "related": 2, "global": 0.5 },
+    { "id": "emerald", "name": "Emerald", "ownJobXp": 10, "related": 2.5, "global": 0.75 },
+    { "id": "ruby", "name": "Ruby", "ownJobXp": 12, "related": 3, "global": 1 }
   ],
   "categories": [
     { "id": "common-work", "name": "Common Work", "color": "#55a630" },
     { "id": "military", "name": "Military", "color": "#e63946" },
     { "id": "arcane", "name": "The Arcane Association", "color": "#c71585" },
     { "id": "void", "name": "The Void", "color": "#762b91" },
-    { "id": "galactic", "name": "Galactic Council", "color": "#d5c010" }
+    { "id": "galactic", "name": "Galactic Council", "color": "#2563eb" },
+    { "id": "dark-ascendancy", "name": "Dark Ascendancy", "color": "#4c1d95" },
+    { "id": "metaverse", "name": "Metaverse", "color": "#d5c010" }
   ],
   "items": [
     {
@@ -20,7 +24,7 @@
       "name": "Weathered Alms Cup",
       "icon": "delapouite/coffee-cup",
       "routeLevel": 10,
-      "thresholds": [15, 21, 30, 40],
+      "thresholds": [15, 21, 30, 40, 54, 72],
       "secondary": "Bargaining XP",
       "secondaryScale": "related"
     },
@@ -31,7 +35,7 @@
       "name": "Seedkeeper's Satchel",
       "icon": "delapouite/plant-seed",
       "routeLevel": 10,
-      "thresholds": [15, 21, 30, 40],
+      "thresholds": [15, 21, 30, 40, 54, 72],
       "secondary": "Productivity XP",
       "secondaryScale": "related"
     },
@@ -42,7 +46,7 @@
       "name": "Lucky Bone Hook",
       "icon": "lorc/fishing-hook",
       "routeLevel": 10,
-      "thresholds": [15, 21, 30, 40],
+      "thresholds": [15, 21, 30, 40, 54, 72],
       "secondary": "Concentration XP",
       "secondaryScale": "related"
     },
@@ -53,7 +57,7 @@
       "name": "Deepvein War Pick",
       "icon": "delapouite/war-pick",
       "routeLevel": 10,
-      "thresholds": [15, 21, 30, 40],
+      "thresholds": [15, 21, 30, 40, 54, 72],
       "secondary": "Strength XP",
       "secondaryScale": "related"
     },
@@ -64,7 +68,7 @@
       "name": "Resonant Anvil",
       "icon": "lorc/anvil-impact",
       "routeLevel": 10,
-      "thresholds": [15, 21, 30, 40],
+      "thresholds": [15, 21, 30, 40, 54, 72],
       "secondary": "Common Work class XP",
       "secondaryScale": "related"
     },
@@ -75,7 +79,7 @@
       "name": "Crowned Trade Coin",
       "icon": "lorc/crown-coin",
       "routeLevel": 10,
-      "thresholds": [15, 21, 30, 40],
+      "thresholds": [15, 21, 30, 40, 54, 72],
       "secondary": "All income",
       "secondaryScale": "global"
     },
@@ -87,7 +91,7 @@
       "name": "Buckled Kite Shield",
       "icon": "delapouite/attached-shield",
       "routeLevel": 10,
-      "thresholds": [15, 21, 30, 40],
+      "thresholds": [15, 21, 30, 40, 54, 72],
       "secondary": "Strength XP",
       "secondaryScale": "related"
     },
@@ -98,7 +102,7 @@
       "name": "March-Worn Boots",
       "icon": "lorc/walking-boot",
       "routeLevel": 10,
-      "thresholds": [15, 21, 30, 40],
+      "thresholds": [15, 21, 30, 40, 54, 72],
       "secondary": "Muscle Memory XP",
       "secondaryScale": "related"
     },
@@ -109,7 +113,7 @@
       "name": "Notched Campaign Spear",
       "icon": "lorc/barbed-spear",
       "routeLevel": 10,
-      "thresholds": [15, 21, 30, 40],
+      "thresholds": [15, 21, 30, 40, 54, 72],
       "secondary": "Battle Tactics XP",
       "secondaryScale": "related"
     },
@@ -120,7 +124,7 @@
       "name": "Centurion's Crest",
       "icon": "delapouite/centurion-helmet",
       "routeLevel": 10,
-      "thresholds": [15, 21, 30, 40],
+      "thresholds": [15, 21, 30, 40, 54, 72],
       "secondary": "Strength XP",
       "secondaryScale": "related"
     },
@@ -131,7 +135,7 @@
       "name": "Closed Knight's Visor",
       "icon": "lorc/visored-helm",
       "routeLevel": 10,
-      "thresholds": [15, 21, 30, 40],
+      "thresholds": [15, 21, 30, 40, 54, 72],
       "secondary": "Battle Tactics XP",
       "secondaryScale": "related"
     },
@@ -142,7 +146,7 @@
       "name": "Laurel of Campaigns",
       "icon": "lorc/laurel-crown",
       "routeLevel": 10,
-      "thresholds": [15, 21, 30, 40],
+      "thresholds": [15, 21, 30, 40, 54, 72],
       "secondary": "Muscle Memory XP",
       "secondaryScale": "related"
     },
@@ -153,7 +157,7 @@
       "name": "Templar's Votive Shield",
       "icon": "delapouite/templar-shield",
       "routeLevel": 10,
-      "thresholds": [15, 21, 30, 40],
+      "thresholds": [15, 21, 30, 40, 54, 72],
       "secondary": "Military class XP",
       "secondaryScale": "related"
     },
@@ -164,7 +168,7 @@
       "name": "General's Star Medal",
       "icon": "delapouite/star-medal",
       "routeLevel": 10,
-      "thresholds": [15, 21, 30, 40],
+      "thresholds": [15, 21, 30, 40, 54, 72],
       "secondary": "All class XP",
       "secondaryScale": "global"
     },
@@ -176,7 +180,7 @@
       "name": "Marginalia Spellbook",
       "icon": "delapouite/spell-book",
       "routeLevel": 10,
-      "thresholds": [15, 21, 30, 40],
+      "thresholds": [15, 21, 30, 40, 54, 72],
       "secondary": "Concentration XP",
       "secondaryScale": "related"
     },
@@ -187,7 +191,7 @@
       "name": "Apprentice's Pointed Hat",
       "icon": "lorc/pointy-hat",
       "routeLevel": 10,
-      "thresholds": [15, 21, 30, 40],
+      "thresholds": [15, 21, 30, 40, 54, 72],
       "secondary": "Life Essence XP",
       "secondaryScale": "related"
     },
@@ -198,7 +202,7 @@
       "name": "Adept's Crystal Wand",
       "icon": "lorc/crystal-wand",
       "routeLevel": 10,
-      "thresholds": [15, 21, 30, 40],
+      "thresholds": [15, 21, 30, 40, 54, 72],
       "secondary": "Time Warping XP",
       "secondaryScale": "related"
     },
@@ -209,7 +213,7 @@
       "name": "Moon-Crook Staff",
       "icon": "delapouite/crescent-staff",
       "routeLevel": 10,
-      "thresholds": [15, 21, 30, 40],
+      "thresholds": [15, 21, 30, 40, 54, 72],
       "secondary": "Mana Control XP",
       "secondaryScale": "related"
     },
@@ -220,7 +224,7 @@
       "name": "Archmage's Astral Eye",
       "icon": "lorc/crystal-eye",
       "routeLevel": 25,
-      "thresholds": [35, 47, 63, 83],
+      "thresholds": [35, 47, 63, 83, 108, 137],
       "secondary": "Astral Body XP",
       "secondaryScale": "related"
     },
@@ -231,7 +235,7 @@
       "name": "Hourglass of Reversed Hours",
       "icon": "lorc/sands-of-time",
       "routeLevel": 50,
-      "thresholds": [67, 88, 114, 144],
+      "thresholds": [67, 88, 114, 144, 179, 219],
       "secondary": "Temporal Dimension XP",
       "secondaryScale": "related"
     },
@@ -242,7 +246,7 @@
       "name": "Association Director's Chair",
       "icon": "delapouite/director-chair",
       "routeLevel": 666,
-      "thresholds": [726, 787, 848, 909],
+      "thresholds": [726, 787, 848, 909, 972, 1034],
       "secondary": "Arcane Association class XP",
       "secondaryScale": "related"
     },
@@ -253,7 +257,7 @@
       "name": "Imperator's Crown",
       "icon": "delapouite/imperial-crown",
       "routeLevel": 100,
-      "thresholds": [128, 161, 198, 240],
+      "thresholds": [128, 161, 198, 240, 284, 332],
       "secondary": "All ability XP",
       "secondaryScale": "global"
     },
@@ -265,7 +269,7 @@
       "name": "Corruption Tear",
       "icon": "lorc/bleeding-eye",
       "routeLevel": 30,
-      "thresholds": [42, 56, 74, 97],
+      "thresholds": [42, 56, 74, 97, 124, 156],
       "secondary": "Dark Influence XP",
       "secondaryScale": "related"
     },
@@ -276,7 +280,7 @@
       "name": "Voidbound Shackles",
       "icon": "lorc/crossed-chains",
       "routeLevel": 200,
-      "thresholds": [242, 287, 335, 386],
+      "thresholds": [242, 287, 335, 386, 439, 494],
       "secondary": "Absolute Wish XP",
       "secondaryScale": "related"
     },
@@ -287,7 +291,7 @@
       "name": "Fiend's Daemon Skull",
       "icon": "lorc/daemon-skull",
       "routeLevel": 200,
-      "thresholds": [242, 287, 335, 386],
+      "thresholds": [242, 287, 335, 386, 439, 494],
       "secondary": "Brainwashing XP",
       "secondaryScale": "related"
     },
@@ -298,7 +302,7 @@
       "name": "Singularity Bolas",
       "icon": "lorc/black-hole-bolas",
       "routeLevel": 300,
-      "thresholds": [349, 401, 454, 510],
+      "thresholds": [349, 401, 454, 510, 566, 624],
       "secondary": "Mind Seize XP",
       "secondaryScale": "related"
     },
@@ -309,7 +313,7 @@
       "name": "Wraith's Hollow Hood",
       "icon": "lorc/hood",
       "routeLevel": 250,
-      "thresholds": [296, 345, 396, 449],
+      "thresholds": [296, 345, 396, 449, 504, 561],
       "secondary": "Temporal Dimension XP",
       "secondaryScale": "related"
     },
@@ -320,7 +324,7 @@
       "name": "Reaver's Eclipse Scythe",
       "icon": "lorc/reaper-scythe",
       "routeLevel": 150,
-      "thresholds": [186, 226, 270, 317],
+      "thresholds": [186, 226, 270, 317, 367, 419],
       "secondary": "Void Amplification XP",
       "secondaryScale": "related"
     },
@@ -331,7 +335,7 @@
       "name": "Null Overlord Helm",
       "icon": "delapouite/overlord-helm",
       "routeLevel": 750,
-      "thresholds": [811, 873, 934, 997],
+      "thresholds": [811, 873, 934, 997, 1060, 1123],
       "secondary": "Void class XP",
       "secondaryScale": "related"
     },
@@ -342,7 +346,7 @@
       "name": "Seed of the Abyss",
       "icon": "delapouite/cosmic-egg",
       "routeLevel": 350,
-      "thresholds": [402, 456, 511, 567],
+      "thresholds": [402, 456, 511, 567, 625, 684],
       "secondary": "Evil gain",
       "secondaryScale": "global"
     },
@@ -354,7 +358,7 @@
       "name": "Wanderer's Veil",
       "icon": "delapouite/warlock-hood",
       "routeLevel": 15,
-      "thresholds": [21, 30, 40, 54],
+      "thresholds": [21, 30, 40, 54, 72, 94],
       "secondary": "Cosmic Longevity XP",
       "secondaryScale": "related"
     },
@@ -365,7 +369,7 @@
       "name": "Nova Core",
       "icon": "lorc/star-swirl",
       "routeLevel": 200,
-      "thresholds": [242, 287, 335, 386],
+      "thresholds": [242, 287, 335, 386, 439, 494],
       "secondary": "Cosmic Recollection XP",
       "secondaryScale": "related"
     },
@@ -376,7 +380,7 @@
       "name": "Sigma Galaxy Core",
       "icon": "delapouite/galaxy",
       "routeLevel": 1000,
-      "thresholds": [1063, 1127, 1190, 1254],
+      "thresholds": [1063, 1127, 1190, 1254, 1318, 1383],
       "secondary": "Essence Collector XP",
       "secondaryScale": "related"
     },
@@ -387,7 +391,7 @@
       "name": "Acallarian Star Key",
       "icon": "delapouite/star-key",
       "routeLevel": 1400,
-      "thresholds": [1465, 1530, 1595, 1661],
+      "thresholds": [1465, 1530, 1595, 1661, 1726, 1792],
       "secondary": "Galactic class XP",
       "secondaryScale": "related"
     },
@@ -398,8 +402,109 @@
       "name": "Eye Above Creation",
       "icon": "delapouite/all-seeing-eye",
       "routeLevel": 10,
-      "thresholds": [15, 21, 30, 40],
+      "thresholds": [15, 21, 30, 40, 54, 72],
       "secondary": "Essence gain",
+      "secondaryScale": "global"
+    },
+
+    {
+      "id": "eclipse-heir",
+      "job": "Eclipse Heir",
+      "category": "dark-ascendancy",
+      "name": "Eclipse Signet",
+      "icon": "lorc/nested-eclipses",
+      "routeLevel": 1600,
+      "thresholds": [1666, 1731, 1797, 1863, 1929, 1995],
+      "secondary": "Shadow Discipline XP",
+      "secondaryScale": "related"
+    },
+    {
+      "id": "null-regent",
+      "job": "Null Regent",
+      "category": "dark-ascendancy",
+      "name": "Regent's Black Seal",
+      "icon": "lorc/queen-crown",
+      "routeLevel": 1800,
+      "thresholds": [1866, 1932, 1998, 2065, 2131, 2197],
+      "secondary": "All income",
+      "secondaryScale": "global"
+    },
+    {
+      "id": "abyssal-imperator",
+      "job": "Abyssal Imperator",
+      "category": "dark-ascendancy",
+      "name": "Imperator's Void Standard",
+      "icon": "lorc/oppression",
+      "routeLevel": 2000,
+      "thresholds": [2067, 2133, 2199, 2266, 2333, 2399],
+      "secondary": "Soul Eclipse XP",
+      "secondaryScale": "related"
+    },
+    {
+      "id": "sovereign-beyond-creation",
+      "job": "Sovereign Beyond Creation",
+      "category": "dark-ascendancy",
+      "name": "Scepter Beyond Creation",
+      "icon": "lorc/over-infinity",
+      "routeLevel": 2250,
+      "thresholds": [2317, 2384, 2451, 2517, 2584, 2651],
+      "secondary": "Dark Ascendancy class XP",
+      "secondaryScale": "related"
+    },
+    {
+      "id": "last-authority",
+      "job": "The Last Authority",
+      "category": "dark-ascendancy",
+      "name": "The Final Mandate",
+      "icon": "lorc/quill-ink",
+      "routeLevel": 2500,
+      "thresholds": [2567, 2634, 2701, 2769, 2836, 2903],
+      "secondary": "All class XP",
+      "secondaryScale": "global"
+    },
+
+    {
+      "id": "snow-crash",
+      "job": "Player One",
+      "category": "metaverse",
+      "name": "First Player Token",
+      "icon": "lorc/tension-snowflake",
+      "routeLevel": 2000,
+      "thresholds": [2067, 2133, 2199, 2266, 2333, 2399],
+      "secondary": "Shadow Discipline XP",
+      "secondaryScale": "related"
+    },
+    {
+      "id": "player-one",
+      "job": "Reality Usurper",
+      "category": "metaverse",
+      "name": "Crown of Stolen Reality",
+      "icon": "delapouite/gamepad",
+      "routeLevel": 2500,
+      "thresholds": [2567, 2634, 2701, 2769, 2836, 2903],
+      "secondary": "All class XP",
+      "secondaryScale": "global"
+    },
+    {
+      "id": "lost-in-the-dark",
+      "job": "Axiom Sovereign",
+      "category": "metaverse",
+      "name": "Broken Axiom Seal",
+      "icon": "lorc/lantern",
+      "routeLevel": 3000,
+      "thresholds": [3068, 3135, 3203, 3270, 3338, 3405],
+      "secondary": "Blinded By Darkness XP",
+      "secondaryScale": "related"
+    },
+    {
+      "id": "omega",
+      "job": "The Unwritten Absolute",
+      "category": "metaverse",
+      "name": "Authorless Mark",
+      "icon": "lorc/shiny-omega",
+      "routeLevel": 4000,
+      "thresholds": [4068, 4136, 4204, 4272, 4340, 4408],
+      "secondary": "All ability XP",
       "secondaryScale": "global"
     }
   ]

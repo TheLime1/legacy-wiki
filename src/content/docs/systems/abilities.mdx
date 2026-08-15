@@ -6,9 +6,13 @@ category: systems
 
 import CatalogTable from '../../../components/CatalogTable.astro';
 
-Legacy contains 39 trainable abilities across seven groups. Only the selected ability gains XP.
+Legacy contains 49 trainable abilities across nine groups. The selected primary ability gains XP, and up to four [Echoes](../echoes/) can train different abilities alongside it.
 
 Most effects are linear: `1 + coefficient × level`. Expense reductions use a capped logarithmic formula, Time Warping and Life Essence use logarithmic boosts, and Cosmic Recollection returns `level × 0.00065` for Transcend retention.
+
+Resonance I–IV have no direct multiplier. Each remembered lifetime peak sets its matching Echo's training efficiency, and an Echo cannot train its own Resonance.
+
+The six Darkness abilities use `1 + coefficient × log10(level + 1)` and affect ability XP, Dark Matter, all XP, Essence, or Magic XP. They can become Great; Resonance abilities cannot.
 
 Dark Magic XP includes current Evil as a multiplier. Almightiness XP includes current Essence as a multiplier.
 
