@@ -60,6 +60,25 @@ for (const file of docFiles) {
   }
 }
 
+const routeFor = (file) =>
+  relative(docsRoot, file)
+    .replaceAll('\\', '/')
+    .replace(/\.(?:md|mdx)$/, '');
+const englishRoutes = docFiles
+  .map(routeFor)
+  .filter((route) => !route.startsWith('fr/') && !route.startsWith('ru/'))
+  .sort();
+for (const locale of ['fr', 'ru']) {
+  const localizedRoutes = docFiles
+    .map(routeFor)
+    .filter((route) => route.startsWith(`${locale}/`))
+    .map((route) => route.slice(locale.length + 1))
+    .sort();
+  if (JSON.stringify(localizedRoutes) !== JSON.stringify(englishRoutes)) {
+    throw new Error(`${locale}: localized routes do not match the English wiki`);
+  }
+}
+
 const catalog = JSON.parse(await readFile(new URL('catalog.json', dataRoot), 'utf8'));
 const mastery = JSON.parse(await readFile(new URL('mastery-items.json', dataRoot), 'utf8'));
 const mechanics = JSON.parse(await readFile(new URL('mechanics.json', dataRoot), 'utf8'));

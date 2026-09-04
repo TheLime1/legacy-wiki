@@ -6,6 +6,10 @@ category: reference
 
 Legacy autosaves every five seconds while running. If a long frame crosses several save intervals, the game performs one current save instead of a burst of repeated saves.
 
+Progress remains in the signed v11 save format. The selected interface language is stored separately in versioned `legacy/preferences.json` and is excluded from progression signatures, runtime-integrity fingerprints, and leaderboard state. A missing, damaged, or unwritable preference file cannot erase progress or trigger anti-cheat.
+
+Progress uses two save slots so an interrupted write—such as a crash or power loss—does not invalidate the last verified copy. If either slot verifies, Legacy loads that trusted slot without an anti-cheat conviction even when its sibling is truncated, malformed, or has a signature mismatch. The load report records `RecoveredTrustedSibling`, then only the rejected slot is rewritten and verified; the surviving trusted slot is never overwritten first. A structurally valid signature mismatch is treated as tampering only when no trusted sibling exists.
+
 The Settings tab lets you export a backup or import an earlier one. Keep exported saves somewhere safe before resetting progress or changing devices. If an import is rejected, check that the full export was copied without missing characters.
 
 ## Persisted
@@ -28,7 +32,7 @@ The Settings tab lets you export a backup or import an earlier one. Keep exporte
 
 Time spent with the game closed does not generate progress.
 
-Current saves use signed schema v11. A valid signed v10 save remains loadable, but all expansion-only fields begin at their defaults because the older format did not contain that block. The unsigned v9 migration is accepted only when it contains valid base state and likewise begins the new systems at defaults. Malformed legacy data is rejected without deleting the source save.
+Current saves use signed schema v11. Localization does not change that schema, its paths, or any canonical English content IDs. A valid signed v10 save remains loadable, but all expansion-only fields begin at their defaults because the older format did not contain that block. The unsigned v9 migration is accepted only when it contains valid base state and likewise begins the new systems at defaults. Malformed legacy data is rejected without deleting the source save.
 
 Imported expansion values must be finite and non-negative; lifetime Dark Matter cannot be lower than either current or run Dark Matter; generator, Orb-upgrade, and altar ranks must be between 0 and 10; doctrine keys and branches must be valid; and counters cannot be negative. Invalid imports do not replace the current save.
 

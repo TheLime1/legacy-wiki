@@ -8,7 +8,7 @@ const home = import.meta.env.BASE_URL;
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
     <meta name="robots" content="noindex" />
-    <title>Page not found · Legacy Wiki</title>
+    <title>Page not found · Page introuvable · Страница не найдена</title>
     <style>
       :root {
         color-scheme: dark;
@@ -42,8 +42,13 @@ const home = import.meta.env.BASE_URL;
   <body>
     <main>
       <p>404</p>
-      <h1>This path has not been written into the Legacy.</h1>
-      <p><a href={home}>Return to the wiki home page</a></p>
+      <h1>Page not found · Page introuvable · Страница не найдена</h1>
+      <p>This path has not been written into the Legacy.</p>
+      <p lang="fr">Ce chemin n'a pas encore été inscrit dans la Legacy.</p>
+      <p lang="ru">Эта страница ещё не вписана в Legacy.</p>
+      <p>
+        <a href={home}>English · Français · Русский</a>
+      </p>
     </main>
   </body>
 </html>

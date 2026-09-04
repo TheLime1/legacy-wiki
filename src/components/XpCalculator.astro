@@ -1,21 +1,33 @@
-<section class="calculator" aria-labelledby="xp-calculator-title">
-  <h3 id="xp-calculator-title">XP requirement calculator</h3>
+---
+import { componentText, localeCode, type WikiLocale } from '../data/localization';
+
+interface Props {
+  locale?: WikiLocale;
+}
+
+const { locale = 'en' } = Astro.props;
+const labels = componentText[locale];
+const numberLocale = localeCode(locale);
+---
+
+<section class="calculator" aria-labelledby="xp-calculator-title" data-number-locale={numberLocale}>
+  <h3 id="xp-calculator-title">{labels.calculator}</h3>
   <div class="calculator-grid">
     <label>
-      Task type
+      {labels.taskType}
       <select data-xp-base>
-        <option value="100">Ability (base 100)</option>
-        <option value="50">Beggar (base 50)</option>
-        <option value="1000">Example class (base 1,000)</option>
+        <option value="100">{labels.abilityBase}</option>
+        <option value="50">{labels.beggarBase}</option>
+        <option value="1000">{labels.classBase}</option>
       </select>
     </label>
     <label>
-      Current level
+      {labels.currentLevel}
       <input data-xp-level type="number" min="0" max="100000" step="1" value="10" />
     </label>
   </div>
   <p class="calculator-output" aria-live="polite">
-    XP required: <strong data-xp-result>—</strong>
+    {labels.required}: <strong data-xp-result>—</strong>
   </p>
 </section>
 
@@ -33,7 +45,7 @@
     const baseValue = Number(base.value);
     const levelValue = Math.max(0, Math.floor(Number(level.value) || 0));
     const xp = legacyRound(baseValue * (levelValue + 1) * 1.01 ** levelValue);
-    result.textContent = xp.toLocaleString('en-US');
+    result.textContent = xp.toLocaleString(root.dataset.numberLocale || 'en-GB');
   }
 
   document.querySelectorAll<HTMLElement>('.calculator').forEach((root) => {

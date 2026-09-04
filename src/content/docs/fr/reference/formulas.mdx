@@ -1,0 +1,25 @@
+---
+title: 'Formules et calculs'
+description: 'Formules principales, arrondis et calculateur.'
+category: reference
+---
+
+import XpCalculator from '../../../../components/XpCalculator.astro';
+
+Les produits « arrondis » utilisent l'entier le plus proche, les moitiés allant vers l'infini positif. Une vie commence à 14 ans, dure 70 ans de base et avance de quatre jours en jeu par seconde réelle.
+
+## XP requis
+
+$$\operatorname{maxXP}(b,l)=\operatorname{round}(b(l+1)(1.01)^l)$$
+
+<XpCalculator locale="fr" />
+
+## Seuil de maîtrise
+
+$$N(L)=\sum_{k=0}^{L-1}(k+1)(1.01)^k$$
+
+Avec $T=\max(N(15),2N(P))$, les six paliers demandent $T,2T,4T,8T,16T,32T$.
+
+## Récompenses tardives
+
+Effondrement utilise $x=E/(5\times10^{10})$ et $\lfloor x^{1.12}(1+0.15\log_{10}x)M_{DM}\rfloor$. Le Métavers utilise $y=R/1000$ et $\lfloor y^{1.1}(1+0.1\log_{10}y)M_{MP}\rfloor$. Les résultats extrêmes saturent au lieu de déborder.

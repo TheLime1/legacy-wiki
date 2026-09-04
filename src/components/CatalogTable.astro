@@ -1,27 +1,32 @@
 ---
 import catalog from '../data/catalog.json';
+import { componentText, gameText, localeCode, type WikiLocale } from '../data/localization';
 
 interface Props {
   kind: 'classes' | 'abilities' | 'properties' | 'items';
+  locale?: WikiLocale;
 }
 
-const { kind } = Astro.props;
-const format = (value: number) => value.toLocaleString('en-US', { maximumFractionDigits: 6 });
+const { kind, locale = 'en' } = Astro.props;
+const labels = componentText[locale];
+const t = (value: string | number | null | undefined) => gameText(String(value ?? ''), locale);
+const format = (value: number) =>
+  value.toLocaleString(localeCode(locale), { maximumFractionDigits: 6 });
 ---
 
 <div class="catalog-table">
   {
     kind === 'classes' && (
       <table>
-        <caption>Legacy class catalog</caption>
+        <caption>{labels.classCatalog}</caption>
         <thead>
           <tr>
             <>
-              <th scope="col">Class</th>
-              <th scope="col">Group</th>
-              <th scope="col">Base max XP</th>
-              <th scope="col">Base copper/day</th>
-              <th scope="col">Unlock</th>
+              <th scope="col">{labels.class}</th>
+              <th scope="col">{labels.group}</th>
+              <th scope="col">{labels.baseXp}</th>
+              <th scope="col">{labels.copperDay}</th>
+              <th scope="col">{labels.unlock}</th>
             </>
           </tr>
         </thead>
@@ -29,12 +34,16 @@ const format = (value: number) => value.toLocaleString('en-US', { maximumFractio
           {catalog.classes.map((entry) => (
             <tr>
               <td>
-                <strong>{entry[1]}</strong>
+                <strong>{t(entry[1])}</strong>
               </td>
-              <td>{catalog.classCategories.find((category) => category.id === entry[2])?.name}</td>
+              <td>
+                {t(
+                  catalog.classCategories.find((category) => category.id === entry[2])?.name ?? '',
+                )}
+              </td>
               <td>{format(Number(entry[3]))}</td>
               <td>{format(Number(entry[4]))}</td>
-              <td>{entry[5]}</td>
+              <td>{t(entry[5])}</td>
             </tr>
           ))}
         </tbody>
@@ -44,16 +53,16 @@ const format = (value: number) => value.toLocaleString('en-US', { maximumFractio
   {
     kind === 'abilities' && (
       <table>
-        <caption>Legacy ability catalog</caption>
+        <caption>{labels.abilityCatalog}</caption>
         <thead>
           <tr>
             <>
-              <th scope="col">Ability</th>
-              <th scope="col">Group</th>
-              <th scope="col">Affects</th>
-              <th scope="col">Formula</th>
-              <th scope="col">Coefficient</th>
-              <th scope="col">Unlock</th>
+              <th scope="col">{labels.ability}</th>
+              <th scope="col">{labels.group}</th>
+              <th scope="col">{labels.affects}</th>
+              <th scope="col">{labels.formula}</th>
+              <th scope="col">{labels.coefficient}</th>
+              <th scope="col">{labels.unlock}</th>
             </>
           </tr>
         </thead>
@@ -61,15 +70,18 @@ const format = (value: number) => value.toLocaleString('en-US', { maximumFractio
           {catalog.abilities.map((entry) => (
             <tr>
               <td>
-                <strong>{entry[1]}</strong>
+                <strong>{t(entry[1])}</strong>
               </td>
               <td>
-                {catalog.abilityCategories.find((category) => category.id === entry[2])?.name}
+                {t(
+                  catalog.abilityCategories.find((category) => category.id === entry[2])?.name ??
+                    '',
+                )}
               </td>
-              <td>{entry[3]}</td>
-              <td>{entry[4]}</td>
+              <td>{t(entry[3])}</td>
+              <td>{t(entry[4])}</td>
               <td>{entry[5] === null ? '—' : format(Number(entry[5]))}</td>
-              <td>{entry[6]}</td>
+              <td>{t(entry[6])}</td>
             </tr>
           ))}
         </tbody>
@@ -79,14 +91,14 @@ const format = (value: number) => value.toLocaleString('en-US', { maximumFractio
   {
     kind === 'properties' && (
       <table>
-        <caption>Legacy property catalog</caption>
+        <caption>{labels.propertyCatalog}</caption>
         <thead>
           <tr>
             <>
-              <th scope="col">Property</th>
-              <th scope="col">Daily expense</th>
-              <th scope="col">Happiness</th>
-              <th scope="col">Unlock</th>
+              <th scope="col">{labels.property}</th>
+              <th scope="col">{labels.expense}</th>
+              <th scope="col">{labels.happiness}</th>
+              <th scope="col">{labels.unlock}</th>
             </>
           </tr>
         </thead>
@@ -94,11 +106,11 @@ const format = (value: number) => value.toLocaleString('en-US', { maximumFractio
           {catalog.properties.map((entry) => (
             <tr>
               <td>
-                <strong>{entry[1]}</strong>
+                <strong>{t(entry[1])}</strong>
               </td>
               <td>{format(Number(entry[2]))}</td>
               <td>×{format(Number(entry[3]))}</td>
-              <td>{entry[4]}</td>
+              <td>{t(entry[4])}</td>
             </tr>
           ))}
         </tbody>
@@ -108,15 +120,15 @@ const format = (value: number) => value.toLocaleString('en-US', { maximumFractio
   {
     kind === 'items' && (
       <table>
-        <caption>Legacy possession catalog</caption>
+        <caption>{labels.possessionCatalog}</caption>
         <thead>
           <tr>
             <>
-              <th scope="col">Item</th>
-              <th scope="col">Daily expense</th>
-              <th scope="col">Effect</th>
-              <th scope="col">Channel</th>
-              <th scope="col">Unlock</th>
+              <th scope="col">{labels.item}</th>
+              <th scope="col">{labels.expense}</th>
+              <th scope="col">{labels.effect}</th>
+              <th scope="col">{labels.channel}</th>
+              <th scope="col">{labels.unlock}</th>
             </>
           </tr>
         </thead>
@@ -124,12 +136,12 @@ const format = (value: number) => value.toLocaleString('en-US', { maximumFractio
           {catalog.items.map((entry) => (
             <tr>
               <td>
-                <strong>{entry[1]}</strong>
+                <strong>{t(entry[1])}</strong>
               </td>
               <td>{format(Number(entry[2]))}</td>
               <td>×{format(Number(entry[3]))}</td>
-              <td>{entry[4]}</td>
-              <td>{entry[5]}</td>
+              <td>{t(entry[4])}</td>
+              <td>{t(entry[5])}</td>
             </tr>
           ))}
         </tbody>

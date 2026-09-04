@@ -1,9 +1,18 @@
 ---
 import mastery from '../data/mastery-items.json';
+import { componentText, gameText, localeCode, type WikiLocale } from '../data/localization';
 
+interface Props {
+  locale?: WikiLocale;
+}
+
+const { locale = 'en' } = Astro.props;
+const labels = componentText[locale];
+const t = (value: string) => gameText(value, locale);
+const numberLocale = localeCode(locale);
 const base = import.meta.env.BASE_URL;
 const formatPercent = (value: number) =>
-  `${value.toLocaleString('en-US', { maximumFractionDigits: 2 })}%`;
+  `${value.toLocaleString(numberLocale, { maximumFractionDigits: 2 })}%`;
 const tierClass = (tier: string) => `mastery-${tier}`;
 ---
 
@@ -17,7 +26,7 @@ const tierClass = (tier: string) => `mastery-${tier}`;
           style={`--mastery-category: ${category.color}`}
           aria-labelledby={`mastery-${category.id}`}
         >
-          <h2 id={`mastery-${category.id}`}>{category.name}</h2>
+          <h2 id={`mastery-${category.id}`}>{t(category.name)}</h2>
           <div class="mastery-wiki-grid">
             {items.map((item) => {
               const [author, slug] = item.icon.split('/');
@@ -32,38 +41,38 @@ const tierClass = (tier: string) => `mastery-${tier}`;
                       aria-hidden="true"
                     />
                     <div>
-                      <p class="mastery-wiki-job">{item.job}</p>
-                      <h3>{item.name}</h3>
+                      <p class="mastery-wiki-job">{t(item.job)}</p>
+                      <h3>{t(item.name)}</h3>
                     </div>
                   </header>
 
                   <dl>
                     <div>
-                      <dt>Route level</dt>
-                      <dd>P = {item.routeLevel.toLocaleString('en-US')}</dd>
+                      <dt>{labels.routeLevel}</dt>
+                      <dd>P = {item.routeLevel.toLocaleString(numberLocale)}</dd>
                     </div>
                     <div>
-                      <dt>Secondary</dt>
-                      <dd>{item.secondary}</dd>
+                      <dt>{labels.secondary}</dt>
+                      <dd>{t(item.secondary)}</dd>
                     </div>
                   </dl>
 
-                  <div class="mastery-thresholds" aria-label="Required worked peak levels">
+                  <div class="mastery-thresholds" aria-label={labels.thresholds}>
                     {mastery.tiers.map((tier, index) => (
                       <span class={tierClass(tier.id)}>
-                        <strong>{tier.name}</strong>{' '}
-                        {item.thresholds[index].toLocaleString('en-US')}
+                        <strong>{t(tier.name)}</strong>{' '}
+                        {item.thresholds[index].toLocaleString(numberLocale)}
                       </span>
                     ))}
                   </div>
 
                   <div class="mastery-effects">
                     <p>
-                      <strong>Own class XP:</strong>{' '}
+                      <strong>{labels.ownXp}:</strong>{' '}
                       {mastery.tiers.map((tier) => formatPercent(tier.ownJobXp)).join(' / ')}
                     </p>
                     <p>
-                      <strong>{item.secondary}:</strong>{' '}
+                      <strong>{t(item.secondary)}:</strong>{' '}
                       {secondaryValues.map((value) => formatPercent(value)).join(' / ')}
                     </p>
                   </div>
@@ -72,7 +81,7 @@ const tierClass = (tier: string) => `mastery-${tier}`;
                     class="mastery-attribution"
                     href={`https://game-icons.net/1x1/${author}/${slug}.html`}
                   >
-                    Icon by {author === 'lorc' ? 'Lorc' : 'Delapouite'} · CC BY 3.0
+                    {labels.iconBy} {author === 'lorc' ? 'Lorc' : 'Delapouite'} · CC BY 3.0
                   </a>
                 </article>
               );

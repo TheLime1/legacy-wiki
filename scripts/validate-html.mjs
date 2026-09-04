@@ -55,11 +55,19 @@ for (const { label, root, canonicalOrigin } of siteRoots) {
   pageCount += htmlFiles.length;
 
   for (const file of htmlFiles) {
-    const name = `${label}/${relative(root, file)}`;
+    const relativeName = relative(root, file).replaceAll('\\', '/');
+    const name = `${label}/${relativeName}`;
     const html = await readFile(file, 'utf8');
     const is404 = file.endsWith(`${sep}404.html`);
+    const expectedLang = relativeName.startsWith('fr/')
+      ? 'fr'
+      : relativeName.startsWith('ru/')
+        ? 'ru'
+        : 'en';
 
-    if (!/<html\b[^>]*\blang=["']en["']/i.test(html)) failures.push(`${name}: missing lang=en`);
+    if (!new RegExp(`<html\\b[^>]*\\blang=["']${expectedLang}["']`, 'i').test(html)) {
+      failures.push(`${name}: missing lang=${expectedLang}`);
+    }
     if (!/<meta\b[^>]*\bname=["']viewport["']/i.test(html)) {
       failures.push(`${name}: missing viewport metadata`);
     }

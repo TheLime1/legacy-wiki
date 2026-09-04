@@ -4,7 +4,9 @@ description: How to begin a new Legacy life and understand the first controls.
 category: start
 ---
 
-A fresh life begins at **age 14** with **0 copper**, Beggar selected as the current class, Concentration selected as the current ability, and Homeless selected as the property.
+Before a brand-new profile starts its first simulation tick, choose **English**, **Français**, or **Русский** from the flag cards. This choice changes only Legacy's interface and can be changed later in Settings. Returning profiles stay in English until their player chooses another language.
+
+A fresh life then begins at **age 14** with **0 copper**, Beggar selected as the current class, Concentration selected as the current ability, and Homeless selected as the property.
 
 1. Leave **Beggar** and **Concentration** selected while they gain levels. Beggar's first completed work tick permanently reveals its mastery card in **Items**.
 2. Switch to **Farmer** at Beggar level 10.

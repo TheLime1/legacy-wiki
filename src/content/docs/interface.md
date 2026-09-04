@@ -16,6 +16,10 @@ After 1 lifetime Dark Matter, the Amulet shows current, lifetime, and run Dark M
 
 The saved **Sticky header** setting pins the Classes or Abilities column header while its table scrolls and is enabled by default. Dark mode is the default; the optional light theme is session-only.
 
-Settings also provide music and UI-sound volume, separate mute controls, track controls, and the keyboard-shortcut reference. Audio state and the sticky-header choice are included in the local save.
+Settings provide English, French, and Russian choices using UK, French, and Russian flag cards. A new profile must choose a language before simulation, input, or autosaving begins. Existing profiles continue in English and can switch at any time. A language change refreshes the full interface immediately without changing s&box's global language.
+
+Settings also provide music and UI-sound volume, separate mute controls, track controls, and the keyboard-shortcut reference. Audio state and the sticky-header choice are included in the local save. Language is stored separately in `legacy/preferences.json`; if that preference cannot be written, the selected language remains active for the current session and a warning appears without interrupting play.
+
+Visible numbers use the selected language's decimal and grouping separators. Compact magnitude suffixes and coin symbols remain unchanged. Controls can grow and authored copy wraps so translated labels and the shortest or longest valid numeric values remain readable; only unbounded player names and URLs may be shortened visually, with their full text retained for accessibility.
 
 The class and ability category headers use themed pattern art, and the task rows are larger for readability. The ability table shows a **Skip** control when auto-learn is enabled, an **E** control after Echo I unlocks, and Great promotion controls when eligible. The Shop provides separate Great conversion controls. Skip changes only auto-learn eligibility; E queues an Echo focus; clicking the rest of the row manually selects the ability and disables auto-learn. Echo cards and the sidebar show efficiency, target, level progress, XP rate, and remembered Resonance peak; **Clear Echoes** removes every focus.
