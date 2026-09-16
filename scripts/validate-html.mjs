@@ -59,11 +59,13 @@ for (const { label, root, canonicalOrigin } of siteRoots) {
     const name = `${label}/${relativeName}`;
     const html = await readFile(file, 'utf8');
     const is404 = file.endsWith(`${sep}404.html`);
-    const expectedLang = relativeName.startsWith('fr/')
-      ? 'fr'
-      : relativeName.startsWith('ru/')
-        ? 'ru'
-        : 'en';
+    const expectedLang = relativeName.startsWith('es/')
+      ? 'es'
+      : relativeName.startsWith('fr/')
+        ? 'fr'
+        : relativeName.startsWith('ru/')
+          ? 'ru'
+          : 'en';
 
     if (!new RegExp(`<html\\b[^>]*\\blang=["']${expectedLang}["']`, 'i').test(html)) {
       failures.push(`${name}: missing lang=${expectedLang}`);

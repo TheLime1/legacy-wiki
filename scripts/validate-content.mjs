@@ -7,6 +7,7 @@ const root = fileURLToPath(new URL('..', import.meta.url));
 const docsRoot = fileURLToPath(new URL('../src/content/docs/', import.meta.url));
 const dataRoot = new URL('../src/data/', import.meta.url);
 const required = ['title', 'description', 'category'];
+const locales = ['es', 'fr', 'ru'];
 
 async function walk(directory) {
   const entries = await readdir(directory, { withFileTypes: true });
@@ -66,9 +67,9 @@ const routeFor = (file) =>
     .replace(/\.(?:md|mdx)$/, '');
 const englishRoutes = docFiles
   .map(routeFor)
-  .filter((route) => !route.startsWith('fr/') && !route.startsWith('ru/'))
+  .filter((route) => !locales.some((locale) => route.startsWith(`${locale}/`)))
   .sort();
-for (const locale of ['fr', 'ru']) {
+for (const locale of locales) {
   const localizedRoutes = docFiles
     .map(routeFor)
     .filter((route) => route.startsWith(`${locale}/`))

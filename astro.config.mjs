@@ -47,6 +47,7 @@ export default defineConfig({
       description: 'Guides, systems, formulas, and strategy for Legacy players.',
       locales: {
         root: { label: 'English', lang: 'en' },
+        es: { label: 'Español', lang: 'es' },
         fr: { label: 'Français', lang: 'fr' },
         ru: { label: 'Русский', lang: 'ru' },
       },
@@ -69,151 +70,203 @@ export default defineConfig({
         },
       ],
       sidebar: [
-        { label: 'Home', translations: { fr: 'Accueil', ru: 'Главная' }, link: '/' },
+        {
+          label: 'Home',
+          translations: { es: 'Inicio', fr: 'Accueil', ru: 'Главная' },
+          link: '/',
+        },
         {
           label: 'Start Here',
-          translations: { fr: 'Bien débuter', ru: 'Начало игры' },
+          translations: { es: 'Primeros pasos', fr: 'Bien débuter', ru: 'Начало игры' },
           items: [
             {
               label: 'Getting Started',
-              translations: { fr: 'Premiers pas', ru: 'Первые шаги' },
+              translations: { es: 'Cómo empezar', fr: 'Premiers pas', ru: 'Первые шаги' },
               link: '/getting-started/',
             },
             {
               label: 'Beginner Guide',
-              translations: { fr: 'Guide du débutant', ru: 'Руководство новичка' },
+              translations: {
+                es: 'Guía para principiantes',
+                fr: 'Guide du débutant',
+                ru: 'Руководство новичка',
+              },
               link: '/beginner-guide/',
             },
             {
               label: 'Strategy',
-              translations: { fr: 'Stratégie', ru: 'Стратегия' },
+              translations: { es: 'Estrategia', fr: 'Stratégie', ru: 'Стратегия' },
               link: '/strategy/',
             },
             {
               label: 'Controls',
-              translations: { fr: 'Commandes', ru: 'Управление' },
+              translations: { es: 'Controles', fr: 'Commandes', ru: 'Управление' },
               link: '/controls/',
             },
             {
               label: 'Interface',
-              translations: { fr: 'Interface', ru: 'Интерфейс' },
+              translations: { es: 'Interfaz', fr: 'Interface', ru: 'Интерфейс' },
               link: '/interface/',
             },
           ],
         },
         {
           label: 'Game Systems',
-          translations: { fr: 'Systèmes de jeu', ru: 'Игровые системы' },
+          translations: { es: 'Sistemas de juego', fr: 'Systèmes de jeu', ru: 'Игровые системы' },
           items: [
             {
               label: 'Eternal Ascension',
-              translations: { fr: 'Ascension éternelle', ru: 'Вечное вознесение' },
+              translations: {
+                es: 'Ascensión eterna',
+                fr: 'Ascension éternelle',
+                ru: 'Вечное вознесение',
+              },
               link: '/systems/eternal-ascension/',
             },
             {
               label: 'Core Gameplay Loop',
-              translations: { fr: 'Boucle de jeu', ru: 'Игровой цикл' },
+              translations: { es: 'Bucle de juego', fr: 'Boucle de jeu', ru: 'Игровой цикл' },
               link: '/systems/core-loop/',
             },
             {
               label: 'Classes',
-              translations: { fr: 'Classes', ru: 'Классы' },
+              translations: { es: 'Clases', fr: 'Classes', ru: 'Классы' },
               link: '/systems/classes/',
             },
             {
               label: 'Mastery Items',
-              translations: { fr: 'Objets de maîtrise', ru: 'Предметы мастерства' },
+              translations: {
+                es: 'Objetos de maestría',
+                fr: 'Objets de maîtrise',
+                ru: 'Предметы мастерства',
+              },
               link: '/systems/mastery-items/',
             },
             {
               label: 'Abilities',
-              translations: { fr: 'Capacités', ru: 'Способности' },
+              translations: { es: 'Habilidades', fr: 'Capacités', ru: 'Способности' },
               link: '/systems/abilities/',
             },
             {
               label: 'Echoes & Resonance',
-              translations: { fr: 'Échos et Résonance', ru: 'Эхо и Резонанс' },
+              translations: {
+                es: 'Ecos y resonancia',
+                fr: 'Échos et Résonance',
+                ru: 'Эхо и Резонанс',
+              },
               link: '/systems/echoes/',
             },
             {
               label: 'Possessions',
-              translations: { fr: 'Possessions', ru: 'Имущество' },
+              translations: { es: 'Posesiones', fr: 'Possessions', ru: 'Имущество' },
               link: '/systems/possessions/',
             },
             {
               label: 'Shop Steward',
-              translations: { fr: 'Intendant de boutique', ru: 'Управляющий магазином' },
+              translations: {
+                es: 'Administrador de la tienda',
+                fr: 'Intendant de boutique',
+                ru: 'Управляющий магазином',
+              },
               link: '/systems/shop-steward/',
             },
             {
               label: 'Unlocks & Milestones',
-              translations: { fr: 'Déblocages et jalons', ru: 'Разблокировки и вехи' },
+              translations: {
+                es: 'Desbloqueos e hitos',
+                fr: 'Déblocages et jalons',
+                ru: 'Разблокировки и вехи',
+              },
               link: '/systems/unlocks/',
             },
             {
               label: 'Rebirths',
-              translations: { fr: 'Renaissances', ru: 'Перерождения' },
+              translations: { es: 'Renacimientos', fr: 'Renaissances', ru: 'Перерождения' },
               link: '/systems/rebirths/',
             },
             {
               label: 'Evil Perks',
-              translations: { fr: 'Avantages maléfiques', ru: 'Злые улучшения' },
+              translations: {
+                es: 'Ventajas malignas',
+                fr: 'Avantages maléfiques',
+                ru: 'Злые улучшения',
+              },
               link: '/systems/evil-perks/',
             },
             {
               label: 'Chronicle',
-              translations: { fr: 'Chronique', ru: 'Хроника' },
+              translations: { es: 'Crónica', fr: 'Chronique', ru: 'Хроника' },
               link: '/systems/chronicle/',
             },
             {
               label: 'Automation',
-              translations: { fr: 'Automatisation', ru: 'Автоматизация' },
+              translations: {
+                es: 'Automatización',
+                fr: 'Automatisation',
+                ru: 'Автоматизация',
+              },
               link: '/systems/automation/',
             },
             {
               label: 'Heroic Progression',
-              translations: { fr: 'Progression héroïque', ru: 'Героический прогресс' },
+              translations: {
+                es: 'Progresión heroica',
+                fr: 'Progression héroïque',
+                ru: 'Героический прогресс',
+              },
               link: '/systems/heroic/',
             },
             {
               label: 'Darkness & Collapse',
-              translations: { fr: 'Ténèbres et Effondrement', ru: 'Тьма и Коллапс' },
+              translations: {
+                es: 'Oscuridad y Colapso',
+                fr: 'Ténèbres et Effondrement',
+                ru: 'Тьма и Коллапс',
+              },
               link: '/systems/darkness/',
             },
             {
               label: 'The Metaverse',
-              translations: { fr: 'Le Métavers', ru: 'Метавселенная' },
+              translations: { es: 'El Metaverso', fr: 'Le Métavers', ru: 'Метавселенная' },
               link: '/systems/metaverse/',
             },
             {
               label: 'Empire & Leaderboards',
-              translations: { fr: 'Empire et classements', ru: 'Империя и рейтинги' },
+              translations: {
+                es: 'Imperio y clasificaciones',
+                fr: 'Empire et classements',
+                ru: 'Империя и рейтинги',
+              },
               link: '/systems/empire/',
             },
             {
               label: 'Achievements',
-              translations: { fr: 'Succès', ru: 'Достижения' },
+              translations: { es: 'Logros', fr: 'Succès', ru: 'Достижения' },
               link: '/systems/achievements/',
             },
           ],
         },
         {
           label: 'Reference',
-          translations: { fr: 'Référence', ru: 'Справочник' },
+          translations: { es: 'Referencia', fr: 'Référence', ru: 'Справочник' },
           items: [
             {
               label: 'Formulas',
-              translations: { fr: 'Formules', ru: 'Формулы' },
+              translations: { es: 'Fórmulas', fr: 'Formules', ru: 'Формулы' },
               link: '/reference/formulas/',
             },
             {
               label: 'Saving & Progress',
-              translations: { fr: 'Sauvegarde et progression', ru: 'Сохранение и прогресс' },
+              translations: {
+                es: 'Guardado y progreso',
+                fr: 'Sauvegarde et progression',
+                ru: 'Сохранение и прогресс',
+              },
               link: '/reference/saving/',
             },
             {
               label: 'Glossary',
-              translations: { fr: 'Glossaire', ru: 'Глоссарий' },
+              translations: { es: 'Glosario', fr: 'Glossaire', ru: 'Глоссарий' },
               link: '/reference/glossary/',
             },
           ],

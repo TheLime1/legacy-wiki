@@ -1,12 +1,19 @@
+import es from './localization/es.json';
 import fr from './localization/fr.json';
 import ru from './localization/ru.json';
 
-export type WikiLocale = 'en' | 'fr' | 'ru';
+export type WikiLocale = 'en' | 'es' | 'fr' | 'ru';
 
-const catalogs: Record<Exclude<WikiLocale, 'en'>, Record<string, string>> = { fr, ru };
+const catalogs: Record<Exclude<WikiLocale, 'en'>, Record<string, string>> = { es, fr, ru };
 
 export function localeCode(locale: WikiLocale): string {
-  return locale === 'fr' ? 'fr-FR' : locale === 'ru' ? 'ru-RU' : 'en-GB';
+  return locale === 'es'
+    ? 'es-ES'
+    : locale === 'fr'
+      ? 'fr-FR'
+      : locale === 'ru'
+        ? 'ru-RU'
+        : 'en-GB';
 }
 
 export function gameText(value: string, locale: WikiLocale): string {
@@ -34,15 +41,25 @@ export function gameText(value: string, locale: WikiLocale): string {
           [/Class XP/g, 'XP de classe'],
           [/Ability XP/g, 'XP de capacité'],
         ]
-      : [
-          [/Available immediately/g, 'Доступно сразу'],
-          [/ level /g, ' уровень '],
-          [/ and /g, ' и '],
-          [/ total /g, ' всего '],
-          [/Daily expenses/g, 'Ежедневные расходы'],
-          [/Class XP/g, 'Опыт класса'],
-          [/Ability XP/g, 'Опыт способности'],
-        ];
+      : locale === 'es'
+        ? [
+            [/Available immediately/g, 'Disponible de inmediato'],
+            [/ level /g, ' nivel '],
+            [/ and /g, ' y '],
+            [/ total /g, ' totales '],
+            [/Daily expenses/g, 'Gastos diarios'],
+            [/Class XP/g, 'XP de clase'],
+            [/Ability XP/g, 'XP de habilidad'],
+          ]
+        : [
+            [/Available immediately/g, 'Доступно сразу'],
+            [/ level /g, ' уровень '],
+            [/ and /g, ' и '],
+            [/ total /g, ' всего '],
+            [/Daily expenses/g, 'Ежедневные расходы'],
+            [/Class XP/g, 'Опыт класса'],
+            [/Ability XP/g, 'Опыт способности'],
+          ];
   for (const [pattern, replacement] of words) translated = translated.replace(pattern, replacement);
   return translated;
 }
@@ -80,6 +97,39 @@ export const componentText = {
     abilityBase: 'Ability (base 100)',
     beggarBase: 'Beggar (base 50)',
     classBase: 'Example class (base 1,000)',
+  },
+  es: {
+    classCatalog: 'Catálogo de clases de Legacy',
+    abilityCatalog: 'Catálogo de habilidades de Legacy',
+    propertyCatalog: 'Catálogo de propiedades de Legacy',
+    possessionCatalog: 'Catálogo de posesiones de Legacy',
+    class: 'Clase',
+    ability: 'Habilidad',
+    property: 'Propiedad',
+    item: 'Objeto',
+    group: 'Grupo',
+    baseXp: 'XP máxima base',
+    copperDay: 'Cobre base/día',
+    unlock: 'Desbloqueo',
+    affects: 'Afecta a',
+    formula: 'Fórmula',
+    coefficient: 'Coeficiente',
+    expense: 'Gasto diario',
+    happiness: 'Felicidad',
+    effect: 'Efecto',
+    channel: 'Canal',
+    routeLevel: 'Nivel de ruta',
+    secondary: 'Secundario',
+    thresholds: 'Niveles máximos de trabajo requeridos',
+    ownXp: 'XP de la clase asociada',
+    iconBy: 'Icono de',
+    calculator: 'Calculadora de XP necesaria',
+    taskType: 'Tipo de tarea',
+    currentLevel: 'Nivel actual',
+    required: 'XP necesaria',
+    abilityBase: 'Habilidad (base 100)',
+    beggarBase: 'Mendigo (base 50)',
+    classBase: 'Clase de ejemplo (base 1000)',
   },
   fr: {
     classCatalog: 'Catalogue des classes de Legacy',

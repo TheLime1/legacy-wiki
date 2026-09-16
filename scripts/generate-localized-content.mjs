@@ -20,6 +20,11 @@ function normalizeBody(path, sourceBody) {
 
 const shared = {
   classes: {
+    es: [
+      'Clases',
+      'Todas las clases, sus ingresos, grupos y condiciones de desbloqueo.',
+      `Legacy cuenta con 44 clases repartidas en siete grupos. Solo la clase seleccionada obtiene XP y produce cobre. Cada clase revela un [objeto de maestría](./mastery-items/) después de un ciclo de trabajo real. Más adelante, las clases que cumplan los requisitos pueden ascender permanentemente a Great.\n\nimport CatalogTable from '../../../../components/CatalogTable.astro';\n\n<CatalogTable kind="classes" locale="es" />`,
+    ],
     fr: [
       'Classes',
       'Toutes les classes, leurs revenus, groupes et conditions de déblocage.',
@@ -32,6 +37,11 @@ const shared = {
     ],
   },
   abilities: {
+    es: [
+      'Habilidades',
+      'Todas las habilidades, sus efectos, coeficientes y desbloqueos.',
+      `Legacy contiene 49 habilidades repartidas en nueve grupos. La habilidad principal obtiene XP y hasta cuatro [Ecos](./echoes/) pueden entrenar otras en paralelo. La mayoría de los efectos son lineales; las reducciones de gastos y algunas bonificaciones usan logaritmos. Las bonificaciones de maestría aplicables se suman en un único multiplicador.\n\nimport CatalogTable from '../../../../components/CatalogTable.astro';\n\n<CatalogTable kind="abilities" locale="es" />`,
+    ],
     fr: [
       'Capacités',
       'Toutes les capacités, leurs effets, coefficients et déblocages.',
@@ -44,6 +54,11 @@ const shared = {
     ],
   },
   possessions: {
+    es: [
+      'Posesiones',
+      'Propiedades, posesiones, gastos, efectos y desbloqueos.',
+      `Las 30 propiedades son mutuamente excluyentes y multiplican la Felicidad. Las 24 posesiones diversas se pueden activar por separado. Todos los costes son gastos diarios recurrentes. Si el cobre llega a cero, las selecciones de pago se desactivan.\n\nimport CatalogTable from '../../../../components/CatalogTable.astro';\n\n<CatalogTable kind="properties" locale="es" />\n\n<CatalogTable kind="items" locale="es" />`,
+    ],
     fr: [
       'Possessions',
       'Propriétés, possessions, dépenses, effets et déblocages.',
@@ -56,6 +71,11 @@ const shared = {
     ],
   },
   mastery: {
+    es: [
+      'Objetos de maestría',
+      'Descubrimiento, rangos, bonificaciones y catálogo completo.',
+      `Cada clase tiene un objeto pasivo permanente. Se revela después de un ciclo de trabajo real y progresa según el nivel más alto alcanzado mientras esa clase trabajaba. Los rangos Cobre, Plata, Oro, Platino, Esmeralda y Rubí sustituyen al anterior; no se acumulan. Los renacimientos normales conservan los descubrimientos, los máximos y los efectos.\n\nimport MasteryCatalog from '../../../../components/MasteryCatalog.astro';\n\n<MasteryCatalog locale="es" />`,
+    ],
     fr: [
       'Objets de maîtrise',
       'Découverte, paliers, bonus et catalogue complet.',
@@ -70,6 +90,123 @@ const shared = {
 };
 
 const pages = {
+  es: {
+    'index.md': [
+      'Wiki de Legacy',
+      'Guías, sistemas, fórmulas y estrategia para Legacy.',
+      `# Legacy\n\n_Una vida medida en decisiones._ Esta wiki explica todos los sistemas, desde los primeros niveles hasta el final permanente Legacy Complete.\n\n- [Comenzar una vida](./getting-started/)\n- [Guía para principiantes](./beginner-guide/)\n- [Ascensión eterna](./systems/eternal-ascension/)\n- [Fórmulas](./reference/formulas/)\n\nLegacy es una simulación incremental para un jugador: elige una clase y una habilidad, financia tus posesiones, domina las rutas y convierte cada nueva vida en progreso permanente.`,
+    ],
+    'getting-started.md': [
+      'Cómo empezar',
+      'Comienza una nueva vida y aprende los primeros controles.',
+      `Una nueva vida empieza a los **14 años**, con **0 de cobre**, Mendigo, Concentración y Sin hogar. Mantén activos Mendigo y Concentración, lleva Agricultor al nivel 10 y después entrena las habilidades necesarias para los siguientes desbloqueos.\n\nLa Tienda aparece con 750 de cobre, la Automatización a los 20 años y el Amuleto a los 25. Comprueba siempre los ingresos netos antes de activar una posesión. Solo puede haber activas una clase, una habilidad y una propiedad; las posesiones diversas se acumulan. La velocidad base es de cuatro días de juego por segundo real.`,
+    ],
+    'beginner-guide.md': [
+      'Guía para principiantes',
+      'Una ruta práctica para la primera vida.',
+      `Concentración mejora la XP de habilidades, Productividad la XP de clases, Negociación reduce los gastos y Meditación aumenta la Felicidad, que multiplica toda la XP. Sigue Mendigo 10 → Agricultor 10 → Pescador 10 y luego desarrolla Fuerza para Minero y Herrero.\n\nTocar el Ojo a los 65 años conserva los niveles máximos de las tareas; Abrazar el Mal a los 200 otorga Mal, pero borra esos máximos. Los objetos de maestría son independientes y sobreviven. Tras el primer renacimiento maligno, configura Eco I y gasta con cuidado los puntos de ventajas malignas.`,
+    ],
+    'strategy.md': [
+      'Estrategia',
+      'Principios prácticos para fortalecer tu Legacy.',
+      `Da prioridad a multiplicadores amplios como Felicidad, Concentración y Productividad. Trata las posesiones como suscripciones: actívalas solo cuando su bonificación ayude a la tarea actual y los ingresos cubran los gastos con holgura.\n\nCada renacimiento debe tener un objetivo. Tocar el Ojo mejora las vidas futuras, Abrazar el Mal cambia los máximos por Mal y Trascender conserva una fracción redondeada hacia abajo. Usa la automatización como supervisión, planifica las cadenas Great en orden y compara siempre la recompensa mostrada antes de un Colapso o de entrar en el Metaverso.`,
+    ],
+    'controls.md': [
+      'Controles',
+      'Ratón, teclado y navegación en Legacy.',
+      `La mayoría de las acciones usan el ratón. Las flechas izquierda y derecha cambian de pestaña, **Espacio** pausa, **P** alterna la promoción automática y **L** el aprendizaje automático. **1–3** cargan un equipamiento de la sesión; **Alt+1–3** lo guardan y después lo cargan. **Escape** cierra el Imperio o las ventanas.\n\nEl botón **E** de una habilidad administra la cola de Ecos; no es un atajo de teclado. Elegir una habilidad manualmente desactiva el aprendizaje automático y elimina su objetivo de Eco.`,
+    ],
+    'interface.md': [
+      'Interfaz',
+      'Pestañas, barra lateral, ajustes y accesibilidad.',
+      `Las pestañas principales son Clases, Habilidades, Tienda, Amuleto, Heroico, Objetos y Crónica. La cabecera abre Imperio, Clasificación, Logros, Ajustes y Wiki. La barra lateral resume la edad, las tareas, el cobre, el flujo neto, la Felicidad, la esperanza de vida y la aceleración.\n\nLos Ajustes ofrecen inglés, francés y ruso, además de audio, tema y cabecera fija. Los jugadores nuevos eligen el idioma antes de iniciar la simulación; los perfiles existentes permanecen en inglés hasta que se elija otro. Las tarjetas, el texto y los números se adaptan a distintas resoluciones y a valores extremos.`,
+    ],
+    'systems/eternal-ascension.md': [
+      'Ascensión eterna',
+      'Resumen de la expansión y de su ruta completa.',
+      `Ascensión eterna conecta Eco I con Legacy Complete: cuatro Ecos, ascensos Great, Colapso, Oscuridad, Metaverso y 42 hitos.\n\nRuta principal: primer renacimiento maligno → Eco I; primera Trascendencia → Eco II y Administrador; 5 000 000 de Esencia → Great; Heroico XIV → Colapso; primer Colapso → Eco III; Oscuridad XIII → Metaverso; primera entrada → Eco IV; Metaverso VI y nivel Great 20 de The Unwritten Absolute → final permanente.`,
+    ],
+    'systems/core-loop.md': [
+      'Bucle de juego',
+      'Tiempo, trabajo, entrenamiento, ingresos y gastos.',
+      `En cada ciclo activo, el juego avanza la edad, aplica la automatización, entrena la clase y la habilidad, produce recursos, actualiza los Ecos, los hitos y la Crónica, y después resta los gastos. La Felicidad y las bonificaciones aplicables multiplican la XP.\n\nLa pausa, la muerte y la cárcel fijan la velocidad en cero: no avanzan la XP, los ingresos, la maestría ni la generación. Al alcanzar la esperanza de vida máxima, la vida se detiene hasta que haya un renacimiento disponible.`,
+    ],
+    'systems/echoes.md': [
+      'Ecos y resonancia',
+      'Entrenamiento paralelo, selección de objetivos y eficiencia.',
+      `Los cuatro Ecos se desbloquean tras el primer renacimiento maligno, la Trascendencia, el Colapso y la entrada en el Metaverso. Sin un objetivo **E**, cada uno elige la habilidad disponible más próxima al siguiente nivel. Una habilidad no puede ser a la vez la principal y el objetivo de un Eco.\n\nCada Eco comienza con un 25 % de eficiencia, alcanza el 100 % cuando el máximo recordado de su Resonancia llega a 1 000 / 1 250 / 1 500 / 1 750 y después gana 5 puntos por cada duplicación. Los máximos sobreviven a todos los reinicios; los objetivos se borran.`,
+    ],
+    'systems/shop-steward.md': [
+      'Administrador de la tienda',
+      'Tarifa, presupuesto y recomendaciones.',
+      `La primera Trascendencia desbloquea al Administrador. Cuando está activo, cobra el **10 % de los ingresos brutos** y recomienda la combinación más potente de propiedad y posesiones dentro del 90 % restante. Vuelve a calcular cada 30 días de juego activos.\n\nLa compra siempre es manual: activa al Administrador, revisa la propiedad, los objetos, el coste y el presupuesto, y elige **Comprar equipamiento**. Al desactivarlo, deja de cobrar y retira todas las selecciones de pago.`,
+    ],
+    'systems/unlocks.md': [
+      'Desbloqueos e hitos',
+      'Condiciones permanentes y propias de cada vida.',
+      `Objetos, Crónica y Heroico siempre están visibles. La Tienda requiere 750 de cobre, Automatización 20 años y Amuleto 25. Tocar el Ojo empieza a los 65 años y Abrazar el Mal a los 200; las ventajas permanentes reducen estas edades.\n\nEl Mal abre la Magia Oscura; la Esencia abre la Omnipotencia. Heroico XIV desbloquea el Colapso, Oscuridad XIII el Metaverso y Metaverso VI conduce al final. Los umbrales son inclusivos. Una tarjeta de maestría exige un ciclo de trabajo real.`,
+    ],
+    'systems/rebirths.md': [
+      'Renacimientos y reinicios',
+      'Recompensas y progreso conservado.',
+      `Tocar el Ojo conserva el mejor nivel y otorga el multiplicador por tarea \`1 + máximo/10\`. Abrazar el Mal concede Mal, pero borra los máximos. Trascender concede Esencia y conserva \`floor(Recuerdo Cósmico × máximo)\`.\n\nEl Colapso convierte la Esencia en Materia Oscura y reinicia el progreso activo; el Metaverso también añade Puntos del Metaverso y elimina los recursos de la partida que no estén protegidos. Maestría, Resonancia, hitos, ascensos Great y Crónica sobreviven según las reglas indicadas.`,
+    ],
+    'systems/evil-perks.md': [
+      'Ventajas malignas',
+      'Generación de EPP y mejoras permanentes.',
+      `Tras Abrazar el Mal por primera vez, los EPP solo se generan durante una vida activa y dependen del Mal y de la Esencia. Sirven para comprar cinco mejoras permanentes: Ojo temprano, Mal temprano, Vacío temprano, Galáctico temprano y Pacto de Esencia.\n\nLas cuatro primeras reducen las edades requeridas; Pacto de Esencia añade un 10 % a la recompensa por rango. Las pausas automáticas del Vacío y del Consejo Galáctico permanecen en las edades originales de 1 000 y 10 000.`,
+    ],
+    'systems/chronicle.md': [
+      'Crónica e hitos',
+      'Las 42 recompensas permanentes y el historial de vidas.',
+      `La Crónica guarda los días activos, las mayores recompensas y las 50 vidas más recientes. Sus 42 hitos se dividen entre Esencia (9), Heroico (14), Oscuridad (13) y Metaverso (6).\n\nLas recompensas se vuelven permanentes al alcanzar cada umbral inclusivo: XP, velocidad, recursos, ascensos Great, Colapso, clases de Oscuridad, Metaverso y final. Los contadores solo avanzan mientras el juego está funcionando realmente.`,
+    ],
+    'systems/automation.md': [
+      'Automatización',
+      'Promoción automática, aprendizaje automático y pausas.',
+      `La Automatización aparece a los 20 años. La promoción automática avanza por una carrera; tras el primer renacimiento maligno puede cambiar entre carreras y omitir clases bloqueadas. El aprendizaje automático elige cada segundo una habilidad no omitida ni ocupada por un Eco.\n\nLas pausas automáticas vigilan las edades 1 000 y 10 000. Los interruptores de automatización, los equipamientos y las opciones Omitir solo duran durante la sesión de la aplicación.`,
+    ],
+    'systems/heroic.md': [
+      'Progresión heroica',
+      'Hitos heroicos, tareas Great y conversiones.',
+      `Después de una Trascendencia, 5 000 000 de Esencia y un máximo de 2 000 con One Above All, las clases y habilidades que cumplan los requisitos pueden volverse **Great**. En cada familia, el primer objetivo está disponible de inmediato y los siguientes requieren que la tarea anterior alcance el nivel Great 20. Las Resonancias no pueden volverse Great.\n\nLos catorce hitos heroicos multiplican la XP Great hasta ×4096, y Heroico XIV desbloquea el Colapso. Las posesiones originales de pago siguen dos cadenas separadas de conversiones permanentes con costes y efectos superiores.`,
+    ],
+    'systems/darkness.md': [
+      'Oscuridad y Colapso',
+      'Materia Oscura, Orbes, doctrinas y progresión.',
+      `Heroico XIV permite convertir la Esencia de una partida avanzada en Materia Oscura. El saldo actual se puede gastar, el total histórico controla los desbloqueos y el total bruto de la partida calcula la siguiente recompensa del Metaverso.\n\nLas clases de Ascendencia Oscura y seis habilidades de Oscuridad se abren gradualmente. **Un Milagro** produce Orbes Oscuros para cuatro mejoras de la partida. Cinco doctrinas ofrecen dos ramas cada una, con una ventaja y una penalización. El Colapso conserva los sistemas permanentes, pero reinicia las tareas, la edad, el cobre, el Mal y la Esencia.`,
+    ],
+    'systems/metaverse.md': [
+      'El Metaverso',
+      'Puntos, ventajas de partida, Hipercubos, altares y final.',
+      `Oscuridad XIII desbloquea el Metaverso. La recompensa depende de la Materia Oscura bruta obtenida durante la partida, por lo que gastarla no reduce el premio. Antes del nuevo intento, los Puntos del Metaverso financian un conjunto reembolsable de ventajas de conservación y mejora.\n\nLos Hipercubos compran cinco altares para la generación, la recarga y duración del Impulso de Realidad, la Esencia y la Materia Oscura. El Impulso de Realidad multiplica la velocidad por 5. La cadena de cuatro clases conduce a The Unwritten Absolute; Metaverso VI y su nivel Great 20 desbloquean Legacy Complete.`,
+    ],
+    'systems/empire.md': [
+      'Imperio y clasificaciones',
+      'Clasificaciones compartidas, estratos y corona.',
+      `Legacy sigue siendo una experiencia para un jugador, pero compara récords mediante las clasificaciones y el Imperio. Los jugadores se distribuyen en estratos según la mejor propiedad ocupada, desde Campesinos hasta Príncipes. Solo se muestran los estratos con población.\n\nLa corona compara, por este orden, la puntuación de carrera, el rango de clase, la esperanza de vida mejorada, los renacimientos, la propiedad, la vida total y el Steam ID. La puntuación de carrera es \`prestigio de clase × máximo trabajado²\`.`,
+    ],
+    'systems/achievements.md': [
+      'Logros',
+      'Categorías, puntuación y permanencia.',
+      `Legacy tiene 40 logros de cuenta por un total de 1 000 puntos, divididos entre Vida, Entrenamiento, Posesiones y Legacy. Registran edades, cobre, máximos de tareas, Tienda, propiedades, renacimientos y recursos permanentes. **A Legacy Complete** exige los otros 39. Un logro obtenido sobrevive a todos los reinicios y también aparece en s&box.`,
+    ],
+    'reference/saving.md': [
+      'Guardado y progreso',
+      'Guardado automático, importación y protección del progreso.',
+      `Legacy guarda automáticamente cada cinco segundos. El progreso mantiene el esquema firmado v11; el idioma se almacena aparte en las preferencias, por lo que cambiar de idioma o perder ese archivo no puede borrar el progreso.\n\nDos ranuras protegen frente a un corte durante la escritura. Si una está truncada, mal formada o no supera la verificación, pero la otra es de confianza, el juego carga la copia fiable sin penalización antitrampas y repara solo la ranura rechazada. Una firma no válida sin copia de confianza sigue considerándose manipulación. Se mantienen la exportación e importación, el formato v10 firmado y la migración desde v9.`,
+    ],
+    'reference/glossary.md': [
+      'Glosario',
+      'Definiciones rápidas de los términos de Legacy.',
+      `**Clase** — tarea que produce ingresos. **Habilidad** — tarea que modifica un canal. **Cobre** — recurso que se puede gastar. **Mal / Esencia** — monedas de renacimiento. **Eco** — entrenador secundario. **Resonancia** — máximo recordado que determina su eficiencia. **Maestría** — objeto pasivo de una clase. **Great** — ascenso permanente. **Colapso** — conversión de Esencia en Materia Oscura. **Doctrina** — elección de Oscuridad con dos ramas. **Punto del Metaverso** — moneda para configurar la partida. **Hipercubo** — recurso de los altares. **Crónica** — historial permanente de la cuenta.`,
+    ],
+    'reference/formulas.mdx': [
+      'Fórmulas y cálculos',
+      'Fórmulas principales, redondeo y calculadora.',
+      `import XpCalculator from '../../../../components/XpCalculator.astro';\n\nLos productos «redondeados» usan el entero más cercano, con los valores medios hacia el infinito positivo. Una vida comienza a los 14 años, dura 70 años de base y avanza cuatro días de juego por segundo real.\n\n## XP necesaria\n\n$$\\operatorname{maxXP}(b,l)=\\operatorname{round}(b(l+1)(1.01)^l)$$\n\n<XpCalculator locale="es" />\n\n## Umbral de maestría\n\n$$N(L)=\\sum_{k=0}^{L-1}(k+1)(1.01)^k$$\n\nCon $T=\\max(N(15),2N(P))$, los seis rangos requieren $T,2T,4T,8T,16T,32T$.\n\n## Recompensas avanzadas\n\nEl Colapso usa $x=E/(5\\times10^{10})$ y $\\lfloor x^{1.12}(1+0.15\\log_{10}x)M_{DM}\\rfloor$. El Metaverso usa $y=R/1000$ y $\\lfloor y^{1.1}(1+0.1\\log_{10}y)M_{MP}\\rfloor$. Los resultados extremos se saturan en vez de desbordarse.`,
+    ],
+  },
   fr: {
     'index.md': [
       'Wiki Legacy',
@@ -306,7 +443,9 @@ const pages = {
   },
 };
 
-for (const locale of ['fr', 'ru']) {
+const locales = ['es', 'fr', 'ru'];
+
+for (const locale of locales) {
   Object.assign(pages[locale], {
     'systems/classes.mdx': shared.classes[locale],
     'systems/abilities.mdx': shared.abilities[locale],
@@ -334,5 +473,5 @@ for (const locale of ['fr', 'ru']) {
 }
 
 console.log(
-  `Generated ${Object.keys(pages.fr).length + Object.keys(pages.ru).length} localized pages.`,
+  `Generated ${locales.reduce((total, locale) => total + Object.keys(pages[locale]).length, 0)} localized pages.`,
 );

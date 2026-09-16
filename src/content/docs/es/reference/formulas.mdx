@@ -1,0 +1,25 @@
+---
+title: 'Fórmulas y cálculos'
+description: 'Fórmulas principales, redondeo y calculadora.'
+category: reference
+---
+
+import XpCalculator from '../../../../components/XpCalculator.astro';
+
+Los productos «redondeados» usan el entero más cercano, con los valores medios hacia el infinito positivo. Una vida comienza a los 14 años, dura 70 años de base y avanza cuatro días de juego por segundo real.
+
+## XP necesaria
+
+$$\operatorname{maxXP}(b,l)=\operatorname{round}(b(l+1)(1.01)^l)$$
+
+<XpCalculator locale="es" />
+
+## Umbral de maestría
+
+$$N(L)=\sum_{k=0}^{L-1}(k+1)(1.01)^k$$
+
+Con $T=\max(N(15),2N(P))$, los seis rangos requieren $T,2T,4T,8T,16T,32T$.
+
+## Recompensas avanzadas
+
+El Colapso usa $x=E/(5\times10^{10})$ y $\lfloor x^{1.12}(1+0.15\log_{10}x)M_{DM}\rfloor$. El Metaverso usa $y=R/1000$ y $\lfloor y^{1.1}(1+0.1\log_{10}y)M_{MP}\rfloor$. Los resultados extremos se saturan en vez de desbordarse.
