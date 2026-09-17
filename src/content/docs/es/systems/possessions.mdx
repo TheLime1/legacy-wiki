@@ -1,13 +1,23 @@
 ---
-title: 'Posesiones'
-description: 'Propiedades, posesiones, gastos, efectos y desbloqueos.'
+title: Pertenencias
+description: Propiedades y pertenencias misceláneas, gastos, efectos y desbloqueos.
 category: systems
 ---
 
 import CatalogTable from '../../../../components/CatalogTable.astro';
 
-Las 30 propiedades son mutuamente excluyentes y multiplican la Felicidad. Las 24 posesiones diversas se pueden activar por separado. Todos los costes son gastos diarios recurrentes. Si el cobre llega a cero, las selecciones de pago se desactivan.
+Legacy tiene 30 propiedades y 24 pertenencias misceláneas. Las propiedades son mutuamente exclusivas y multiplican la Felicidad. Seleccionar una nueva propiedad reemplaza a la anterior; hacer clic en la propiedad paga actual vuelve a Ser sin hogar.
 
 <CatalogTable kind="properties" locale="es" />
 
+Las pertenencias misceláneas pueden activarse de forma independiente y multiplican su canal nombrado.
+
 <CatalogTable kind="items" locale="es" />
+
+Todos los costos listados son **gastos recurrentes diarios**, no precios de compra únicos. Negociación, Intimidación, Lavado de cerebro, Manipulación del Abismo y Comando Galáctico multiplican el gasto base de cada posesión. Si los gastos resultantes consumen todo el cobre, las posesiones pagadas activas se eliminan.
+
+La expansión añade veinte posesiones, desde Astronave hasta El dominio no escrito. Sus desbloqueos combinan cobre con requisitos de Materia Oscura o Puntos del Metaverso donde se indique.
+
+Las posesiones de pago originales pueden recibir [conversiones Great](../heroic/#great-item-conversions) permanentes. Sin hogar y las veinte posesiones de la expansión no son elegibles.
+
+Después del primer Trascender, el [Administrador de la tienda](../shop-steward/) puede recomendar una propiedad y un equipo de miscelánea. Su tarifa de ingresos del 10% es un gasto diario adicional mientras esté habilitado.

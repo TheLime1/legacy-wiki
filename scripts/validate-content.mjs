@@ -65,6 +65,7 @@ const routeFor = (file) =>
   relative(docsRoot, file)
     .replaceAll('\\', '/')
     .replace(/\.(?:md|mdx)$/, '');
+const fileByRoute = new Map(docFiles.map((file) => [routeFor(file), file]));
 const englishRoutes = docFiles
   .map(routeFor)
   .filter((route) => !locales.some((locale) => route.startsWith(`${locale}/`)))
@@ -77,6 +78,91 @@ for (const locale of locales) {
     .sort();
   if (JSON.stringify(localizedRoutes) !== JSON.stringify(englishRoutes)) {
     throw new Error(`${locale}: localized routes do not match the English wiki`);
+  }
+}
+
+function bodyOf(text) {
+  const end = text.indexOf('\n---\n', 4);
+  return end < 0 ? text : text.slice(end + 5);
+}
+
+function countColumns(line) {
+  return line.split(/(?<!\\)\|/).length - 2;
+}
+
+function blockKind(block) {
+  const firstLine = block.trimStart().split('\n', 1)[0];
+  if (/^import\s/.test(firstLine)) return 'import';
+  if (/^#{1,6}\s/.test(firstLine)) return 'heading';
+  if (/^\|/.test(firstLine)) return 'table';
+  if (/^\$\$/.test(firstLine)) return 'math';
+  if (/^:::+/.test(firstLine)) return 'directive';
+  if (/^<(?:[A-Z]|\/)/.test(firstLine)) return 'component';
+  if (/^(?:[-*+] |\d+\. )/.test(firstLine)) return 'list';
+  return 'paragraph';
+}
+
+function structureOf(text) {
+  const body = bodyOf(text);
+  const lines = body.split('\n');
+  const links = [...body.matchAll(/\[[^\]]+\]\(([^)]+)\)/g)];
+  const numericText = body.replace(/(?<=\d)[\s\u00a0\u202f](?=\d{3}\b)/g, '');
+  return {
+    blockKinds: body
+      .trim()
+      .split(/\n\s*\n/)
+      .map(blockKind),
+    headingDepths: lines.map((line) => line.match(/^(#{1,6})\s+/)?.[1].length).filter(Boolean),
+    tableColumns: lines.filter((line) => /^\s*\|.*\|\s*$/.test(line)).map(countColumns),
+    listKinds: lines
+      .map((line) => line.match(/^\s*((?:[-*+])|(?:\d+\.))\s+/)?.[1])
+      .filter(Boolean)
+      .map((marker) => (/\d/.test(marker) ? 'ordered' : 'unordered')),
+    components: [...body.matchAll(/<([A-Z][A-Za-z0-9]*)\b/g)].map((match) => match[1]).sort(),
+    linkTargets: links.map((match) => match[1]),
+    inlineCode: [...body.matchAll(/(?<!`)`([^`\n]+)`(?!`)/g)].map((match) => match[1]),
+    displayMath: [...body.matchAll(/^\$\$\s*([\s\S]*?)\s*^\$\$/gm)].map((match) =>
+      match[1].replace(/\s+/g, ''),
+    ),
+    numbers: [...numericText.matchAll(/\d+(?:[.,]\d+)*/g)].map((match) =>
+      match[0].replace(/[,.]/g, ''),
+    ),
+    displayMathDelimiters: [...body.matchAll(/^\$\$/gm)].length,
+    directives: [...body.matchAll(/^:::+([a-z-]+)?/gm)].map((match) => match[1] ?? '').sort(),
+    letterCount: [...body.matchAll(/\p{L}/gu)].length,
+  };
+}
+
+function assertSameStructure(route, locale, english, localized) {
+  for (const key of [
+    'blockKinds',
+    'headingDepths',
+    'tableColumns',
+    'listKinds',
+    'components',
+    'linkTargets',
+    'inlineCode',
+    'displayMath',
+    'numbers',
+    'displayMathDelimiters',
+    'directives',
+  ]) {
+    if (JSON.stringify(localized[key]) !== JSON.stringify(english[key])) {
+      throw new Error(`${locale}/${route}: ${key} do not match the English page`);
+    }
+  }
+  if (localized.letterCount < english.letterCount * 0.6) {
+    throw new Error(
+      `${locale}/${route}: localized body is suspiciously short (${localized.letterCount} letters versus ${english.letterCount} in English)`,
+    );
+  }
+}
+
+for (const route of englishRoutes) {
+  const english = structureOf(await readFile(fileByRoute.get(route), 'utf8'));
+  for (const locale of locales) {
+    const localized = structureOf(await readFile(fileByRoute.get(`${locale}/${route}`), 'utf8'));
+    assertSameStructure(route, locale, english, localized);
   }
 }
 

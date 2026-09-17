@@ -1,25 +1,346 @@
 ---
-title: 'Formules et calculs'
-description: 'Formules principales, arrondis et calculateur.'
+title: Formules et calculs
+description: Formules Legacy exactes, ordre d'empilement, règles d'arrondi, plages et exemples.
 category: reference
 ---
 
+import FormulaCard from '../../../../components/FormulaCard.astro';
 import XpCalculator from '../../../../components/XpCalculator.astro';
 
-Les produits « arrondis » utilisent l'entier le plus proche, les moitiés allant vers l'infini positif. Une vie commence à 14 ans, dure 70 ans de base et avance de quatre jours en jeu par seconde réelle.
+Un produit décrit comme « arrondi » arrondit les valeurs à mi-chemin vers l'infini positif.
+
+## Constantes de temps
+
+| Symbole | Signification          |                        Valeur |
+| ------- | ---------------------- | ----------------------------: |
+| $D_y$   | Jours par an           |                           365 |
+| $A_0$   | Âge de fraîcheur       |                        14 ans |
+| $L_0$   | Durée de vie de base   |                        70 ans |
+| $S_0$   | Vitesse de jeu de base | 4 jours en jeu/seconde réelle |
+
+<FormulaCard title="Affichage de l'âge">
+
+$$
+\operatorname{age}(d)=\left\lfloor \frac{d}{365}\right\rfloor
+$$
+
+où $d$ est le nombre de jours accumulés en jeu.
+
+</FormulaCard>
 
 ## XP requis
 
-$$\operatorname{maxXP}(b,l)=\operatorname{round}(b(l+1)(1.01)^l)$$
+<FormulaCard title="XP nécessaire pour le niveau suivant">
+
+$$
+\operatorname{maxXP}(b,\ell)=
+\operatorname{round}\left(b(\ell+1)(1.01)^\ell\right)
+$$
+
+$b$ est le XP maximum de base de la tâche et $\ell$ est son niveau actuel en entier non négatif. Les capacités ordinaires utilisent $b=100$. La Résonance I–IV utilise les valeurs calibrées $0.00030536056011010876$, $0.00003972362997298969$, $0.000004881366014841863$, et $0.00000045896650664729693$. Les bases de classe sont listées dans le [catalogue de classes](../../systems/classes/).
+
+</FormulaCard>
+
+| Niveau de capacité | XP nécessaire |
+| -----------------: | ------------: |
+|                  0 |           100 |
+|                 10 |         1,215 |
+|                100 |        27,319 |
+|              1,000 | 2,098,011,479 |
 
 <XpCalculator locale="fr" />
 
-## Seuil de maîtrise
+Lorsque la progression franchit une limite de niveau, l'XP excédentaire est reportée. Jusqu'à 1 024 niveaux peuvent être attribués en une seule mise à jour fixe, le montant requis étant recalculé après chaque nouveau niveau ; l'excédent restant continue lors des mises à jour suivantes. Les valeurs extrêmes finies sont saturées au lieu de déborder.
 
-$$N(L)=\sum_{k=0}^{L-1}(k+1)(1.01)^k$$
+## XP gagné et ordre de cumul
 
-Avec $T=\max(N(15),2N(P))$, les six paliers demandent $T,2T,4T,8T,16T,32T$.
+Chaque tâche commence avec 10 XP de base par unité de simulation. Chaque modificateur applicable est multiplié, puis le résultat final est arrondi une seule fois :
 
-## Récompenses tardives
+$$
+\operatorname{xpGain}=\operatorname{round}\left(10\prod_i m_i\right)
+$$
 
-Effondrement utilise $x=E/(5\times10^{10})$ et $\lfloor x^{1.12}(1+0.15\log_{10}x)M_{DM}\rfloor$. Le Métavers utilise $y=R/1000$ et $\lfloor y^{1.1}(1+0.1\log_{10}y)M_{MP}\rfloor$. Les résultats extrêmes saturent au lieu de déborder.
+Les facteurs universels sont :
+
+1. bonus de niveau maximum de la tâche : $1+\text{maximum level}/10$;
+2. un multiplicateur de maîtrise additive contenant tous les pourcentages d’objets de maîtrise applicables ;
+3. Bonheur ;
+4. Influence Sombre ;
+5. Entraînement des démons ;
+6. Influence du vide ;
+7. Univers parallèle.
+
+Les classes multiplient ensuite la productivité, la connaissance obscure et l'écuyer personnel. Les capacités multiplient plutôt la concentration, le livre, le bureau d'étude, la bibliothèque, la lame du vide, la symbiose du vide, le fragment d'univers et l'incarnation du mal.
+
+Une branche spécifique à une catégorie est appliquée ensuite : Classe militaire XP, Force XP, Capacité magique XP, Manipulation du Vide XP, Classe arcanique XP, Classe du Vide XP, Classe galactique XP, Magie noire XP, Omnipotence XP, ou Fondamentaux XP. La Magie noire est multipliée par le Mal actuel ; l'Omnipotence est multipliée par l'Essence actuelle.
+
+Le bloc multiplicateur d'expansion est appliqué après la branche spécifique à la catégorie, dans cet ordre :
+
+1. Essence VII multiplie tous les XP par 1,10. Essences I multiplie ensuite les XP de capacités par 1,05, ou Essence II multiplie les XP de classe par 1,05.
+2. Doctrine II applique sa branche sélectionnée de classe ou capacité-XP. Couronne de Null affecte les classes ; Discipline de l’Ombre et Grimoire Blackstar affectent les capacités. La Clé Racine affecte également les classes du Métaverse.
+3. All- bénéfice d’XP de Doctrine IV est appliqué, suivi de Révision Finale, Momentum Immortel et Aveuglé par les Ténèbres.
+4. Les capacités magiques reçoivent alors les rangs Arcana Unbound et Orbe Enchanté. Les capacités des Ténèbres reçoivent le multiplicateur Darkness IX.
+5. Les grandes tâches reçoivent enfin $2^n$, où $n$ est le nombre de jalons héroïques complétés Great-XP Étapes héroïques, jusqu’à 12.
+
+Chaque terme applicable se multiplie ; aucun de ces pourcentages n’est combiné de manière additive sauf si sa propre formule le prévoit.
+
+Les bonus de maîtrise ne se multiplient pas entre eux. Si les pourcentages d’objets applicables sont $p_1,\ldots,p_n$, leur multiplicateur unique est :
+
+$$
+M_{\text{mastery}}=1+\sum_{i=1}^{n}\frac{p_i}{100}
+$$
+
+La valeur actuelle en Cuivre, Argent, Or, Platine, Émeraude ou Rubis remplace la valeur de niveau précédente de l'objet. Voir [Objets de Maîtrise](../../systems/mastery-items/) pour le routage complet des effets.
+
+## Seuils de niveau de maîtrise
+
+Travail normalisé par niveau de classe $L$ est :
+
+$$
+N(L)=\sum_{k=0}^{L-1}(k+1)(1.01)^k
+$$
+
+Pour le niveau de route d'un article $P$, définir $T=\max(N(15),2N(P))$. Cible cuivre, argent, or, platine, émeraude et rubis $T$, $2T$, $4T$, $8T$, $16T$, et $32T$. Chaque exigence affichée est le premier entier $L$ dont $N(L)$ atteint son objectif. Seul le pic de classe de travail enregistré séparément participe ; les niveaux maximum actuels et hérités ne participent pas.
+
+## Effets des capacités
+
+<FormulaCard title="Capacité linéaire">
+
+$$
+E_{\text{linear}}(\ell,c)=1+c\ell
+$$
+
+$c$ est le coefficient de capacité du [catalogue de capacités](../../systems/abilities/).
+
+</FormulaCard>
+
+<FormulaCard title="Capacité de réduction des dépenses">
+
+$$
+E_{\text{expense}}(\ell)=
+\max\left(0.1,\ 1-\frac{\log_7(\ell+1)}{10}\right)
+$$
+
+Le multiplicateur est limité à un minimum de 0,1. Négociation, Intimidation, Lavage de cerveau, Manipulation de l'Abîme et Commandement galactique utilisent chacun cette formule et se multiplient entre eux.
+
+</FormulaCard>
+
+| Niveau | Multiplicateur de dépenses |
+| -----: | -------------------------: |
+|      0 |                   1.000000 |
+|     10 |                   0.876773 |
+|    100 |                   0.762830 |
+|  1,000 |                   0.644960 |
+
+<FormulaCard title="Boost logarithmique">
+
+$$
+E_{\text{boost}}(\ell,b)=1+\log_b(\ell+1)
+$$
+
+La distorsion temporelle utilise $b=13$; L'essence de vie utilise $b=33$.
+
+</FormulaCard>
+
+La récollection cosmique est l'effet spécial non décalé :
+
+$$
+E_{\text{recall}}(\ell)=0.00065\ell
+$$
+
+Au niveau 1, elle conserve `floor(0.00065 × maximum)` pendant la Transcendance ; le résultat peut être nul.
+
+<FormulaCard title="Capacité de l'obscurité">
+
+$$
+E_{\mathrm{dark}}(\ell,c)=1+c\log_{10}(\ell+1)
+$$
+
+Les six coefficients et canaux de l'obscurité sont listés dans [Obscurité et Effondrement](../../systems/darkness/#darkness-abilities).
+
+</FormulaCard>
+
+## Great tâches et possessions
+
+Pour le rang Great $r$ et le niveau Great $\ell$:
+
+$$
+b_{\mathrm{Great}}=10^{10}(1.7)^r,
+\qquad
+\operatorname{maxXP}_{\mathrm{Great}}=
+\operatorname{round}\left(b_{\mathrm{Great}}(\ell+1)(1.01)^\ell\right).
+$$
+
+Une capacité Great évalue son effet à :
+
+$$
+\ell_{\mathrm{effective}}=\max(P_{\mathrm{normal}},2000)+100\ell_{\mathrm{Great}}.
+$$
+
+Grande Réminiscence Cosmique seule plafonne son effet résultant à 2. Pour une possession payée initiale avec des dépenses ordinaires $X_0$, effet ordinaire $M_0$, et rang d'ordre source $r$:
+
+$$
+X_{\mathrm{Great}}=\max\left(10^6X_0,10^{20}10^{r/3}\right),
+\qquad
+M_{\mathrm{Great}}=1+4(M_0-1).
+$$
+
+## Revenu de classe
+
+<FormulaCard title="Revenu de classe">
+
+$$
+I=\operatorname{round}\left(
+I_0\left(1+\log_{10}(\ell+1)\right)
+M_{\text{wealth}}M_{\text{category}}M_{\text{mastery-income}}
+\right)
+$$
+
+Cela multiplie le revenu de base $I_0$, le terme de niveau $1+\log_{10}(\ell+1)$, Richesse du Démon, tout effet de revenu de catégorie applicable, et le multiplicateur de revenu-maîtrise additif. Militaire ajoute Force ; Association Arcanique ajoute Œil Omniscient. Le produit final est arrondi une fois.
+
+</FormulaCard>
+
+Avec un revenu de base de 100 et aucun multiplicateur supplémentaire :
+
+| Niveau | Cuivre/jour |
+| -----: | ----------: |
+|      0 |         100 |
+|     10 |         204 |
+|    100 |         300 |
+|  1,000 |         400 |
+
+## Dépenses, Bonheur, et affichage net
+
+La dépense quotidienne de base de chaque possession active est multipliée par les cinq effets de capacité de réduction des dépenses, puis arrondie. La dépense totale est la dépense de propriété plus toutes les dépenses diverses actives et, lorsqu'il est activé, les frais du régisseur de magasin.
+
+$$
+X_i=\operatorname{round}\left(X_{0,i}
+E_B E_I E_{Br} E_A E_G\right)
+$$
+
+Le bonheur multiplie :
+
+$$
+H=
+\frac{E_{\text{Meditation}}\,
+I_{\text{Butler}}\,
+I_{\text{Multiverse Fragment}}\,
+I_{\text{Property}}}
+{E_{\text{Mind Seize}}}
+$$
+
+Les frais du régisseur de magasin sont $0.10I$, et le budget de chargement recommandé est $0.90I$. L'ampleur nette est $\left|I-X\right|$ ; la barre latérale la préfixe avec **+** lorsque les revenus couvrent les dépenses et **−** lorsque les dépenses sont plus importantes, avec un style positif ou négatif correspondant.
+
+## Durée de vie et vitesse de jeu
+
+$$
+L=70\cdot365\cdot
+E_{\text{Life Essence}}
+E_{\text{Astral Body}}
+E_{\text{Ceaseless Abyss}}
+E_{\text{Cosmic Longevity}}
+E_{\text{Higher Dimensions}}
+$$
+
+La durée de vie n'a pas d'arrondissement ou de limite supplémentaire.
+
+Lorsque la distorsion temporelle est activée, le warp réel est :
+
+$$
+W_{\text{actual}} =
+E_{\text{Time Warping}}+
+\left(E_{\text{Temporal Dimension}}E_{\text{Time Loop}}\right)
+$$
+
+L’affichage de la barre latérale multiplie plutôt les trois effets, ce qui peut donc différer de la vitesse qui fait réellement avancer le jeu.
+
+La vitesse effective du jeu est $4W_{\text{actual}}$ tant qu’il est vivant et non pausé, sinon zéro. Essence V multiplie la vitesse effective du jeu par 1,10 ; ce bonus de jalon ne fait pas partie du nombre de warp affiché dans la barre latérale.
+
+## Rebirth rewards
+
+Le multiplicateur de vie suivante par tâche de Touch Eye est :
+
+$$
+M_{\text{task}}=1+\frac{\max(\ell,\ell_{\max})}{10}
+$$
+
+Il n’existe pas de multiplicateur global basé sur le nombre de renaissances XP. Le gain du Mal multiplie Contrôle du Mal, Méditation du Sang, Souhait Absolu, Incarnation du Vide, Yin Yang, le multiplicateur de gain du Mal de maîtrise additive, et le multiplicateur de 1,15 de l’Essence VI.
+
+Le gain d'Essence multiplie Yin Yang, Collector d'Essence, le multiplicateur de maîtrise additive du gain d'Essence, Essence IV à 1,10, Essence IX à 1,15, et `1 + 0.1 × Essence Bargain rank`. La Transcendance obtient un ×1,5 supplémentaire après que l'Essence actuelle atteint 30 000 et complète Essence III.
+
+## Avantages Échos et Mal
+
+Avec le pic de Résonance mémorisé $p_i$ et la cible $T_i\in\{1000,1250,1500,1750\}$, l'efficacité de l'Écho correspondant est :
+
+$$
+E_i(p_i)=
+\begin{cases}
+0.25+0.75p_i/T_i,&p_i\le T_i,\\
+1+0.05\log_2(p_i/T_i),&p_i>T_i.
+\end{cases}
+$$
+
+L'XP de l'Écho utilise le gain complet actuel d'XP de la capacité cible multiplié par $E_i(p_i)$, y compris l'XP Super lorsque la cible est promue. Voir [Échos et Résonance](../../systems/echoes/) pour les règles de routage.
+
+Avec le Mal $V$, l'Essence $S$, et le multiplicateur Essence VIII $M_8\in\{1,1.25\}$:
+
+$$
+\operatorname{EPP/day}=
+\frac{\log_{10}(1+V)\left(1+0.25\log_{10}(1+S)\right)}{365}M_8.
+$$
+
+Pour un âge de base $A$, le rang de compétence $r$, et la réduction $d$ d'années par rang, l'exigence effective est $\max(0,A-rd)$. Les rangs maximum actuels produisent Œil de Toucher 15, Embrasser le Mal 100, Vide 100, et Conseil Galactique 1 000.
+
+## Effondrement et Orbes Sombres
+
+Pour l'Essence actuelle $S$, $x=S/(5\times10^{10})$, et le produit de tous les multiplicateurs de Matière Sombre $M_{\mathrm{DM}}$:
+
+$$
+\operatorname{Collapse}(S)=
+\begin{cases}
+0,&x<1,\\
+\left\lfloor x^{1.12}(1+0.15\log_{10}x)M_{\mathrm{DM}}\right\rfloor,&x\ge1.
+\end{cases}
+$$
+
+Les résultats positifs extrêmes se saturent à la plus grande valeur finie. Le coût et le taux pour le prochain rang du générateur d'Orbes Sombres sont :
+
+$$
+C_{\mathrm{generator}}(r)=\left\lceil3^r\right\rceil,
+$$
+
+$$
+\operatorname{Orbs/day}=0.01(2^r-1)(1+0.25\sqrt{D})M_{11},
+$$
+
+où $D$ est la Matière Sombre à vie et $M_{11}$ est de 1,5 après Darkness XI, sinon 1. Pour une amélioration d'Orbe avec un coût de base $B$, le rang suivant coûte $B4^r$.
+
+## Métavers et Hypercubes
+
+Pour la Matière Noire brute gagnée lors de cette partie $R$, $y=R/1000$, et multiplicateur de gain du Metaverse $M_{\mathrm{MP}}$:
+
+$$
+\operatorname{Metaverse}(R)=
+\begin{cases}
+0,&y<1,\\
+\left\lfloor y^{1.1}(1+0.1\log_{10}y)M_{\mathrm{MP}}\right\rfloor,&y\ge1.
+\end{cases}
+$$
+
+Avec le rang Autel Hypercube $a$, multiplicateur d'élément actif $M_i$, et multiplicateur d'avantages $M_p$:
+
+$$
+\operatorname{Hypercubes/day}=0.03M_iM_p(1.25)^a,
+\qquad
+\operatorname{cap}=10{,}000(1+\mathrm{lifetime\ MP})^2.
+$$
+
+Un autel avec coût de base $B$ coûts $B3^r$ pour le rang $r+1$. La durée de Reality Boost est $60+10d$ secondes d'activité, et son temps de recharge est $\max(120,600(0.95)^c)$ secondes actives.
+
+## Score de carrière de l'Empire
+
+$$
+C=p\ell_{\text{peak}}^2
+$$
+
+$p$ est la valeur de carrière-privilège de la classe, égale au maximum de base de XP de cette classe. $\ell_{\text{peak}}$ est le niveau le plus élevé atteint pendant que cette classe était jouée.

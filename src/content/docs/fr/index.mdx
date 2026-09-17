@@ -1,0 +1,60 @@
+---
+title: Wiki Legacy
+description: Guides, systèmes, formules et stratégie pour les joueurs de Legacy.
+template: splash
+hero:
+  title: Legacy
+  tagline: Une vie mesurée par des choix. Apprenez les systèmes, planifiez chaque vie et construisez votre héritage.
+  image:
+    file: ../../../assets/legacy-logo.png
+  actions:
+    - text: Commencer une vie
+      link: ./getting-started/
+      icon: right-arrow
+    - text: Référence des formules
+      link: ./reference/formulas/
+      variant: minimal
+    - text: Ascension éternelle
+      link: ./systems/eternal-ascension/
+      variant: minimal
+category: home
+---
+
+import { Card, CardGrid } from '@astrojs/starlight/components';
+
+## Choisissez ce dont vous avez besoin
+
+<CardGrid>
+  <a href="./beginner-guide/" class="home-card-link">
+    <Card title="Parcours du nouveau joueur" icon="rocket">
+      Suivez le guide de la première vie du Mendiant et de la Concentration jusqu'aux premiers
+      systèmes permanents.
+    </Card>
+  </a>
+  <a href="./systems/classes/" class="home-card-link">
+    <Card title="Catalogue de systèmes" icon="open-book">
+      Parcourez les 44 classes, 44 objets de maîtrise, 49 capacités, 54 possessions et leurs
+      exigences exactes de déblocage.
+    </Card>
+  </a>
+  <a href="./systems/mastery-items/" class="home-card-link">
+    <Card title="Objets de maîtrise" icon="star">
+      Comparez les six niveaux, les effets passifs, les seuils maximaux travaillés et les icônes
+      regroupées par classe.
+    </Card>
+  </a>
+  <a href="./reference/formulas/" class="home-card-link">
+    <Card title="Formules" icon="star">
+      Vérifiez XP, les revenus, les dépenses, la durée de vie, la vitesse du jeu, les récompenses de
+      réinitialisation et le classement de l'Empire.
+    </Card>
+  </a>
+</CardGrid>
+
+## Qu'est-ce que Legacy
+
+Legacy est une simulation de vie incrémentale solo. Vous travaillez une **classe** et entraînez une **capacité** à la fois tandis que l'âge avance. Le revenu de classe paie les dépenses récurrentes de votre propriété sélectionnée et des possessions optionnelles. Les compétences multiplient des parties spécifiques de l'économie ou de la progression. Les classes de travail révèlent également des objets de maîtrise permanents avec de petits effets passifs. Les vies ultérieures ajoutent des bonus permanents de niveau maximum, le Mal, l'Essence, l'automatisation, les classements partagés, et la hiérarchie de l'Empire.
+
+## Mise à jour Eternal Ascension
+
+[Eternal Ascension](./systems/eternal-ascension/) étend le voyage complet avec quatre [Échos](./systems/echoes/), des avantages permanents de Mal, [progression Héroïque et Great](./systems/heroic/), [Effondrement et Ténèbres](./systems/darkness/), et [le Métavers](./systems/metaverse/). Le [Chronique](./systems/chronicle/) suit 42 étapes permanentes et chaque réinitialisation jusqu'à la fin complète Legacy.

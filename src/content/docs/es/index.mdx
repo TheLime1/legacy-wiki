@@ -1,0 +1,60 @@
+---
+title: Wiki de Legacy
+description: Guías, sistemas, fórmulas y estrategias para jugadores de Legacy.
+template: splash
+hero:
+  title: Legacy
+  tagline: Una vida medida en elecciones. Aprende los sistemas, planifica cada vida y construye tu legado.
+  image:
+    file: ../../../assets/legacy-logo.png
+  actions:
+    - text: Comenzar una Vida
+      link: ./getting-started/
+      icon: right-arrow
+    - text: Referencia de Fórmulas
+      link: ./reference/formulas/
+      variant: minimal
+    - text: Ascensión Eterna
+      link: ./systems/eternal-ascension/
+      variant: minimal
+category: home
+---
+
+import { Card, CardGrid } from '@astrojs/starlight/components';
+
+## Elige lo que necesitas
+
+<CardGrid>
+  <a href="./beginner-guide/" class="home-card-link">
+    <Card title="Ruta para nuevos jugadores" icon="rocket">
+      Sigue la guía de la primera vida desde Mendigo y Concentración hasta los primeros sistemas
+      permanentes.
+    </Card>
+  </a>
+  <a href="./systems/classes/" class="home-card-link">
+    <Card title="Catálogo de sistemas" icon="open-book">
+      Explora las 44 clases, 44 objetos de maestría, 49 habilidades, 54 posesiones y sus requisitos
+      exactos de desbloqueo.
+    </Card>
+  </a>
+  <a href="./systems/mastery-items/" class="home-card-link">
+    <Card title="Objetos de maestría" icon="star">
+      Compara los seis niveles, efectos pasivos, umbrales de pico trabajado y los íconos agrupados
+      por clase.
+    </Card>
+  </a>
+  <a href="./reference/formulas/" class="home-card-link">
+    <Card title="Fórmulas" icon="star">
+      Revisa XP, ingresos, gastos, esperanza de vida, velocidad del juego, recompensas por reinicio
+      y clasificación del Imperio.
+    </Card>
+  </a>
+</CardGrid>
+
+## Qué es Legacy
+
+Legacy es una simulación incremental de vida para un solo jugador. Trabajas una **clase** y entrenas una **habilidad** a la vez mientras la edad avanza. Los ingresos de la clase pagan los gastos recurrentes de la propiedad y posesiones opcionales que hayas seleccionado. Las habilidades multiplican partes específicas de la economía o del progreso. Las clases trabajadoras también revelan coleccionables de maestría permanente con pequeños efectos pasivos. Las vidas posteriores agregan bonificaciones permanentes de nivel máximo, Mal, Esencia, automatización, tablas de líderes compartidas y la jerarquía del Imperio.
+
+## Actualización Ascensión Eterna
+
+[Ascensión Eterna](./systems/eternal-ascension/) amplía el viaje completo con cuatro [Ecos](./systems/echoes/), ventajas permanentes de Mal, [progresión Heroica y Great](./systems/heroic/), [Colapso y Oscuridad](./systems/darkness/), y [el Metaverso](./systems/metaverse/). La [Crónica](./systems/chronicle/) sigue 42 hitos permanentes y cada reinicio a través del final completo Legacy.

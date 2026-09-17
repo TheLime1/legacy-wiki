@@ -1,11 +1,17 @@
 ---
-title: 'Clases'
-description: 'Todas las clases, sus ingresos, grupos y condiciones de desbloqueo.'
+title: Clases
+description: Todas las clases Legacy, valores base de XP, ingresos, categorías y desbloqueos.
 category: systems
 ---
 
 import CatalogTable from '../../../../components/CatalogTable.astro';
 
-Legacy cuenta con 44 clases repartidas en siete grupos. Solo la clase seleccionada obtiene XP y produce cobre. Cada clase revela un [objeto de maestría](../mastery-items/) después de un ciclo de trabajo real. Más adelante, las clases que cumplan los requisitos pueden ascender permanentemente a Great.
+Legacy contiene 44 clases generadoras de ingresos repartidas en siete grupos ordenados. Solo la clase seleccionada gana XP y produce cobre. Ascendencia Oscura y el Metaverso añaden nueve clases después de la ruta Galáctica original.
+
+Cada clase tiene un [objeto de maestría](../mastery-items/) pasivo. Su carta aparece solo después de que la clase completa un turno de trabajo, y su nivel de Cobre a Rubí se deriva del pico trabajado de esa clase, no de su nivel máximo actual o heredado.
+
+`Base max XP` es la base de nivel cero utilizada por la fórmula de requisito compartido de XP. Los ingresos reales aumentan con el nivel de clase y cualquier clase, categoría, dominio y multiplicadores de ingresos aplicables.
+
+Las clases elegibles pueden ser promovidas permanentemente a través [Gran progresión](../heroic/). Las cuatro clases del Metaverso usan su propia cadena Great nivel-20.
 
 <CatalogTable kind="classes" locale="es" />

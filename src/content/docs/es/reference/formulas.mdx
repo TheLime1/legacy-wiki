@@ -1,25 +1,346 @@
 ---
-title: 'Fórmulas y cálculos'
-description: 'Fórmulas principales, redondeo y calculadora.'
+title: Fórmulas y Cálculos
+description: Fórmulas exactas Legacy, orden de acumulación, reglas de redondeo, rangos y ejemplos.
 category: reference
 ---
 
+import FormulaCard from '../../../../components/FormulaCard.astro';
 import XpCalculator from '../../../../components/XpCalculator.astro';
 
-Los productos «redondeados» usan el entero más cercano, con los valores medios hacia el infinito positivo. Una vida comienza a los 14 años, dura 70 años de base y avanza cuatro días de juego por segundo real.
+Un producto descrito como “redondeado” redondea los valores medios hacia el infinito positivo.
 
-## XP necesaria
+## Constantes de tiempo
 
-$$\operatorname{maxXP}(b,l)=\operatorname{round}(b(l+1)(1.01)^l)$$
+| Símbolo | Significado              |                         Valor |
+| ------- | ------------------------ | ----------------------------: |
+| $D_y$   | Días por año             |                           365 |
+| $A_0$   | Edad de frescura         |                       14 años |
+| $L_0$   | Esperanza de vida base   |                       70 años |
+| $S_0$   | Velocidad base del juego | 4 días del juego/segundo real |
+
+<FormulaCard title="Visualización de la edad">
+
+$$
+\operatorname{age}(d)=\left\lfloor \frac{d}{365}\right\rfloor
+$$
+
+donde $d$ se acumulan los días en el juego.
+
+</FormulaCard>
+
+## XP requerido
+
+<FormulaCard title="XP necesarios para el siguiente nivel">
+
+$$
+\operatorname{maxXP}(b,\ell)=
+\operatorname{round}\left(b(\ell+1)(1.01)^\ell\right)
+$$
+
+$b$ es el XP máximo base de la tarea y $\ell$ es su nivel entero no negativo actual. Las habilidades ordinarias usan $b=100$. Resonance I–IV usan los valores calibrados $0.00030536056011010876$, $0.00003972362997298969$, $0.000004881366014841863$, y $0.00000045896650664729693$. Las bases de clase están listadas en el [catálogo de clases](../../systems/classes/).
+
+</FormulaCard>
+
+| Nivel de habilidad | XP necesarios |
+| -----------------: | ------------: |
+|                  0 |           100 |
+|                 10 |         1,215 |
+|                100 |        27,319 |
+|              1,000 | 2,098,011,479 |
 
 <XpCalculator locale="es" />
 
-## Umbral de maestría
+Cuando el progreso cruza un límite de nivel, el exceso de XP se traslada adelante. Hasta 1,024 niveles pueden otorgarse en una sola actualización fija, recalculándose el requisito después de cada nuevo nivel; el exceso restante continúa en actualizaciones posteriores. Los valores finitos extremos se saturan en lugar de desbordarse.
 
-$$N(L)=\sum_{k=0}^{L-1}(k+1)(1.01)^k$$
+## XP ganado y orden de acumulación
 
-Con $T=\max(N(15),2N(P))$, los seis rangos requieren $T,2T,4T,8T,16T,32T$.
+Cada tarea comienza con 10 XP base por unidad de simulación. Cada modificador aplicable se multiplica, y luego el resultado final se redondea una vez:
 
-## Recompensas avanzadas
+$$
+\operatorname{xpGain}=\operatorname{round}\left(10\prod_i m_i\right)
+$$
 
-El Colapso usa $x=E/(5\times10^{10})$ y $\lfloor x^{1.12}(1+0.15\log_{10}x)M_{DM}\rfloor$. El Metaverso usa $y=R/1000$ y $\lfloor y^{1.1}(1+0.1\log_{10}y)M_{MP}\rfloor$. Los resultados extremos se saturan en vez de desbordarse.
+Los factores universales son:
+
+1. bonificación de nivel máximo de la tarea: $1+\text{maximum level}/10$;
+2. un multiplicador de maestría aditivo que contiene cada porcentaje de objeto de maestría aplicable;
+3. Felicidad;
+4. Influencia Oscura;
+5. Entrenamiento de Demonio;
+6. Influencia del Vacío;
+7. Universo Paralelo.
+
+Las clases luego multiplican Productividad, Conocimiento Oscuro y Escudero Personal. Las habilidades en cambio multiplican Concentración, Libro, Escritorio de Estudio, Biblioteca, Espada del Vacío, Simbiosis del Vacío, Fragmento del Universo e Incarnación del Mal.
+
+Se aplica a continuación una rama específica por categoría: Clase militar XP, Fuerza XP, Habilidad mágica XP, Manipulación del Vacío XP, Clase arcana XP, Clase del Vacío XP, Clase galáctica XP, Magia Oscura XP, Omnipotencia XP o Fundamentos XP. La Magia Oscura se multiplica por el Mal actual; la Omnipotencia se multiplica por la Esencia actual.
+
+El bloque multiplicador de expansión se aplica después de la rama específica por categoría, en este orden:
+
+1. Esencia VII multiplica todos los XP por 1.10. Luego, Esencia I multiplica la XP de habilidad por 1.05, o Esencia II multiplica la XP de clase por 1.05.
+2. La Doctrina II aplica su rama de clase o habilidad XP seleccionada. La Corona del Nulo afecta a las clases; la Disciplina de la Sombra y el Grimorio Estrella Negra afectan a las habilidades. La Llave Raíz además afecta a las clases del Metaverso.
+3. Se aplica el beneficio o perjuicio de todo XP de la Doctrina IV, seguido por Revisión Final, Impulso Inmortal y Cegado por la Oscuridad.
+4. Las habilidades mágicas luego reciben rangos de Arcanos Desatados y Orbe Encantado. Las habilidades de oscuridad reciben el multiplicador Oscuridad IX.
+5. Grandes tareas finalmente reciben $2^n$, donde $n$ es el número de hitos heroicos completados de Grandes-XP, hasta 12.
+
+Cada término aplicable se multiplica; ninguna de estas etiquetas de porcentaje se combina de forma aditiva a menos que su propia fórmula lo indique.
+
+Los bonos de maestría no se multiplican entre sí. Si los porcentajes de los objetos aplicables son $p_1,\ldots,p_n$, su multiplicador único es:
+
+$$
+M_{\text{mastery}}=1+\sum_{i=1}^{n}\frac{p_i}{100}
+$$
+
+El valor actual de Cobre, Plata, Oro, Platino, Esmeralda o Rubí reemplaza el valor de nivel anterior del objeto. Ver [Objetos de Maestría](../../systems/mastery-items/) para la ruta completa del efecto.
+
+## Umbrales de nivel de maestría
+
+Trabajo normalizado según el nivel de clase $L$ es:
+
+$$
+N(L)=\sum_{k=0}^{L-1}(k+1)(1.01)^k
+$$
+
+Para el nivel de ruta de un objeto $P$, define $T=\max(N(15),2N(P))$. Cobre, Plata, Oro, Platino, Esmeralda y Rubí objetivo $T$, $2T$, $4T$, $8T$, $16T$, y $32T$. Cada requisito mostrado es el primer número entero $L$ cuyo $N(L)$ alcance cumple su objetivo. Solo participa el pico de clase trabajado registrado por separado; los niveles máximos actuales e heredados no lo hacen.
+
+## Efectos de habilidad
+
+<FormulaCard title="Habilidad lineal">
+
+$$
+E_{\text{linear}}(\ell,c)=1+c\ell
+$$
+
+$c$ es el coeficiente de habilidad del [catálogo de habilidades](../../systems/abilities/).
+
+</FormulaCard>
+
+<FormulaCard title="Habilidad de reducción de gastos">
+
+$$
+E_{\text{expense}}(\ell)=
+\max\left(0.1,\ 1-\frac{\log_7(\ell+1)}{10}\right)
+$$
+
+El multiplicador se limita a un mínimo de 0.1. Negociación, Intimidación, Lavado de cerebro, Manipulación del abismo y Comando galáctico utilizan cada uno esta fórmula y se multiplican entre sí.
+
+</FormulaCard>
+
+| Nivel | Multiplicador de gastos |
+| ----: | ----------------------: |
+|     0 |                1.000000 |
+|    10 |                0.876773 |
+|   100 |                0.762830 |
+| 1,000 |                0.644960 |
+
+<FormulaCard title="Aumento logarítmico">
+
+$$
+E_{\text{boost}}(\ell,b)=1+\log_b(\ell+1)
+$$
+
+La distorsión del tiempo usa $b=13$; La esencia de la vida usa $b=33$.
+
+</FormulaCard>
+
+La Recolección Cósmica es el efecto especial no desplazado:
+
+$$
+E_{\text{recall}}(\ell)=0.00065\ell
+$$
+
+En el nivel 1 retiene `floor(0.00065 × maximum)` durante la Trascendencia; el resultado puede ser cero.
+
+<FormulaCard title="Habilidad de la Oscuridad">
+
+$$
+E_{\mathrm{dark}}(\ell,c)=1+c\log_{10}(\ell+1)
+$$
+
+Los seis coeficientes y canales de Oscuridad se enumeran en [Oscuridad y Colapso](../../systems/darkness/#darkness-abilities).
+
+</FormulaCard>
+
+## Grandes tareas y posesiones
+
+Para rango Grande $r$ y nivel Grande $\ell$:
+
+$$
+b_{\mathrm{Great}}=10^{10}(1.7)^r,
+\qquad
+\operatorname{maxXP}_{\mathrm{Great}}=
+\operatorname{round}\left(b_{\mathrm{Great}}(\ell+1)(1.01)^\ell\right).
+$$
+
+Una habilidad Grande evalúa su efecto en:
+
+$$
+\ell_{\mathrm{effective}}=\max(P_{\mathrm{normal}},2000)+100\ell_{\mathrm{Great}}.
+$$
+
+Gran Recuerdo Cósmico solo limita su efecto resultante a 2. Para una posesión pagada original con un gasto ordinario $X_0$, efecto ordinario $M_0$, y rango de orden de origen $r$:
+
+$$
+X_{\mathrm{Great}}=\max\left(10^6X_0,10^{20}10^{r/3}\right),
+\qquad
+M_{\mathrm{Great}}=1+4(M_0-1).
+$$
+
+## Ingreso de la clase
+
+<FormulaCard title="Ingreso de la clase">
+
+$$
+I=\operatorname{round}\left(
+I_0\left(1+\log_{10}(\ell+1)\right)
+M_{\text{wealth}}M_{\text{category}}M_{\text{mastery-income}}
+\right)
+$$
+
+Esto multiplica el ingreso base $I_0$, el término de nivel $1+\log_{10}(\ell+1)$, Riqueza del Demonio, cualquier efecto de ingreso de categoría aplicable y el multiplicador de ingresos por maestría aditivo. Militar agrega Fuerza; Asociación Arcana agrega Ojo que Todo lo Ve. El producto final se redondea una vez.
+
+</FormulaCard>
+
+Con ingreso base 100 y sin multiplicadores adicionales:
+
+| Nivel | Cobre/día |
+| ----: | --------: |
+|     0 |       100 |
+|    10 |       204 |
+|   100 |       300 |
+| 1,000 |       400 |
+
+## Gastos, Felicidad y visualización neta
+
+El gasto diario base de cada posesión activa se multiplica por los cinco efectos de habilidad de reducción de gastos y luego se redondea. El gasto total es el gasto de la propiedad más cada gasto misceláneo activo y, mientras esté habilitado, la tarifa del Administrador de Tienda.
+
+$$
+X_i=\operatorname{round}\left(X_{0,i}
+E_B E_I E_{Br} E_A E_G\right)
+$$
+
+La felicidad multiplica:
+
+$$
+H=
+\frac{E_{\text{Meditation}}\,
+I_{\text{Butler}}\,
+I_{\text{Multiverse Fragment}}\,
+I_{\text{Property}}}
+{E_{\text{Mind Seize}}}
+$$
+
+La tarifa del Administrador de Tienda es $0.10I$, y su presupuesto de equipamiento recomendado es $0.90I$. La magnitud neta es $\left|I-X\right|$; la barra lateral la antepone con **+** cuando los ingresos cubren los gastos y **−** cuando los gastos son mayores, con un estilo positivo o negativo correspondiente.
+
+## Duración de vida y velocidad del juego
+
+$$
+L=70\cdot365\cdot
+E_{\text{Life Essence}}
+E_{\text{Astral Body}}
+E_{\text{Ceaseless Abyss}}
+E_{\text{Cosmic Longevity}}
+E_{\text{Higher Dimensions}}
+$$
+
+La duración de vida no tiene redondeo o límite adicional.
+
+Cuando la distorsión del tiempo está activada, la distorsión real es:
+
+$$
+W_{\text{actual}} =
+E_{\text{Time Warping}}+
+\left(E_{\text{Temporal Dimension}}E_{\text{Time Loop}}\right)
+$$
+
+En cambio, la barra lateral multiplica los tres efectos, por lo que puede diferir de la velocidad que realmente avanza el juego.
+
+La velocidad efectiva del juego es $4W_{\text{actual}}$ mientras se esté vivo y no en pausa, de lo contrario es cero. La Esencia V multiplica la velocidad efectiva del juego por 1.10; este bono de hito no forma parte del número de distorsión mostrado en la barra lateral.
+
+## Recompensas de renacimiento
+
+El multiplicador por tarea de la próxima vida de Touch Eye es:
+
+$$
+M_{\text{task}}=1+\frac{\max(\ell,\ell_{\max})}{10}
+$$
+
+No hay un multiplicador global de XP basado en el número de renacimientos. La ganancia de maldad multiplica Control de Maldad, Meditación de Sangre, Deseo Absoluto, Encarnación del Vacío, Yin Yang, el multiplicador aditivo de maestría de ganancia de maldad y el multiplicador 1.15 de Esencia VI.
+
+La ganancia de Esencia multiplica Yin Yang, Colector de Esencia, el multiplicador de maestría aditiva de ganancia de Esencia, Esencia IV de 1.10, Esencia IX de 1.15, y `1 + 0.1 × Essence Bargain rank`. Trascender gana otro ×1.5 después de que la Esencia actual alcance 30,000 y se complete Esencia III.
+
+## Ventajas de Ecos y Mal
+
+Con el pico de Resonancia recordado $p_i$ y objetivo $T_i\in\{1000,1250,1500,1750\}$, la eficiencia del Eco correspondiente es:
+
+$$
+E_i(p_i)=
+\begin{cases}
+0.25+0.75p_i/T_i,&p_i\le T_i,\\
+1+0.05\log_2(p_i/T_i),&p_i>T_i.
+\end{cases}
+$$
+
+El XP de Eco usa la ganancia completa de XP actual de la habilidad objetivo multiplicada por $E_i(p_i)$, incluyendo el Great XP cuando el objetivo es promovido. Ver [Ecos y Resonancia](../../systems/echoes/) para reglas de enrutamiento.
+
+Con Mal $V$, Esencia $S$, y el multiplicador Esencia VIII $M_8\in\{1,1.25\}$:
+
+$$
+\operatorname{EPP/day}=
+\frac{\log_{10}(1+V)\left(1+0.25\log_{10}(1+S)\right)}{365}M_8.
+$$
+
+Para una edad base $A$, rango de ventaja $r$, y reducción $d$ años por rango, el requisito efectivo es $\max(0,A-rd)$. Los rangos máximos actuales producen Ojo Táctil 15, Abrazar el Mal 100, Vacío 100, y Consejo Galáctico 1,000.
+
+## Colapso y Orbes Oscuros
+
+Para la Esencia actual $S$, $x=S/(5\times10^{10})$, y el producto de todos los multiplicadores de Materia Oscura $M_{\mathrm{DM}}$:
+
+$$
+\operatorname{Collapse}(S)=
+\begin{cases}
+0,&x<1,\\
+\left\lfloor x^{1.12}(1+0.15\log_{10}x)M_{\mathrm{DM}}\right\rfloor,&x\ge1.
+\end{cases}
+$$
+
+Los resultados positivos extremos se saturan en el valor finito más grande. El costo y la tasa del siguiente rango del generador de Orbes Oscuros son:
+
+$$
+C_{\mathrm{generator}}(r)=\left\lceil3^r\right\rceil,
+$$
+
+$$
+\operatorname{Orbs/day}=0.01(2^r-1)(1+0.25\sqrt{D})M_{11},
+$$
+
+donde $D$ es Materia Oscura de por vida y $M_{11}$ es 1.5 después de Darkness XI, de lo contrario 1. Para una mejora de Orbe con costo base $B$, el siguiente nivel cuesta $B4^r$.
+
+## Metaverso y Hipercubos
+
+Por Materia Oscura bruta obtenida en esta partida $R$, $y=R/1000$, y multiplicador de ganancia de Metaverso $M_{\mathrm{MP}}$:
+
+$$
+\operatorname{Metaverse}(R)=
+\begin{cases}
+0,&y<1,\\
+\left\lfloor y^{1.1}(1+0.1\log_{10}y)M_{\mathrm{MP}}\right\rfloor,&y\ge1.
+\end{cases}
+$$
+
+Con rango del Altar de Hipercubo $a$, multiplicador de objeto activo $M_i$, y multiplicador de beneficio $M_p$:
+
+$$
+\operatorname{Hypercubes/day}=0.03M_iM_p(1.25)^a,
+\qquad
+\operatorname{cap}=10{,}000(1+\mathrm{lifetime\ MP})^2.
+$$
+
+Un altar con costo base $B$ cuesta $B3^r$ por rango $r+1$. La duración de Impulso de Realidad es $60+10d$ segundos activo, y su tiempo de reutilización es $\max(120,600(0.95)^c)$ segundos activo.
+
+## puntaje de carrera del Imperio
+
+$$
+C=p\ell_{\text{peak}}^2
+$$
+
+$p$ es el valor de prestigio de carrera de la clase, igual al XP máximo base de esa clase. $\ell_{\text{peak}}$ es el nivel más alto alcanzado mientras se trabajaba esa clase.

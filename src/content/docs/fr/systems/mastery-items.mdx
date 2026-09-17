@@ -1,11 +1,68 @@
 ---
-title: 'Objets de maîtrise'
-description: 'Découverte, paliers, bonus et catalogue complet.'
+title: Objets
+description: Découverte, niveaux, bonus, persistance, formules, et le catalogue complet d’objets groupés par classe.
 category: systems
 ---
 
 import MasteryCatalog from '../../../../components/MasteryCatalog.astro';
 
-Chaque classe possède un objet passif permanent. Il apparaît après un véritable cycle de travail et progresse selon le plus haut niveau atteint pendant que la classe travaillait. Les paliers Cuivre, Argent, Or, Platine, Émeraude et Rubis remplacent le palier précédent; ils ne s'additionnent pas. Les renaissances normales conservent découvertes, pics et effets.
+Legacy possède un objet de maîtrise passif pour chacune de ses 44 classes. Les objets sont des objets de collection permanents : ils ne sont jamais équipés, désactivés, achetés ou consommés, et tous les effets gagnés sont actifs en même temps.
+
+## Découverte et visibilité
+
+- L’élément d’une classe apparaît pour la première fois après que cette classe ait complété **un coche de travail réel**. Se contenter de débloquer ou de sélectionner la classe ne suffit pas.
+- La découverte est permanente lors des renaissances, des réinitialisations complètes, de l’export/importation des sauvegardes et de la réconciliation des comptes.
+- Un objet découvert reste gris jusqu'à ce que son pic travaillé atteigne le Cuivre. Son infobulle révèle toujours les exigences de Cuivre et les deux effets de Cuivre.
+- Les classes jamais travaillées n'apparaissent pas dans l'inventaire des objets. Les groupes de classes vides sont cachés.
+
+L'onglet Objets est toujours disponible, y compris en prison. C'est un inventaire en lecture seule ; il n'y a pas de slots d'équipement.
+
+## Niveaux et bonus
+
+Chaque objet a toujours deux effets : un **bonus XP de sa propre classe** et l'effet secondaire listé. Le niveau actuel remplace les valeurs du niveau précédent ; les valeurs Cuivre, Argent, Or, Platine, Émeraude et Rubis ne s'additionnent pas entre elles.
+
+| Type d'effet                                    | Cuivre | Argent |     Or | Platine | Émeraude | Rubis |
+| ----------------------------------------------- | -----: | -----: | -----: | ------: | -------: | ----: |
+| XP de sa propre classe XP                       |    +2% |    +4% |    +6% |     +8% |     +10% |  +12% |
+| XP liée à la capacité ou au groupe de classe XP |  +0.5% |    +1% |  +1.5% |     +2% |    +2.5% |   +3% |
+| Effet global                                    | +0.10% | +0.20% | +0.35% |  +0.50% |   +0.75% | +1.0% |
+
+Les effets globaux incluent tous les XP de classe, tous les XP de capacité, tous les revenus, le gain de Mal et le gain d'Essence. Tous les autres effets secondaires utilisent la ligne d'effet lié.
+
+Tous les pourcentages de maîtrise applicables s'additionnent d'abord pour former un multiplicateur de maîtrise unique. Ce multiplicateur se combine ensuite normalement avec les systèmes non liés à la maîtrise. Par exemple, plusieurs objets qui affectent la même capacité contribuent à un bonus de maîtrise totalisé plutôt que de se multiplier entre eux.
+
+## Formule de niveau
+
+Définir le travail de classe normalisé au niveau $L$ comme :
+
+$$
+N(L)=\sum_{k=0}^{L-1}(k+1)(1.01)^k
+$$
+
+Chaque objet a un niveau de route fixe $P$, indiqué sur sa carte ci-dessous. Son objectif en cuivre est :
+
+$$
+T=\max\left(N(15),\ 2N(P)\right)
+$$
+
+Objectif Argent, Or, Platine, Émeraude et Rubis $2T$, $4T$, $8T$, $16T$, et $32T$. Le pic requis est le premier niveau entier dont $N(L)$ atteint cet objectif. Le commun $P=10$ route se débloque donc aux pics **15 / 21 / 30 / 40 / 54 / 72**.
+
+Seul le niveau le plus élevé atteint pendant que la classe était réellement travaillée compte. Le niveau actuel, la sélection d’une classe, le déblocage d’une classe et les niveaux maximaux hérités ne peuvent pas attribuer de niveau.
+
+## Renaissances et resets
+
+- **Touch Eye, Embrace Evil et Transcend :** tous les niveaux de maîtrise et tous les effets actifs survivent. Un objet cuivre ou supérieur continue d’accorder son effet dans la vie fraîche dès que sa classe cible, capacité, revenu, calcul du Mal ou d’Essence est à nouveau pertinent.
+- ** Réinitialisation complète ou réinitialisation anti-triche :** les cartes découvertes restent visibles, mais les preuves de pic travaillé supprimées retirent leur niveau et leurs bonus jusqu’à ce que la classe soit à nouveau maîtrisée.
+- Les sauvegardes existantes déduisent les objets découverts et les niveaux à partir de leurs pics enregistrés de classe travaillée.
+
+L'ancien multiplicateur mondial de XP plafonné lors de la renaissance n'existe plus. Les comptes de renaissance servent toujours leurs autres systèmes, et l'accélération spécifique aux tâches de Touch Eye `1 + maximum level / 10` reste en place.
+
+## Catalogue complet des objets
+
+Dans chaque carte, les exigences de niveau et les valeurs d'effet sont ordonnées **Cuivre / Argent / Or / Platine / Émeraude / Rubis**.
 
 <MasteryCatalog locale="fr" />
+
+## Licence des icônes
+
+Les silhouettes de maîtrise proviennent de [Game-Icons.net](https://game-icons.net/) par Lorc et Delapouite sous [CC BY 3.0](https://creativecommons.org/licenses/by/3.0/). Legacy recolore les modèles SVG noirs et les rasterise en PNG 128×128 transparents. Chaque fiche du catalogue renvoie à sa page source exacte.

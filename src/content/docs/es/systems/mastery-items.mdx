@@ -1,11 +1,68 @@
 ---
-title: 'Objetos de maestría'
-description: 'Descubrimiento, rangos, bonificaciones y catálogo completo.'
+title: Objetos de Maestría
+description: Descubrimiento, niveles, bonificaciones, persistencia, fórmulas y el catálogo completo de objetos agrupados por clase.
 category: systems
 ---
 
 import MasteryCatalog from '../../../../components/MasteryCatalog.astro';
 
-Cada clase tiene un objeto pasivo permanente. Se revela después de un ciclo de trabajo real y progresa según el nivel más alto alcanzado mientras esa clase trabajaba. Los rangos Cobre, Plata, Oro, Platino, Esmeralda y Rubí sustituyen al anterior; no se acumulan. Los renacimientos normales conservan los descubrimientos, los máximos y los efectos.
+Legacy tiene un objeto de maestría pasivo para cada una de sus 44 clases. Los objetos son coleccionables permanentes de la cuenta: nunca se equipan, desactivan, compran o consumen, y todos los efectos obtenidos están activos al mismo tiempo.
+
+## Descubrimiento y visibilidad
+
+- El objeto de una clase aparece por primera vez después de que esa clase complete **un ciclo de trabajo real**. Simplemente desbloquear o seleccionar la clase no es suficiente.
+- El descubrimiento es permanente a través de los renacimientos, reinicios completos, exportación/importación de guardados y conciliación de cuenta.
+- Un objeto descubierto permanece gris hasta que su pico trabajado alcanza Cobre. Su descripción aún revela los requisitos de Cobre y ambos efectos de Cobre.
+- Las clases nunca trabajadas no aparecen en el inventario de Objetos. Los grupos de clases vacíos están ocultos.
+
+La pestaña de Objetos siempre está disponible, incluso mientras se está encarcelado. Es un inventario de solo lectura; no hay ranuras de equipo.
+
+## Niveles y bonificaciones
+
+Cada objeto siempre tiene dos efectos: un **bono de XP de su propia clase** y el efecto secundario listado. El nivel actual reemplaza los valores del nivel anterior; los valores de Cobre, Plata, Oro, Platino, Esmeralda y Rubí no se suman entre sí.
+
+| Tipo de efecto                            |  Cobre |  Plata |    Oro | Platino | Esmeralda |  Rubí |
+| ----------------------------------------- | -----: | -----: | -----: | ------: | --------: | ----: |
+| Clase propia XP                           |    +2% |    +4% |    +6% |     +8% |      +10% |  +12% |
+| Habilidad o grupo de clase relacionado XP |  +0.5% |    +1% |  +1.5% |     +2% |     +2.5% |   +3% |
+| Efecto global                             | +0.10% | +0.20% | +0.35% |  +0.50% |    +0.75% | +1.0% |
+
+Los efectos globales son toda la XP de clase, toda la XP de habilidad, todos los ingresos, la ganancia de maldad y la ganancia de Esencia. Todos los demás efectos secundarios usan la fila de efecto relacionado.
+
+Todos los porcentajes de dominio aplicables se suman primero para formar un multiplicador de dominio. Ese multiplicador luego se combina normalmente con sistemas que no son de dominio. Por ejemplo, varios ítems que afectan la misma habilidad contribuyen con un bono de dominio sumado en lugar de multiplicarse entre sí.
+
+## Fórmula de nivel
+
+Definir trabajo de clase normalizado en el nivel $L$ como:
+
+$$
+N(L)=\sum_{k=0}^{L-1}(k+1)(1.01)^k
+$$
+
+Cada ítem tiene un nivel de ruta fijo $P$, mostrado en su tarjeta a continuación. Su objetivo de Cobre es:
+
+$$
+T=\max\left(N(15),\ 2N(P)\right)
+$$
+
+Objetivo de Plata, Oro, Platino, Esmeralda y Rubí $2T$, $4T$, $8T$, $16T$, y $32T$. La cumbre requerida es el primer nivel entero cuyo $N(L)$ alcanza ese objetivo. El común $P=10$ La ruta, por lo tanto, se desbloquea en los picos trabajados **15 / 21 / 30 / 40 / 54 / 72**.
+
+Solo cuenta el nivel más alto alcanzado mientras la clase se estaba realmente trabajando. El nivel actual, al seleccionar una clase, desbloquear una clase y los niveles máximos heredados no pueden otorgar un nivel.
+
+## Renacimientos y reinicios
+
+- **Tocar el Ojo, Abrazar el Mal y Trascender:** todos los niveles de maestría y todos los efectos activos sobreviven. Un objeto de Cobre o superior sigue otorgando su efecto en la vida nueva tan pronto como su clase objetivo, habilidad, ingresos, Mal o cálculo de Esencia sea relevante nuevamente.
+- **Reinicio completo o reinicio por liberación anti-trampas:** las cartas descubiertas permanecen visibles, pero la evidencia de pico trabajado eliminada quita su nivel y bonificaciones hasta que la clase sea dominada nuevamente.
+- Las partidas guardadas existentes infieren los objetos y niveles descubiertos a partir de sus picos de clase trabajada registrados.
+
+El antiguo multiplicador global de XP por renacimiento ya no existe. Los recuentos de renacimientos siguen sirviendo para sus otros sistemas, y se mantiene la aceleración específica por tarea de Tocar el Ojo: `1 + maximum level / 10`.
+
+## Catálogo completo de artículos
+
+Dentro de cada carta, los requisitos de nivel y los valores de efecto están ordenados **Cobre / Plata / Oro / Platino / Esmeralda / Rubí**.
 
 <MasteryCatalog locale="es" />
+
+## Licencia de icono
+
+Las siluetas de maestría provienen de [Game-Icons.net](https://game-icons.net/) por Lorc y Delapouite bajo [CC BY 3.0](https://creativecommons.org/licenses/by/3.0/). Legacy recolorea los maestros SVG negros y los rasteriza a PNGs transparentes de 128×128. Cada tarjeta del catálogo enlaza a su página de origen exacta.

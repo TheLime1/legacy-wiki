@@ -1,11 +1,21 @@
 ---
-title: 'Habilidades'
-description: 'Todas las habilidades, sus efectos, coeficientes y desbloqueos.'
+title: Habilidades
+description: Todas las habilidades, efectos, coeficientes, fórmulas y desbloqueos de Legacy.
 category: systems
 ---
 
 import CatalogTable from '../../../../components/CatalogTable.astro';
 
-Legacy contiene 49 habilidades repartidas en nueve grupos. La habilidad principal obtiene XP y hasta cuatro [Ecos](../echoes/) pueden entrenar otras en paralelo. La mayoría de los efectos son lineales; las reducciones de gastos y algunas bonificaciones usan logaritmos. Las bonificaciones de maestría aplicables se suman en un único multiplicador.
+Legacy contiene 49 habilidades entrenables distribuidas en nueve grupos. La habilidad primaria seleccionada gana XP, y hasta cuatro [Ecos](../echoes/) pueden entrenar diferentes habilidades junto a ella.
+
+La mayoría de los efectos son lineales: `1 + coefficient × level`. Las reducciones de gasto utilizan una fórmula logarítmica con límite, el Distorción Temporal y la Esencia de Vida usan aumentos logarítmicos, y la Recolección Cósmica regresa `level × 0.00065` para la retención de la Trascendencia.
+
+La Resonancia I–IV no tiene un multiplicador directo. Cada pico de vida recordado establece la eficiencia de entrenamiento de su Eco correspondiente, y un Eco no puede entrenar su propia Resonancia.
+
+Las seis habilidades de la Oscuridad usan `1 + coefficient × log10(level + 1)` y afectan la habilidad XP, Materia Oscura, toda XP, Esencia o XP de Magia. Pueden volverse Grandes; las habilidades de Resonancia no pueden.
+
+El XP de Magia Oscura incluye el Mal actual como multiplicador. El XP de Omnipotencia incluye la Esencia actual como multiplicador.
+
+Algunos [objetos de maestría](../mastery-items/) agrega un pequeño bono a una habilidad específica, a un grupo completo de habilidades o a toda la XP de habilidades. Todos los porcentajes de dominio aplicables se suman en un solo multiplicador.
 
 <CatalogTable kind="abilities" locale="es" />

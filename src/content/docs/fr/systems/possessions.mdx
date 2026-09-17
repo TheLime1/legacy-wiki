@@ -1,13 +1,23 @@
 ---
-title: 'Possessions'
-description: 'Propriétés, possessions, dépenses, effets et déblocages.'
+title: Possessions
+description: Biens et possessions diverses, dépenses, effets et déverrouillages.
 category: systems
 ---
 
 import CatalogTable from '../../../../components/CatalogTable.astro';
 
-Les 30 propriétés sont mutuellement exclusives et multiplient le Bonheur. Les 24 possessions diverses peuvent être activées séparément. Tous les coûts sont des dépenses quotidiennes récurrentes. Si le cuivre atteint zéro, les sélections payantes sont désactivées.
+Legacy possède 30 propriétés et 24 possessions diverses. Les propriétés sont mutuellement exclusives et multiplient le Bonheur. La sélection d'une nouvelle propriété remplace l'ancienne ; cliquer sur la propriété payante actuelle revient à Sans-abri.
 
 <CatalogTable kind="properties" locale="fr" />
 
+Les possessions diverses peuvent être activées indépendamment et multiplient leur canal nommé.
+
 <CatalogTable kind="items" locale="fr" />
+
+Tous les coûts listés sont **des dépenses récurrentes quotidiennes**, et non des prix d'achat uniques. La Négociation, l'Intimidation, le Lavage de cerveau, la Manipulation de l'Abîme et le Commandement Galactique multiplient la dépense de base de chaque possession. Si les dépenses résultantes consomment tout le cuivre, les possessions payantes actives sont supprimées.
+
+L'extension ajoute vingt possessions allant du Vaisseau spatial au Domaine non écrit. Leurs déblocages combinent du cuivre avec des exigences en Matière noire ou en Points du Métavers lorsque cela est indiqué.
+
+Les possessions payantes originales peuvent recevoir des [Great conversions permanentes](../heroic/#great-item-conversions). Les sans-abri et les vingt possessions de l'extension ne sont pas éligibles.
+
+Après la première Transcendance, l'[Intendant de boutique](../shop-steward/) peut recommander une propriété et un équipement divers. Ses frais de 10 % sur les revenus constituent une dépense quotidienne supplémentaire tant qu'il est actif.
