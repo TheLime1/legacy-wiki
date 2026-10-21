@@ -12,19 +12,19 @@ Le temps de la chronique n'avance que lorsque le jeu est activement en cours. So
 
 Chaque récompense devient permanente dès que l'Essence actuelle atteint le seuil inclus.
 
-| Étape        | Essence | Récompense permanente            |
-| ------------ | ------: | -------------------------------- |
-| Essence I    |   5,000 | +5% d'XP de capacité             |
-| Essence II   |  15,000 | +5% d'XP de classe               |
-| Essence III  |  30,000 | ×1,5 récompense de Transcendance |
-| Essence IV   |  50,000 | +10% de gain d'Essence           |
-| Essence V    |  75,000 | +10% de vitesse de jeu           |
-| Essence VI   | 120,000 | +15% de gain de Mal              |
-| Essence VII  | 170,000 | +10% de XP partout               |
-| Essence VIII | 250,000 | +25% de points de don maléfique  |
-| Essence IX   | 400,000 | +15% de gain d'Essence           |
+| Étape        | Essence | Récompense permanente                                        |
+| ------------ | ------: | ------------------------------------------------------------ |
+| Essence I    |   5,000 | +5% d'XP de capacité                                         |
+| Essence II   |  15,000 | +5% d'XP de classe                                           |
+| Essence III  |  30,000 | ×1,5 récompense de Transcendance                             |
+| Essence IV   |  50,000 | +10% de gain d'Essence                                       |
+| Essence V    |  75,000 | +10% de vitesse de jeu                                       |
+| Essence VI   | 120,000 | +15% de gain de Mal                                          |
+| Essence VII  | 170,000 | +10% de XP partout                                           |
+| Essence VIII | 250,000 | +25% de points de perks maléfiques et +25% de gain d’Essence |
+| Essence IX   | 400,000 | +15% de gain d'Essence                                       |
 
-Les deux jalons de gain d'Essence se multiplient plutôt que de s'additionner : compléter les deux donne $1.10\times1.15=1.265$, soit 26,5% d'Essence en plus avant autres multiplicateurs.
+Les trois jalons de gain d’Essence se multiplient : Essence IV, VIII et IX donnent ensemble $1.10\times1.25\times1.15=1.58125$, soit 58.125% d’Essence supplémentaire avant les autres multiplicateurs. Essence VIII conserve aussi son bonus de points de perks maléfiques. Les jalons terminés accordent ces récompenses même après une remise à zéro de l’Essence actuelle.
 
 Voir [Dons maléfiques](../evil-perks/) pour la génération de EPP et [Renaissances](../rebirths/) pour les formules d'attribution.
 
@@ -34,9 +34,9 @@ Ces récompenses permanentes utilisent l'Essence actuelle.
 
 | Jalon         |        Essence | Récompense permanente            |
 | ------------- | -------------: | -------------------------------- |
-| Héroïque I    |      5,000,000 | Grande promotion                 |
-| Héroïque II   |     10,000,000 | ×2 Grande XP                     |
-| Héroïque III  |     20,000,000 | ×2 Grande XP                     |
+| Héroïque I    |      1,000,000 | Grande promotion                 |
+| Héroïque II   |      2,000,000 | ×2 Grande XP                     |
+| Héroïque III  |      4,000,000 | ×2 Grande XP                     |
 | Héroïque IV   |     30,000,000 | ×2 Grande XP                     |
 | Héroïque V    |     50,000,000 | ×2 Grande XP                     |
 | Héroïque VI   |    100,000,000 | ×2 Grande XP                     |

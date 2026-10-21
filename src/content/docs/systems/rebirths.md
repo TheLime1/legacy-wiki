@@ -24,7 +24,7 @@ Great promotion status survives, but every Great maximum is cleared.
 
 ## Transcend
 
-Available at Cosmic Recollection level 1. It awards `Yin Yang effect × Essence Collector effect` Essence plus all applicable mastery, milestone, and perk multipliers. Reaching 30,000 Essence completes Essence III and makes the Transcend award 1.5 times larger. Evil is cleared. Each recorded maximum becomes:
+Available at Cosmic Recollection level 1, using its current Great level if promoted. The archived normal level does not qualify after promotion or a reset. It awards `Yin Yang effect × Essence Collector effect` Essence plus applicable mastery, milestone, and perk multipliers. Essence III at 30,000 Essence permanently multiplies the award by 1.5. Evil is cleared. Each recorded maximum becomes:
 
 `floor(Cosmic Recollection effect × max(current level, recorded maximum))`
 

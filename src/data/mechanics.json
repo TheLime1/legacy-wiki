@@ -66,7 +66,7 @@
         "Resonance memories and Evil perks",
         "Chronicle and milestones",
         "permanent unlocks",
-        "enabled automation choices until the application closes"
+        "saved automation choices, ability skips, and loadouts"
       ]
     },
     {
@@ -88,13 +88,13 @@
         "Resonance memories and Evil perks",
         "Chronicle and milestones",
         "permanent unlocks",
-        "enabled automation choices until the application closes"
+        "saved automation choices, ability skips, and loadouts"
       ]
     },
     {
       "id": "transcend",
       "name": "Transcend",
-      "unlock": "Cosmic Recollection level 1",
+      "unlock": "Cosmic Recollection current level 1 (Great level when promoted)",
       "reward": "Awards Essence, unlocks the Shop Steward after the first completion, and retains floored task maximum levels scaled by Cosmic Recollection.",
       "resets": ["age", "copper", "current task levels and XP", "Evil", "active possessions"],
       "keeps": [
@@ -105,7 +105,7 @@
         "Resonance memories and Evil perks",
         "Chronicle and milestones",
         "permanent unlocks",
-        "enabled automation choices until the application closes"
+        "saved automation choices, ability skips, and loadouts"
       ]
     },
     {

@@ -16,7 +16,7 @@ Les objets Maîtrise sont passifs et ne peuvent pas être équipés ou désactiv
 | Space           | Pause ou reprise                                                                                                 |
 | P               | Bascule la promotion automatique après que l’automatisation débloque                                             |
 | L               | Désactiver l’apprentissage automatique après que l’automatisation déverrouille                                   |
-| 1, 2 ou 3       | Chargez ce loadout                                                                                               |
+| 1, 2 ou 3       | Charger cet équipement sauvegardé                                                                                |
 | Alt + 1, 2 ou 3 | Sauvegarder, puis chargez immédiatement ce loadout                                                               |
 | Escape          | Close Empire en plein écran, fermez la invite de critique, ou ouvrez la invite de critique après une renaissance |
 

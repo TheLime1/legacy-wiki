@@ -21,13 +21,11 @@ The Settings tab lets you export a backup or import an earlier one. Keep exporte
 - current, lifetime, and run Dark Matter; Collapse count; Dark Orbs; generator and upgrade ranks; doctrine choices; current and lifetime Metaverse Points; Metaverse count; perk choices; Hypercubes; altar ranks; Reality Boost timers; pending preservation snapshots; and ending completion;
 - sticky task-header and audio settings;
 - best class, property, and lifespan records used by the leaderboards.
+- automation toggles, including both auto-pause choices, three loadout slots, and ability Skip choices;
 
 ## Session-only
 
 - light-theme choice;
-- automation toggles, including both auto-pause choices;
-- three loadout slots;
-- ability Skip choices;
 - short timing progress between automatic choices.
 
 Time spent with the game closed does not generate progress.

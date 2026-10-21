@@ -12,19 +12,19 @@ Chronicle time advances only while the game is actively running. Its history, co
 
 Each reward becomes permanent as soon as current Essence reaches the inclusive threshold.
 
-| Milestone    | Essence | Permanent reward      |
-| ------------ | ------: | --------------------- |
-| Essence I    |   5,000 | +5% ability XP        |
-| Essence II   |  15,000 | +5% class XP          |
-| Essence III  |  30,000 | ×1.5 Transcend award  |
-| Essence IV   |  50,000 | +10% Essence gain     |
-| Essence V    |  75,000 | +10% game speed       |
-| Essence VI   | 120,000 | +15% Evil gain        |
-| Essence VII  | 170,000 | +10% all XP           |
-| Essence VIII | 250,000 | +25% Evil Perk Points |
-| Essence IX   | 400,000 | +15% Essence gain     |
+| Milestone    | Essence | Permanent reward                            |
+| ------------ | ------: | ------------------------------------------- |
+| Essence I    |   5,000 | +5% ability XP                              |
+| Essence II   |  15,000 | +5% class XP                                |
+| Essence III  |  30,000 | ×1.5 Transcend award                        |
+| Essence IV   |  50,000 | +10% Essence gain                           |
+| Essence V    |  75,000 | +10% game speed                             |
+| Essence VI   | 120,000 | +15% Evil gain                              |
+| Essence VII  | 170,000 | +10% all XP                                 |
+| Essence VIII | 250,000 | +25% Evil Perk Points and +25% Essence gain |
+| Essence IX   | 400,000 | +15% Essence gain                           |
 
-The two Essence-gain milestones multiply one another rather than adding: completing both gives $1.10\times1.15=1.265$, or 26.5% more Essence before other multipliers.
+The three Essence-gain milestones multiply one another: Essence IV, VIII, and IX together give $1.10\times1.25\times1.15=1.58125$, or 58.125% more Essence before other multipliers. Essence VIII keeps its Evil Perk Point bonus as well. Previously completed milestones grant these rewards even after current Essence resets.
 
 See [Evil Perks](../evil-perks/) for EPP generation and [Rebirths](../rebirths/) for award formulas.
 
@@ -34,9 +34,9 @@ These permanent rewards use current Essence.
 
 | Milestone   |        Essence | Permanent reward                |
 | ----------- | -------------: | ------------------------------- |
-| Heroic I    |      5,000,000 | Great promotion                 |
-| Heroic II   |     10,000,000 | ×2 Great XP                     |
-| Heroic III  |     20,000,000 | ×2 Great XP                     |
+| Heroic I    |      1,000,000 | Great promotion                 |
+| Heroic II   |      2,000,000 | ×2 Great XP                     |
+| Heroic III  |      4,000,000 | ×2 Great XP                     |
 | Heroic IV   |     30,000,000 | ×2 Great XP                     |
 | Heroic V    |     50,000,000 | ×2 Great XP                     |
 | Heroic VI   |    100,000,000 | ×2 Great XP                     |

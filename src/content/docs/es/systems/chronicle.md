@@ -12,19 +12,19 @@ El tiempo de la Crónica avanza solo mientras el juego está en ejecución activ
 
 Cada recompensa se vuelve permanente tan pronto como la Esencia actual alcanza el umbral inclusivo.
 
-| Hito         | Esencia | Recompensa permanente               |
-| ------------ | ------: | ----------------------------------- |
-| Esencia I    |   5,000 | +5% de XP de habilidad              |
-| Esencia II   |  15,000 | +5% de XP de clase                  |
-| Esencia III  |  30,000 | ×1,5 premio de Trascendencia        |
-| Esencia IV   |  50,000 | +10% de ganancia de Esencia         |
-| Esencia V    |  75,000 | +10% de velocidad del juego         |
-| Esencia VI   | 120,000 | +15% de ganancia de Maldad          |
-| Esencia VII  | 170,000 | +10% a toda XP                      |
-| Esencia VIII | 250,000 | +25% de Puntos de Beneficio Malvado |
-| Esencia IX   | 400,000 | +15% de ganancia de esencia         |
+| Hito         | Esencia | Recompensa permanente                                      |
+| ------------ | ------: | ---------------------------------------------------------- |
+| Esencia I    |   5,000 | +5% de XP de habilidad                                     |
+| Esencia II   |  15,000 | +5% de XP de clase                                         |
+| Esencia III  |  30,000 | ×1,5 premio de Trascendencia                               |
+| Esencia IV   |  50,000 | +10% de ganancia de Esencia                                |
+| Esencia V    |  75,000 | +10% de velocidad del juego                                |
+| Esencia VI   | 120,000 | +15% de ganancia de Maldad                                 |
+| Esencia VII  | 170,000 | +10% a toda XP                                             |
+| Esencia VIII | 250,000 | +25% Puntos de Ventajas del Mal y +25% ganancia de Esencia |
+| Esencia IX   | 400,000 | +15% de ganancia de esencia                                |
 
-Los dos hitos de ganancia de esencia se multiplican entre sí en lugar de sumarse: completar ambos da $1.10\times1.15=1.265$, o un 26.5% más de Esencia antes de otros multiplicadores.
+Los tres hitos de ganancia de Esencia se multiplican: Esencia IV, VIII y IX juntos dan $1.10\times1.25\times1.15=1.58125$, un 58.125% más de Esencia antes de otros multiplicadores. Esencia VIII conserva también su bono de Puntos de Ventajas del Mal. Los hitos completados mantienen las recompensas aunque la Esencia actual se reinicie.
 
 Ver [Ventajas Malévolas](../evil-perks/) para la generación de EPP y [Renacimientos](../rebirths/) para fórmulas de premios.
 
@@ -34,9 +34,9 @@ Estas recompensas permanentes utilizan Esencia actual.
 
 | Hito         |        Esencia | Recompensa permanente            |
 | ------------ | -------------: | -------------------------------- |
-| Heroico I    |      5,000,000 | Gran ascenso                     |
-| Heroico II   |     10,000,000 | ×2 Gran XP                       |
-| Heroico III  |     20,000,000 | ×2 Gran XP                       |
+| Heroico I    |      1,000,000 | Gran ascenso                     |
+| Heroico II   |      2,000,000 | ×2 Gran XP                       |
+| Heroico III  |      4,000,000 | ×2 Gran XP                       |
 | Heroico IV   |     30,000,000 | ×2 Gran XP                       |
 | Heroico V    |     50,000,000 | ×2 Gran XP                       |
 | Heroico VI   |    100,000,000 | ×2 Gran XP                       |

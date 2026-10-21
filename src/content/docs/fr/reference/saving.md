@@ -21,13 +21,11 @@ L'onglet Paramètres vous permet d'exporter une sauvegarde ou d'en importer une 
 - courant, durée de vie, et run Matière Noire ; Nombre d’effondrements ; Orbes Sombres ; rangs générateurs et d’amélioration ; choix de doctrine ; points actuels et à vie du Métavers ; compte du métavers ; choix d’avantages ; hypercubes ; rangs d’autel ; minuteurs Reality Boost ; instantanés de préservation en attente ; et fin d’achèvement ;
 - en-tête de tâche et paramètres audio épinglés ;
 - meilleurs records de classe, propriété et durée de vie utilisés par les classements.
+- réglages d’automatisation, dont les deux pauses automatiques, trois emplacements d’équipement et les choix Skip des capacités ;
 
 ## Données limitées à la session
 
 - light-theme choix ;
-- automatisation, incluant les deux choix d’auto-pause ;
-- trois emplacements d’équipement ;
-- capacité Passer les choix ;
 - progression temporelle entre les choix automatiques.
 
 Le temps passé avec le jeu fermé ne génère pas de progression.

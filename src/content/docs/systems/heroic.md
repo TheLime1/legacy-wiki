@@ -8,13 +8,13 @@ The **Heroic** tab tracks fourteen Heroic milestones based on Essence and the Gr
 
 ## Great promotion gate
 
-Normal classes, abilities, and original possessions can become Great after all three requirements are met:
+Eligible classes, abilities, and paid possessions, including expansion possessions, can become Great after all three requirements are met:
 
 1. Transcend at least once.
-2. Reach 5,000,000 Essence and complete Heroic I.
-3. Reach a normal **One Above All** peak of 2,000.
+2. Reach 1,000,000 Essence to complete Heroic I.
+3. Reach normal **One Above All** level 1.
 
-The target must also be unlocked, and promotion or conversion is unavailable while jailed. A previously completed Heroic I permanently satisfies its Essence part of the gate.
+The target must also be unlocked, and promotion or conversion is unavailable while jailed. Completed Heroic I permanently satisfies the Essence requirement. Unlocking One Above All without training it is insufficient; its recorded normal peak, earned achievement, or existing Great task promotion preserves proof of reaching it.
 
 Metaverse classes use their own sequential gate described in [The Metaverse](../metaverse/).
 
@@ -24,9 +24,9 @@ Milestones are permanent once their Essence threshold is reached.
 
 | Milestone   |        Essence | Reward                                 |
 | ----------- | -------------: | -------------------------------------- |
-| Heroic I    |      5,000,000 | Unlock Great promotions                |
-| Heroic II   |     10,000,000 | ×2 Great XP                            |
-| Heroic III  |     20,000,000 | ×2 Great XP                            |
+| Heroic I    |      1,000,000 | Unlock Great promotions                |
+| Heroic II   |      2,000,000 | ×2 Great XP                            |
+| Heroic III  |      4,000,000 | ×2 Great XP                            |
 | Heroic IV   |     30,000,000 | ×2 Great XP                            |
 | Heroic V    |     50,000,000 | ×2 Great XP                            |
 | Heroic VI   |    100,000,000 | ×2 Great XP                            |
@@ -45,7 +45,7 @@ The twelve Great-XP milestones multiply one another, up to $2^{12}=4096$ times G
 
 Promotion is permanent and archives the task's normal level, maximum, XP, and highest normal peak. The Great version starts at level 0 with its own XP and maximum-level history. Resonance abilities cannot become Great.
 
-Within each class or ability family, the first task can be promoted immediately after the gate. Every following task requires the previous Great task at level 20.
+Each class or ability category has its own independent chain. Its first unlocked task can be promoted after the global gate; each following task requires the previous task at current Great level 20. For example, Farmer needs Great Beggar level 20, while Military starts its own chain. Already-promoted tasks use Great levels for progression checks and do not regain their original normal-level prerequisites after a reset; category and release gates still apply.
 
 | Great chain            | Rank range | Order                                     |
 | ---------------------- | ---------: | ----------------------------------------- |
@@ -63,6 +63,8 @@ Within each class or ability family, the first task can be promoted immediately 
 | Almightiness           |      36–39 | Yin Yang through Epiphany                 |
 
 Task rank is source order plus one, counted separately for classes and abilities. Dark Ascendancy, Darkness, and Metaverse continue with the chains described on their own pages.
+
+Great training keeps the full inherited XP, retained-maximum, time-warp, and Heroic bonuses. There is no logarithmic Great XP slowdown or mandatory training delay. Powerful characters may finish the early Great levels immediately. Removing the slowdown does not reset saved levels, XP, archives, or promotions.
 
 For Great rank $r$ and Great level $L$, the next-level requirement is:
 
@@ -99,9 +101,9 @@ Great promotion status and archived normal progress remain permanent through the
 
 ## Great item conversions
 
-Every paid property and miscellaneous possession from the original catalog can be converted in its own Shop chain. Homeless and the expansion's new possessions are not eligible. Converting an active item removes it from the current loadout but permanently changes its statistics.
+Every eligible paid property and miscellaneous possession, including expansion items, can be converted through its Shop chain. Homeless cannot become Great. Conversion is permanent and deactivates the item immediately; its new recurring upkeep applies when equipped again.
 
-Item rank follows the original paid-item source order: Tent is 1, Galactic Throne is 15, Book is 16, and Multiverse Fragment is 33. For rank $r$:
+Item rank keeps the existing source-order values: Tent is 1, Galactic Throne is 15, Book is 16, and Multiverse Fragment is 33. Expansion items keep their later ranks, and each item type continues its own ordered chain. For rank $r$:
 
 $$
 X_{\mathrm{Great}}=\max\left(10^6X_0,\ 10^{20}\times10^{r/3}\right),
@@ -113,4 +115,8 @@ $$
 
 $X_0$ is ordinary daily expense and $M_0$ is the ordinary effect. Properties and miscellaneous possessions advance through separate conversion chains; each conversion after the first requires the previous item in that chain.
 
+Each conversion charges a one-time fee equal to one day of that item’s Great upkeep after expense reductions and rounding. You need enough copper to pay it. The preview shows the fee and new daily expense before confirmation; existing Great items are not charged retroactively.
+
 Heroic XIV leads directly to [Darkness and Collapse](../darkness/).
+
+A **✓ Great** badge means the promotion or conversion is already complete. **Promote** and **Convert** start an action, followed by **Confirm** or **Cancel**. **Locked** explains the missing requirement, such as a predecessor’s current Great level or insufficient copper.

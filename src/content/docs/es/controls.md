@@ -16,7 +16,7 @@ Los elementos de maestría son pasivos y no se pueden hacer clic para equiparlos
 | Espacio                    | Pausar o reanudar                                                                                                           |
 | P                          | Activar o desactivar promoción automática después de desbloquear Automatización                                             |
 | L                          | Activar o desactivar aprendizaje automático después de desbloquear Automatización                                           |
-| 1, 2, o 3                  | Cargar esa configuración solo para la sesión                                                                                |
+| 1, 2, o 3                  | Cargar esa configuración guardada                                                                                           |
 | Alt + 1, 2, o 3            | Guardar y luego cargar inmediatamente esa configuración                                                                     |
 | Escape                     | Cerrar Empire a pantalla completa, cerrar la solicitud de reseña, o abrir la solicitud de reseña después de un renacimiento |
 

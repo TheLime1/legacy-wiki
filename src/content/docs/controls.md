@@ -16,7 +16,7 @@ Mastery items are passive and cannot be clicked to equip or disable them. Hover 
 | Space              | Pause or resume                                                                             |
 | P                  | Toggle auto-promote after Automation unlocks                                                |
 | L                  | Toggle auto-learn after Automation unlocks                                                  |
-| 1, 2, or 3         | Load that session-only loadout                                                              |
+| 1, 2, or 3         | Load that saved loadout                                                                     |
 | Alt + 1, 2, or 3   | Save, then immediately load that loadout                                                    |
 | Escape             | Close Empire fullscreen, close the review prompt, or open the review prompt after a rebirth |
 

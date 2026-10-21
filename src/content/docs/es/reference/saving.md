@@ -21,13 +21,11 @@ La pestaña de Configuración te permite exportar una copia de seguridad o impor
 - actual, de por vida y ejecutar Materia Oscura; conteo de Colapso; Orbes Oscuros; rangos de generador y mejoras; elecciones de doctrina; Puntos de Metaverso actuales y de por vida; conteo de Metaverso; elecciones de ventajas; Hipercubos; rangos de altar; temporizadores de Impulso de Realidad; instantáneas de preservación pendientes; y finalización de la partida;
 - cabecera de tarea fija y configuración de audio;
 - mejor clase, propiedad y récords de duración de vida usados por las tablas de clasificación.
+- opciones de automatización, incluidas ambas pausas automáticas, tres configuraciones y elecciones Skip de habilidades;
 
 ## Solo sesión
 
 - elección de tema claro;
-- alternancias de automatización, incluidas ambas opciones de pausa automática;
-- tres ranuras de configuración;
-- opciones de omisión de habilidad;
 - progreso de temporización corto entre elecciones automáticas.
 
 El tiempo pasado con el juego cerrado no genera progreso.

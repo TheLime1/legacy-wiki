@@ -8,13 +8,13 @@ L'onglet **Héroïque** suivi quatorze étapes héroïques basées sur l'Essence
 
 ## Portail de promotion Great
 
-Les classes normales, capacités et possessions originales peuvent devenir Great après que les trois exigences suivantes soient remplies :
+Les classes, capacités et possessions payantes éligibles, y compris celles de l’extension, peuvent devenir Great lorsque les trois conditions sont remplies :
 
 1. Transcender au moins une fois.
-2. Atteindre 5 000 000 d'Essence et compléter Héroïque I.
-3. Atteindre une normale **Celui au-dessus de tous** sommet de 2 000.
+2. Atteindre 1,000,000 d’Essence pour terminer Héroïque I.
+3. Atteindre le niveau normal 1 de **One Above All**.
 
-La cible doit également être débloquée, et la promotion ou la conversion n'est pas disponible lorsqu'elle est emprisonnée. Un Héroïque I précédemment terminé satisfait définitivement sa partie Essence de la porte.
+La cible doit aussi être débloquée ; promotion et conversion sont indisponibles en prison. Héroïque I terminé satisfait définitivement la condition d’Essence. Débloquer One Above All sans l’entraîner ne suffit pas : son maximum normal enregistré, son succès obtenu ou une tâche déjà promue Great conservent la preuve de progression.
 
 Les classes du Métavers utilisent leur propre porte séquentielle décrite dans [Le Métavers](../metaverse/).
 
@@ -24,9 +24,9 @@ Les jalons sont permanents une fois que leur seuil d'Essence est atteint.
 
 | Jalon         |        Essence | Récompense                                     |
 | ------------- | -------------: | ---------------------------------------------- |
-| Héroïque I    |      5,000,000 | Débloquer les promotions Great                 |
-| Héroïque II   |     10,000,000 | ×2 Great XP                                    |
-| Héroïque III  |     20,000,000 | ×2 Great XP                                    |
+| Héroïque I    |      1,000,000 | Débloquer les promotions Great                 |
+| Héroïque II   |      2,000,000 | ×2 Great XP                                    |
+| Héroïque III  |      4,000,000 | ×2 Great XP                                    |
 | Héroïque IV   |     30,000,000 | ×2 Great XP                                    |
 | Héroïque V    |     50,000,000 | ×2 Great XP                                    |
 | Héroïque VI   |    100,000,000 | ×2 Great XP                                    |
@@ -45,7 +45,7 @@ Les douze Great-XP se multiplient entre eux, jusqu’à $2^{12}=4096$ fois Great
 
 La promotion est permanente et archive le niveau normal de la tâche, le maximum, les XP et le plus haut niveau normal atteint. La version Grandes commence au niveau 0 avec ses propres XP et historique de niveau maximum. Les capacités de résonance ne peuvent pas devenir Grandes.
 
-Au sein de chaque classe ou famille de capacités, la première tâche peut être promue immédiatement après le portail. Chaque tâche suivante nécessite la tâche Grande précédente au niveau 20.
+Chaque catégorie de classes ou de capacités possède sa propre chaîne. Sa première tâche débloquée peut être promue après les conditions globales ; chaque suivante exige le niveau Great actuel 20 de la précédente. Par exemple, Farmer exige Great Beggar niveau 20, tandis que Military commence une autre chaîne. Les tâches déjà promues utilisent leurs niveaux Great pour les conditions de progression et ne retrouvent pas leurs prérequis de niveau normal après une renaissance ; les conditions de catégorie et de disponibilité restent applicables.
 
 | Chaîne Grandes            | Plage de rang | Ordre                                             |
 | ------------------------- | ------------: | ------------------------------------------------- |
@@ -63,6 +63,8 @@ Au sein de chaque classe ou famille de capacités, la première tâche peut êtr
 | Toute-Puissance           |         36–39 | Yin Yang à travers l'Épiphanie                    |
 
 Le rang de la tâche est l'ordre de la source plus un, compté séparément pour les classes et les capacités. Ascendance Sombre, Ténèbres et Métavers continuent avec les chaînes décrites sur leurs propres pages.
+
+L’entraînement Great conserve intégralement les bonus d’XP héritée, de maximum conservé, de distorsion temporelle et des jalons héroïques. Il n’y a ni ralentissement logarithmique de l’XP Great ni durée d’entraînement imposée. Les personnages puissants peuvent terminer immédiatement les premiers niveaux Great. Le retrait du ralentissement ne réinitialise aucun niveau, XP, archive ou promotion sauvegardé.
 
 Pour le rang Great $r$ et le niveau Great $L$, la condition pour le niveau suivant est :
 
@@ -99,9 +101,9 @@ Le statut de promotion Great et la progression normale archivée restent permane
 
 ## Conversions d'objets Great
 
-Chaque propriété payante et possession diverse du catalogue d'origine peut être convertie dans sa propre chaîne de la Boutique. Sans-abri et les nouvelles possessions de l'extension ne sont pas éligibles. Convertir un objet actif le retire de l'équipement actuel, mais modifie définitivement ses caractéristiques.
+Chaque propriété et possession diverse payante éligible, y compris celles de l’extension, peut être convertie dans sa chaîne de boutique. Homeless ne peut pas devenir Great. La conversion est permanente et désactive immédiatement l’objet ; son nouvel entretien récurrent s’applique lorsqu’il est rééquipé.
 
-Le rang de l'objet suit l'ordre d'origine des objets payants : Tente vaut 1, Trône Galactique 15, Livre 16 et Fragment du Multivers 33. Pour le rang $r$ :
+Le rang conserve les valeurs de l’ordre source : Tent vaut 1, Galactic Throne 15, Book 16 et Multiverse Fragment 33. Les objets de l’extension gardent leurs rangs suivants, et chaque type continue sa propre chaîne ordonnée. Pour le rang $r$ :
 
 $$
 X_{\mathrm{Great}}=\max\left(10^6X_0,\ 10^{20}\times10^{r/3}\right),
@@ -113,4 +115,8 @@ $$
 
 $X_0$ est une dépense quotidienne ordinaire et $M_0$ est l'effet ordinaire. Les propriétés et possessions diverses progressent à travers des chaînes de conversion séparées ; chaque conversion après la première nécessite l'élément précédent dans cette chaîne.
 
+Chaque conversion facture une somme unique égale à une journée d’entretien Great de l’objet après réductions de dépenses et arrondi. Il faut assez de cuivre pour la payer. L’aperçu affiche cette somme et la nouvelle dépense quotidienne avant confirmation ; les objets déjà Great ne sont pas facturés rétroactivement.
+
 Héroïque XIV mène directement à [Ténèbres et Effondrement](../darkness/).
+
+Le badge **✓ Great** signifie que la promotion ou conversion est terminée. **Promote** et **Convert** lancent une action, suivie de **Confirm** ou **Cancel**. **Locked** explique la condition manquante, comme le niveau Great actuel du prédécesseur ou un manque de cuivre.

@@ -24,7 +24,7 @@ Grand statut de promotion survit, mais chaque maximum Grand est réinitialisé.
 
 ## Transcender
 
-Disponible au niveau 1 de Souvenir Cosmique. Il attribue `Yin Yang effect × Essence Collector effect` Essence plus tous les multiplicateurs de maîtrise, de jalon et d'avantages applicables. Atteindre 30 000 d'Essence complète Essence III et rend la récompense du Transcender 1,5 fois plus grande. Le Mal est effacé. Chaque maximum enregistré devient :
+Disponible au niveau 1 de Cosmic Recollection, en utilisant son niveau Great actuel si elle est promue. Le niveau normal archivé ne suffit pas après promotion ou renaissance. La récompense vaut `Yin Yang effect × Essence Collector effect` en Essence, avec les multiplicateurs de maîtrise, jalons et perks applicables. Essence III à 30,000 Essence multiplie définitivement la récompense par 1.5. Le Mal est effacé. Chaque maximum enregistré devient :
 
 `floor(Cosmic Recollection effect × max(current level, recorded maximum))`
 
